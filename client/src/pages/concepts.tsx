@@ -34,9 +34,12 @@ export default function Concepts() {
 
   // Aggiunge/rimuove un concetto dai preferiti
   const toggleFavorite = (conceptName: string) => {
+    console.log('Toggle favorite for:', conceptName);
+    console.log('Current favorites:', favorites);
     const newFavorites = favorites.includes(conceptName)
       ? favorites.filter(name => name !== conceptName)
       : [...favorites, conceptName];
+    console.log('New favorites:', newFavorites);
     saveFavorites(newFavorites);
   };
 
@@ -71,8 +74,13 @@ export default function Concepts() {
 
   const filteredConcepts = concepts?.filter(concept => {
     // Filtro per preferiti
-    if (showFavoritesOnly && !favorites.includes(concept.name)) {
-      return false;
+    if (showFavoritesOnly) {
+      console.log('Filtering favorites, showFavoritesOnly:', showFavoritesOnly);
+      console.log('Current favorites:', favorites);
+      console.log('Checking concept:', concept.name, 'is favorite:', favorites.includes(concept.name));
+      if (!favorites.includes(concept.name)) {
+        return false;
+      }
     }
 
     const matchesSearch = searchQuery === "" || 
