@@ -236,7 +236,7 @@ export default function Models() {
               <thead className="bg-gray-50">
                 <tr>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 w-32">Aspetto</th>
-                  {displayedModels.map((model) => (
+                  {displayedModels?.map((model) => (
                     <th key={model.id} className="px-6 py-3 text-left text-sm font-semibold text-gray-900 min-w-80">
                       <div>
                         <div className="font-medium">{model.name}</div>
@@ -249,7 +249,7 @@ export default function Models() {
               <tbody className="divide-y divide-gray-200">
                 <tr>
                   <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Tipo</td>
-                  {displayedModels.map((model) => (
+                  {displayedModels?.map((model) => (
                     <td key={model.id} className="px-6 py-4">
                       <Badge className={model.type === 'microeconomico' ? 
                         "bg-orange-100 text-orange-800 border-orange-200" : 
@@ -262,7 +262,7 @@ export default function Models() {
                 </tr>
                 <tr>
                   <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Descrizione</td>
-                  {displayedModels.map((model) => (
+                  {displayedModels?.map((model) => (
                     <td key={model.id} className="px-6 py-4">
                       <div className="text-sm text-gray-600">{model.description}</div>
                     </td>
@@ -270,7 +270,7 @@ export default function Models() {
                 </tr>
                 <tr>
                   <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Concetti Chiave</td>
-                  {displayedModels.map((model) => (
+                  {displayedModels?.map((model) => (
                     <td key={model.id} className="px-6 py-4">
                       <ul className="space-y-1">
                         {model.keyConcepts.map((concept, index) => (
@@ -285,7 +285,7 @@ export default function Models() {
                 </tr>
                 <tr>
                   <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Applicazioni</td>
-                  {displayedModels.map((model) => (
+                  {displayedModels?.map((model) => (
                     <td key={model.id} className="px-6 py-4">
                       <div className="flex flex-wrap gap-1">
                         {model.applications.map((application, index) => (
