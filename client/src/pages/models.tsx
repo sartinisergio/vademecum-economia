@@ -49,7 +49,7 @@ export default function Models() {
 
   const handlePrint = () => {
     // Get only the selected models that are currently displayed
-    const selectedDisplayedModels = displayedModels?.filter(model => selectedModels.includes(model.id)) || [];
+    const modelsForPrint = displayedModels?.filter(model => selectedModels.includes(model.id)) || [];
     
     const printContent = `
       <html>
@@ -72,10 +72,10 @@ export default function Models() {
           <div class="header">
             <h1>Confronto Modelli Teorici Economici</h1>
             <p>Vademecum di Economia - ${new Date().toLocaleDateString('it-IT')}</p>
-            <p>Confronto di ${selectedDisplayedModels.length} modelli selezionati</p>
+            <p>Confronto di ${modelsForPrint.length} modelli selezionati</p>
           </div>
           
-          ${selectedDisplayedModels.map((model: any) => `
+          ${modelsForPrint.map((model: any) => `
             <div class="model">
               <div class="model-title">${model.name}</div>
               <div class="type-badge">${model.type === 'microeconomico' ? 'Microeconomico' : 'Macroeconomico'}</div>

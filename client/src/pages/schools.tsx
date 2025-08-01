@@ -57,7 +57,7 @@ export default function Schools() {
 
   const handlePrint = () => {
     // Get only the selected schools that are currently displayed
-    const selectedDisplayedSchools = displayedSchools?.filter(school => selectedSchools.includes(school.id)) || [];
+    const schoolsForPrint = displayedSchools?.filter(school => selectedSchools.includes(school.id)) || [];
     
     const printContent = `
       <html>
@@ -80,10 +80,10 @@ export default function Schools() {
           <div class="header">
             <h1>Confronto Scuole di Pensiero Economico</h1>
             <p>Vademecum di Economia - ${new Date().toLocaleDateString('it-IT')}</p>
-            <p>Confronto di ${selectedDisplayedSchools.length} scuole selezionate</p>
+            <p>Confronto di ${schoolsForPrint.length} scuole selezionate</p>
           </div>
           
-          ${selectedDisplayedSchools.map((school: any) => `
+          ${schoolsForPrint.map((school: any) => `
             <div class="school">
               <div class="school-title">${school.name}</div>
               
