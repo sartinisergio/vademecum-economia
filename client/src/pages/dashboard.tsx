@@ -70,24 +70,14 @@ export default function Dashboard() {
       {/* Hero Section */}
       <section className="hero-gradient rounded-2xl p-8 mb-12 text-white">
         <div className="max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Esplora le Scuole di Pensiero Economico
+          <h1 className="text-2xl md:text-3xl font-bold mb-3">
+            Vademecum di economia
           </h1>
-          <p className="text-xl md:text-2xl font-light mb-6 opacity-90">
+          <p className="text-lg md:text-xl font-light mb-4 opacity-90">
             Una piattaforma interattiva per comprendere le teorie economiche moderne, 
             dai modelli neoclassici alle nuove frontiere dell'economia comportamentale.
+            Include l'analisi dei principali manuali di economia utilizzati nelle università italiane.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
-              <span className="font-semibold">{stats?.schoolsCount || 5}+</span> Scuole di Pensiero
-            </div>
-            <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
-              <span className="font-semibold">15+</span> Economisti di Riferimento
-            </div>
-            <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
-              <span className="font-semibold">{stats?.conceptsCount || 100}+</span> Concetti Chiave
-            </div>
-          </div>
         </div>
       </section>
 
@@ -121,7 +111,7 @@ export default function Dashboard() {
 
       {/* Main Dashboard */}
       <section className="mb-12">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Esplora per Sezione</h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-6 text-center">Esplora per Sezione</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           
           <SectionCard
@@ -188,14 +178,14 @@ export default function Dashboard() {
           />
 
           {/* Featured Debate Card */}
-          <div className="card-hover bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-100 cursor-pointer text-white">
-            <div className="w-16 h-16 gradient-yellow rounded-xl flex items-center justify-center mb-4">
-              <MessageSquare className="w-8 h-8 text-gray-900" />
+          <div className="card-hover bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-6 border border-gray-100 cursor-pointer text-white">
+            <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-4">
+              <MessageSquare className="w-8 h-8 text-white" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">Saltwater vs Freshwater</h3>
-            <p className="text-gray-300 mb-4">Il grande dibattito che ha diviso l'economia moderna</p>
+            <h3 className="text-lg font-semibold mb-2">Saltwater vs Freshwater</h3>
+            <p className="text-white/80 mb-4 text-sm">Il grande dibattito che ha diviso l'economia moderna</p>
             <div className="flex items-center justify-between">
-              <Badge variant="secondary" className="bg-yellow-400/20 text-yellow-400">
+              <Badge variant="secondary" className="bg-white/20 text-white text-xs">
                 Dibattito in corso
               </Badge>
             </div>
@@ -204,107 +194,27 @@ export default function Dashboard() {
         </div>
       </section>
 
-      {/* Featured Content */}
-      <section className="mb-12">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8">Contenuti in Evidenza</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          
-          {/* Featured School: Neoclassical */}
-          <Card>
-            <CardContent className="p-8">
-              <div className="flex items-start justify-between mb-6">
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Scuola Neoclassica</h3>
-                  <p className="text-gray-600">Il pensiero economico dominante</p>
-                </div>
-                <Badge>Fondamentale</Badge>
-              </div>
-              <p className="text-gray-700 mb-6">
-                L'approccio prevalente nell'insegnamento e nella ricerca economica contemporanea, 
-                basato sulla razionalità degli agenti e l'equilibrio di mercato.
-              </p>
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-sm text-gray-600">Sottoscuole: Nuova Keynesiana, Nuova Classica, Monetarista</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-sm text-gray-600">Economisti: Olivier Blanchard, Robert Lucas Jr., Milton Friedman</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-sm text-gray-600">Metodo: Ampio uso della matematica e modelli DSGE</span>
-                </div>
-              </div>
-              <Button className="bg-primary hover:bg-primary/90">
-                Esplora la Scuola
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Featured Model: Consumer Theory */}
-          <Card className="bg-gradient-to-br from-emerald-50 to-emerald-100 border-emerald-200">
-            <CardContent className="p-8">
-              <div className="flex items-start justify-between mb-6">
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Teoria del Consumatore</h3>
-                  <p className="text-emerald-700">Modello Microeconomico Fondamentale</p>
-                </div>
-                <Badge className="bg-emerald-200 text-emerald-800">Microeconomia</Badge>
-              </div>
-              <p className="text-gray-700 mb-6">
-                Spiega come le persone allocano il reddito per massimizzare la soddisfazione, 
-                utilizzando concetti di utilità marginale e curve di indifferenza.
-              </p>
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-white rounded-lg p-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">Concetti Chiave</h4>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Vincolo di Bilancio</li>
-                    <li>• Curve di Indifferenza</li>
-                    <li>• Utilità Marginale</li>
-                  </ul>
-                </div>
-                <div className="bg-white rounded-lg p-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">Applicazioni</h4>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Elasticità Domanda</li>
-                    <li>• Effetto Sostituzione</li>
-                    <li>• Beni Complementari</li>
-                  </ul>
-                </div>
-              </div>
-              <Button className="bg-emerald-600 hover:bg-emerald-700">
-                Studia il Modello
-              </Button>
-            </CardContent>
-          </Card>
-
-        </div>
-      </section>
-
       {/* Quick Actions */}
       <section className="mb-12">
         <Card>
-          <CardContent className="p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Azioni Rapide</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Button variant="outline" className="flex items-center justify-center space-x-3 h-16">
-                <Bookmark className="w-5 h-5" />
-                <span className="font-medium">I Miei Preferiti</span>
+          <CardContent className="p-6">
+            <h2 className="text-lg font-bold text-gray-900 mb-4">Azioni Rapide</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+              <Button variant="outline" className="flex items-center justify-center space-x-2 h-12">
+                <Bookmark className="w-4 h-4" />
+                <span className="text-sm">I Miei Preferiti</span>
               </Button>
-              <Button variant="outline" className="flex items-center justify-center space-x-3 h-16">
-                <Download className="w-5 h-5" />
-                <span className="font-medium">Esporta Contenuti</span>
+              <Button variant="outline" className="flex items-center justify-center space-x-2 h-12">
+                <Download className="w-4 h-4" />
+                <span className="text-sm">Esporta Contenuti</span>
               </Button>
-              <Button variant="outline" className="flex items-center justify-center space-x-3 h-16">
-                <HelpCircle className="w-5 h-5" />
-                <span className="font-medium">Quiz di Verifica</span>
+              <Button variant="outline" className="flex items-center justify-center space-x-2 h-12">
+                <HelpCircle className="w-4 h-4" />
+                <span className="text-sm">Quiz di Verifica</span>
               </Button>
-              <Button variant="outline" className="flex items-center justify-center space-x-3 h-16">
-                <Clock className="w-5 h-5" />
-                <span className="font-medium">Timeline Storica</span>
+              <Button variant="outline" className="flex items-center justify-center space-x-2 h-12">
+                <Clock className="w-4 h-4" />
+                <span className="text-sm">Timeline Storica</span>
               </Button>
             </div>
           </CardContent>
