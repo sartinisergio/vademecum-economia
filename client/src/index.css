@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(248, 12%, 98%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(240, 6%, 94%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(247, 83%, 64%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(45, 94%, 52%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(158, 84%, 52%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  /* Custom colors for the economic theme */
+  --blue-gradient-start: hsl(214, 100%, 59%);
+  --blue-gradient-end: hsl(214, 88%, 67%);
+  --emerald-gradient-start: hsl(158, 100%, 43%);
+  --emerald-gradient-end: hsl(158, 84%, 52%);
+  --purple-gradient-start: hsl(267, 83%, 64%);
+  --purple-gradient-end: hsl(267, 71%, 72%);
+  --orange-gradient-start: hsl(25, 95%, 53%);
+  --orange-gradient-end: hsl(25, 100%, 61%);
+  --red-gradient-start: hsl(0, 84%, 60%);
+  --red-gradient-end: hsl(0, 76%, 68%);
+  --indigo-gradient-start: hsl(238, 83%, 64%);
+  --indigo-gradient-end: hsl(238, 71%, 72%);
+  --teal-gradient-start: hsl(174, 84%, 52%);
+  --teal-gradient-end: hsl(174, 76%, 60%);
+  --yellow-gradient-start: hsl(45, 94%, 52%);
+  --yellow-gradient-end: hsl(45, 100%, 60%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(247, 83%, 64%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--purple-gradient-end) 50%, var(--secondary) 100%);
+  }
+  
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  .icon-glow {
+    filter: drop-shadow(0 0 8px hsla(247, 83%, 64%, 0.3));
+  }
+  
+  .gradient-blue {
+    background: linear-gradient(135deg, var(--blue-gradient-start), var(--blue-gradient-end));
+  }
+  
+  .gradient-emerald {
+    background: linear-gradient(135deg, var(--emerald-gradient-start), var(--emerald-gradient-end));
+  }
+  
+  .gradient-purple {
+    background: linear-gradient(135deg, var(--purple-gradient-start), var(--purple-gradient-end));
+  }
+  
+  .gradient-orange {
+    background: linear-gradient(135deg, var(--orange-gradient-start), var(--orange-gradient-end));
+  }
+  
+  .gradient-red {
+    background: linear-gradient(135deg, var(--red-gradient-start), var(--red-gradient-end));
+  }
+  
+  .gradient-indigo {
+    background: linear-gradient(135deg, var(--indigo-gradient-start), var(--indigo-gradient-end));
+  }
+  
+  .gradient-teal {
+    background: linear-gradient(135deg, var(--teal-gradient-start), var(--teal-gradient-end));
+  }
+  
+  .gradient-yellow {
+    background: linear-gradient(135deg, var(--yellow-gradient-start), var(--yellow-gradient-end));
+  }
+}
