@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import { BookOpen, Users, Target, CheckCircle, XCircle, GraduationCap } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,9 +22,48 @@ const schoolGradients = {
 };
 
 export default function Manuals() {
+  const [location] = useLocation();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [highlightedManual, setHighlightedManual] = useState<string | null>(null);
+
   const { data: manuals, isLoading, error } = useQuery<Manual[]>({
     queryKey: ["/api/manuals"],
   });
+
+  // Gestisce i parametri URL per ricerca
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.split('?')[1] || '');
+    const search = urlParams.get('search');
+    
+    if (search) {
+      setSearchQuery(search);
+      // Trova il manuale che contiene l'autore cercato
+      if (manuals) {
+        const foundManual = manuals.find(manual => 
+          manual.authors.some(author => 
+            author.toLowerCase().includes(search.toLowerCase())
+          )
+        );
+        if (foundManual) {
+          setHighlightedManual(foundManual.title);
+        }
+      }
+    }
+  }, [location, manuals]);
+
+  // Filtra i manuali in base alla ricerca
+  const filteredManuals = manuals?.filter(manual => {
+    if (!searchQuery) return true;
+    
+    const query = searchQuery.toLowerCase();
+    return (
+      manual.title.toLowerCase().includes(query) ||
+      manual.authors.some(author => author.toLowerCase().includes(query)) ||
+      manual.characteristics.toLowerCase().includes(query) ||
+      manual.strengths.some(strength => strength.toLowerCase().includes(query)) ||
+      manual.weaknesses.some(weakness => weakness.toLowerCase().includes(query))
+    );
+  }) || [];
 
   if (isLoading) {
     return (
@@ -60,8 +101,15 @@ export default function Manuals() {
             <BookOpen className="w-7 h-7 text-white" />
           </div>
           <div>
-            <h1 className="text-4xl font-bold text-gray-900">Manuali Universitari</h1>
-            <p className="text-xl text-gray-600">Testi di riferimento delle università italiane</p>
+            <h1 className="text-4xl font-bold text-gray-900">
+              {searchQuery ? `Risultati per "${searchQuery}"` : "Manuali Universitari"}
+            </h1>
+            <p className="text-xl text-gray-600">
+              {searchQuery 
+                ? `${filteredManuals.length} manuali trovati` 
+                : "Testi di riferimento delle università italiane"
+              }
+            </p>
           </div>
         </div>
         <p className="text-gray-700 max-w-4xl">
@@ -71,10 +119,22 @@ export default function Manuals() {
         </p>
       </div>
 
+      {/* Search Results Message */}
+      {searchQuery && filteredManuals.length === 0 && (
+        <div className="text-center py-12">
+          <BookOpen className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">Nessun manuale trovato</h3>
+          <p className="text-gray-600">La ricerca per "{searchQuery}" non ha prodotto risultati.</p>
+        </div>
+      )}
+
       {/* Manuals Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-        {manuals?.map((manual) => (
-          <Card key={manual.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+      {filteredManuals.length > 0 && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          {filteredManuals.map((manual) => {
+          const isHighlighted = highlightedManual === manual.title;
+          return (
+            <Card key={manual.id} className={`overflow-hidden hover:shadow-lg transition-shadow ${isHighlighted ? 'ring-2 ring-blue-500 shadow-lg' : ''}`}>
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div className="flex items-center space-x-4">
@@ -146,11 +206,14 @@ export default function Manuals() {
               </div>
             </CardContent>
           </Card>
-        ))}
-      </div>
+          );
+        })}
+        </div>
+      )}
 
       {/* Comparison Table */}
-      <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+      {filteredManuals.length > 0 && (
+        <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
         <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
           <h2 className="text-2xl font-bold text-gray-900">Confronto Rapido</h2>
           <p className="text-gray-600">Panoramica delle caratteristiche principali</p>
@@ -166,7 +229,7 @@ export default function Manuals() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {manuals?.map((manual, index) => (
+              {filteredManuals.map((manual, index) => (
                 <tr key={manual.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                   <td className="px-6 py-4">
                     <div>
@@ -198,31 +261,32 @@ export default function Manuals() {
             </tbody>
           </table>
         </div>
-      </div>
+        </div>
+      )}
 
       {/* Summary Stats */}
       <div className="mt-12 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-2xl p-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Panoramica dei Manuali</h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="text-center">
-            <div className="text-3xl font-bold text-primary mb-2">{manuals?.length || 0}</div>
-            <div className="text-gray-600">Manuali Analizzati</div>
+            <div className="text-3xl font-bold text-primary mb-2">{filteredManuals.length}</div>
+            <div className="text-gray-600">{searchQuery ? "Manuali Trovati" : "Manuali Analizzati"}</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">
-              {Array.from(new Set(manuals?.map(m => m.school) || [])).length}
+              {Array.from(new Set(filteredManuals.map(m => m.school))).length}
             </div>
             <div className="text-gray-600">Scuole Rappresentate</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">
-              {Array.from(new Set(manuals?.flatMap(m => m.authors) || [])).length}
+              {Array.from(new Set(filteredManuals.flatMap(m => m.authors))).length}
             </div>
             <div className="text-gray-600">Autori Totali</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">
-              {manuals?.reduce((acc, manual) => acc + manual.strengths.length, 0) || 0}
+              {filteredManuals.reduce((acc, manual) => acc + manual.strengths.length, 0)}
             </div>
             <div className="text-gray-600">Punti di Forza</div>
           </div>

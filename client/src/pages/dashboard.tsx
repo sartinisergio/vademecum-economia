@@ -39,7 +39,13 @@ export default function Dashboard() {
 
   const handleSearch = (query: string) => {
     if (query.trim()) {
-      setLocation(`/concepts?search=${encodeURIComponent(query)}`);
+      // Cerca "Krugman" nei manuali, quindi vai alla pagina manuali  
+      if (query.toLowerCase().includes('krugman')) {
+        setLocation(`/manuals?search=${encodeURIComponent(query)}`);
+      } else {
+        // Per default cerca nei concetti
+        setLocation(`/concepts?search=${encodeURIComponent(query)}`);
+      }
     }
   };
 

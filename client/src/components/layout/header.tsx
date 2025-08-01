@@ -7,10 +7,7 @@ export default function Header() {
   const [location] = useLocation();
 
   const navigation = [
-    { name: "Dashboard", path: "/" },
-    { name: "Ricerca", path: "/concepts" },
-    { name: "Preferiti", path: "/concepts?filter=favorites" },
-    { name: "Profilo", path: "/schools?view=timeline" }
+    { name: "Dashboard", path: "/" }
   ];
 
   return (
