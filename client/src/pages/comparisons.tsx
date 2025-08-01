@@ -30,6 +30,7 @@ export default function Comparisons() {
     aspects: []
   });
   const [searchQuery, setSearchQuery] = useState("");
+  const [dialogSearchQuery, setDialogSearchQuery] = useState("");
   const { toast } = useToast();
 
   const { data: comparisons, isLoading: comparisonsLoading } = useQuery<Comparison[]>({
@@ -65,6 +66,27 @@ export default function Comparisons() {
     comparison.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     comparison.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
     comparison.items.some(item => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
+  ) || [];
+
+  // Filter items for dialog search
+  const filteredSchools = schools?.filter(school =>
+    dialogSearchQuery === "" ||
+    school.name.toLowerCase().includes(dialogSearchQuery.toLowerCase())
+  ) || [];
+
+  const filteredModels = models?.filter(model =>
+    dialogSearchQuery === "" ||
+    model.name.toLowerCase().includes(dialogSearchQuery.toLowerCase())
+  ) || [];
+
+  const filteredManuals = manuals?.filter(manual =>
+    dialogSearchQuery === "" ||
+    manual.title.toLowerCase().includes(dialogSearchQuery.toLowerCase())
+  ) || [];
+
+  const filteredConcepts = concepts?.filter(concept =>
+    dialogSearchQuery === "" ||
+    concept.name.toLowerCase().includes(dialogSearchQuery.toLowerCase())
   ) || [];
 
   if (comparisonsLoading) {
@@ -132,17 +154,50 @@ export default function Comparisons() {
                   </div>
                 </div>
                 
+                {/* Search in dialog */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Cerca Elementi
+                  </label>
+                  <div className="relative">
+                    <Search className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
+                    <Input
+                      type="text"
+                      placeholder="Cerca scuole, modelli, manuali, concetti..."
+                      value={dialogSearchQuery}
+                      onChange={(e) => setDialogSearchQuery(e.target.value)}
+                      className="pl-9"
+                    />
+                  </div>
+                </div>
+
                 {/* Item Selection */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-4">
                     Seleziona Elementi da Confrontare (min. 2)
                   </label>
+                  {/* No results message for dialog search */}
+                  {dialogSearchQuery && filteredSchools.length === 0 && filteredModels.length === 0 && 
+                   filteredManuals.length === 0 && filteredConcepts.length === 0 && (
+                    <div className="text-center py-8">
+                      <p className="text-gray-500">Nessun elemento trovato per "{dialogSearchQuery}"</p>
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        onClick={() => setDialogSearchQuery("")}
+                        className="mt-2"
+                      >
+                        Cancella ricerca
+                      </Button>
+                    </div>
+                  )}
+                  
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {/* Schools */}
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Scuole</h4>
+                      <h4 className="font-semibold text-gray-900 mb-2">Scuole ({filteredSchools.length})</h4>
                       <div className="space-y-2 max-h-32 overflow-y-auto">
-                        {schools?.map(school => (
+                        {filteredSchools.map(school => (
                           <div key={school.id} className="flex items-center space-x-2">
                             <Checkbox
                               checked={createState.selectedItems.some(item => item.id === school.id)}
@@ -172,9 +227,9 @@ export default function Comparisons() {
 
                     {/* Models */}
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Modelli</h4>
+                      <h4 className="font-semibold text-gray-900 mb-2">Modelli ({filteredModels.length})</h4>
                       <div className="space-y-2 max-h-32 overflow-y-auto">
-                        {models?.map(model => (
+                        {filteredModels.map(model => (
                           <div key={model.id} className="flex items-center space-x-2">
                             <Checkbox
                               checked={createState.selectedItems.some(item => item.id === model.id)}
@@ -204,9 +259,9 @@ export default function Comparisons() {
 
                     {/* Manuals */}
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Manuali</h4>
+                      <h4 className="font-semibold text-gray-900 mb-2">Manuali ({filteredManuals.length})</h4>
                       <div className="space-y-2 max-h-32 overflow-y-auto">
-                        {manuals?.map(manual => (
+                        {filteredManuals.map(manual => (
                           <div key={manual.id} className="flex items-center space-x-2">
                             <Checkbox
                               checked={createState.selectedItems.some(item => item.id === manual.id)}
@@ -236,9 +291,9 @@ export default function Comparisons() {
 
                     {/* Concepts */}
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Concetti</h4>
+                      <h4 className="font-semibold text-gray-900 mb-2">Concetti ({filteredConcepts.length})</h4>
                       <div className="space-y-2 max-h-32 overflow-y-auto">
-                        {concepts?.slice(0, 10).map(concept => (
+                        {filteredConcepts.map(concept => (
                           <div key={concept.id} className="flex items-center space-x-2">
                             <Checkbox
                               checked={createState.selectedItems.some(item => item.id === concept.id)}
@@ -298,6 +353,7 @@ export default function Comparisons() {
                 <div className="flex justify-end space-x-4">
                   <Button variant="outline" onClick={() => {
                     setShowCreateDialog(false);
+                    setDialogSearchQuery("");
                     setCreateState({
                       title: "",
                       description: "",
@@ -315,6 +371,7 @@ export default function Comparisons() {
                           description: "Il tuo confronto personalizzato è stato creato con successo.",
                         });
                         setShowCreateDialog(false);
+                        setDialogSearchQuery("");
                         setCreateState({
                           title: "",
                           description: "",
