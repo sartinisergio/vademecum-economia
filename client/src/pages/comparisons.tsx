@@ -176,10 +176,13 @@ export default function Comparisons() {
                 Crea Confronto
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+            <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto" aria-describedby="create-comparison-description">
               <DialogHeader>
                 <DialogTitle>Crea Nuovo Confronto</DialogTitle>
               </DialogHeader>
+              <div id="create-comparison-description" className="sr-only">
+                Dialogo per creare un nuovo confronto personalizzato selezionando elementi da confrontare
+              </div>
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
@@ -322,7 +325,7 @@ export default function Comparisons() {
                                     selectedItems: [...prev.selectedItems, {
                                       type: 'manual',
                                       id: manual.id,
-                                      name: manual.title
+                                      name: `${manual.title} (${manual.authors.join(", ")})`
                                     }]
                                   }));
                                 } else {
@@ -333,7 +336,10 @@ export default function Comparisons() {
                                 }
                               }}
                             />
-                            <span className="text-sm">{manual.title}</span>
+                            <div className="text-sm">
+                              <div className="font-medium">{manual.title}</div>
+                              <div className="text-gray-500 text-xs">{manual.authors.join(", ")}</div>
+                            </div>
                           </div>
                         ))}
                       </div>
