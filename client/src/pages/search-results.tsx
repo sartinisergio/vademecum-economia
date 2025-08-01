@@ -26,7 +26,20 @@ export default function SearchResults() {
 
   // Funzione di ricerca globale
   const performGlobalSearch = (query: string) => {
-    if (!query.trim() || !schools || !models || !manuals || !concepts) return [];
+    if (!query.trim()) return [];
+    
+    console.log('Ricerca per:', query);
+    console.log('Dati disponibili:', { 
+      schools: schools?.length, 
+      models: models?.length, 
+      manuals: manuals?.length, 
+      concepts: concepts?.length 
+    });
+    
+    if (!schools || !models || !manuals || !concepts) {
+      console.log('Dati non ancora caricati');
+      return [];
+    }
 
     const searchResults: SearchResult[] = [];
     const queryLower = query.toLowerCase();
@@ -111,6 +124,7 @@ export default function SearchResults() {
       if (manual.authors.some(author => author.toLowerCase().includes(queryLower))) {
         matchedFields.push('autori');
         relevanceScore += 9;
+        console.log('Trovato in autori:', manual.authors, 'per query:', queryLower);
       }
       if (manual.school.toLowerCase().includes(queryLower)) {
         matchedFields.push('scuola');
