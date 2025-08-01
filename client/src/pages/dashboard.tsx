@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import { 
   Lightbulb, 
   BookOpen, 
@@ -31,23 +32,67 @@ interface Stats {
 }
 
 export default function Dashboard() {
+  const [, setLocation] = useLocation();
   const { data: stats, isLoading } = useQuery<Stats>({
     queryKey: ["/api/stats"],
   });
 
+  const { data: concepts } = useQuery<any[]>({
+    queryKey: ["/api/concepts"],
+  });
+
   const handleSearch = (query: string) => {
-    console.log("Searching for:", query);
-    // TODO: Implement search navigation
+    if (query.trim()) {
+      setLocation(`/concepts?search=${encodeURIComponent(query)}`);
+    }
   };
 
   const handleAdvancedSearch = () => {
-    console.log("Advanced search clicked");
-    // TODO: Open advanced search modal
+    setLocation("/concepts");
   };
 
   const handleRandomConcept = () => {
-    console.log("Random concept clicked");
-    // TODO: Navigate to random concept
+    if (concepts && concepts.length > 0) {
+      const randomIndex = Math.floor(Math.random() * concepts.length);
+      const randomConcept = concepts[randomIndex];
+      setLocation(`/concepts?highlight=${encodeURIComponent(randomConcept.name)}`);
+    }
+  };
+
+  const handleFavorites = () => {
+    // Naviga ai preferiti salvati localmente
+    setLocation("/concepts?filter=favorites");
+  };
+
+  const handleExport = () => {
+    // Esporta i contenuti in formato PDF o JSON
+    const dataToExport = {
+      timestamp: new Date().toISOString(),
+      schools: stats?.schoolsCount || 0,
+      models: stats?.modelsCount || 0,
+      manuals: stats?.manualsCount || 0,
+      concepts: stats?.conceptsCount || 0
+    };
+    
+    const blob = new Blob([JSON.stringify(dataToExport, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'vademecum-economia-export.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleQuiz = () => {
+    // Avvia un quiz sui concetti economici
+    setLocation("/concepts?mode=quiz");
+  };
+
+  const handleTimeline = () => {
+    // Mostra una timeline storica delle teorie economiche
+    setLocation("/schools?view=timeline");
   };
 
   if (isLoading) {
@@ -69,8 +114,8 @@ export default function Dashboard() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Hero Section */}
       <section className="hero-gradient rounded-2xl p-8 mb-12 text-white">
-        <div className="max-w-4xl">
-          <h1 className="text-2xl md:text-3xl font-bold mb-3">
+        <div className="max-w-4xl text-center mx-auto">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
             Vademecum di economia
           </h1>
           <p className="text-lg md:text-xl font-light mb-4 opacity-90">
@@ -200,19 +245,35 @@ export default function Dashboard() {
           <CardContent className="p-6">
             <h2 className="text-lg font-bold text-gray-900 mb-4">Azioni Rapide</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-              <Button variant="outline" className="flex items-center justify-center space-x-2 h-12">
+              <Button 
+                variant="outline" 
+                className="flex items-center justify-center space-x-2 h-12"
+                onClick={handleFavorites}
+              >
                 <Bookmark className="w-4 h-4" />
                 <span className="text-sm">I Miei Preferiti</span>
               </Button>
-              <Button variant="outline" className="flex items-center justify-center space-x-2 h-12">
+              <Button 
+                variant="outline" 
+                className="flex items-center justify-center space-x-2 h-12"
+                onClick={handleExport}
+              >
                 <Download className="w-4 h-4" />
                 <span className="text-sm">Esporta Contenuti</span>
               </Button>
-              <Button variant="outline" className="flex items-center justify-center space-x-2 h-12">
+              <Button 
+                variant="outline" 
+                className="flex items-center justify-center space-x-2 h-12"
+                onClick={handleQuiz}
+              >
                 <HelpCircle className="w-4 h-4" />
                 <span className="text-sm">Quiz di Verifica</span>
               </Button>
-              <Button variant="outline" className="flex items-center justify-center space-x-2 h-12">
+              <Button 
+                variant="outline" 
+                className="flex items-center justify-center space-x-2 h-12"
+                onClick={handleTimeline}
+              >
                 <Clock className="w-4 h-4" />
                 <span className="text-sm">Timeline Storica</span>
               </Button>

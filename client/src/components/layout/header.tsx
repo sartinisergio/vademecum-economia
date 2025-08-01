@@ -8,9 +8,9 @@ export default function Header() {
 
   const navigation = [
     { name: "Dashboard", path: "/" },
-    { name: "Ricerca", path: "/search" },
-    { name: "Preferiti", path: "/favorites" },
-    { name: "Profilo", path: "/profile" }
+    { name: "Ricerca", path: "/concepts" },
+    { name: "Preferiti", path: "/concepts?filter=favorites" },
+    { name: "Profilo", path: "/schools?view=timeline" }
   ];
 
   return (
@@ -22,8 +22,8 @@ export default function Header() {
               <BarChart3 className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">EconoLab</h1>
-              <p className="text-xs text-gray-500">Scuole di Pensiero Economico</p>
+              <h1 className="text-xl font-bold text-gray-900">Vademecum di economia</h1>
+              <p className="text-xs text-gray-500">Analisi delle scuole e manuali economici</p>
             </div>
           </Link>
           
