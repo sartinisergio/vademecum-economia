@@ -12,6 +12,7 @@ import Manuals from "@/pages/manuals";
 import Concepts from "@/pages/concepts";
 import Comparisons from "@/pages/comparisons";
 import Glossary from "@/pages/glossary";
+import SearchResults from "@/pages/search-results";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -27,6 +28,7 @@ function Router() {
           <Route path="/concepts" component={Concepts} />
           <Route path="/comparisons" component={Comparisons} />
           <Route path="/glossary" component={Glossary} />
+          <Route path="/search" component={SearchResults} />
           <Route component={NotFound} />
         </Switch>
       </main>
