@@ -356,27 +356,7 @@ export const manualsData = [
     ],
     targetAudience: "Corsi universitari di base e intermedi in Italia, studenti di economia, scienze politiche, ingegneria gestionale che desiderano una preparazione solida e critica"
   },
-  {
-    title: "Microeconomia",
-    authors: ["Robert Pindyck", "Daniel Rubinfeld"],
-    school: "Mainstream neoclassica specialistica per microeconomia avanzata. Enfasi su teoria dei giochi, economia dell'informazione, economia industriale. Matematica come linguaggio principale",
-    characteristics: [
-      "Autori: Robert Pindyck (MIT, economia dell'energia e dell'ambiente), Daniel Rubinfeld (Berkeley, antitrust e regolamentazione)",
-      "Trattamento specialistico della microeconomia per corsi avanzati. Ampio uso di matematica e modelli formali, teoria dei giochi, economia dell'informazione, casi di studio ed esempi empirici",
-      "Modelli: Microeconomia matematica avanzata (ottimizzazione vincolata, teoria del consumatore/produttore con calcolo, teoria dei giochi, economia dell'informazione, economia industriale, regolamentazione e antitrust)",
-      "Approfondimenti: Incertezza e rischio, asimmetrie informative, mercati con esternalità, beni pubblici, regolamentazione dei monopoli naturali",
-      "Preparazione per ricerca e dottorati in economia"
-    ],
-    strengths: [
-      "Rigore analitico elevato, preparazione solida per studi avanzati",
-      "Esempi empirici aggiornati, copertura completa della microeconomia moderna"
-    ],
-    weaknesses: [
-      "Richiede solide basi matematiche",
-      "Può risultare ostico per principianti, focus limitato su approcci alternativi"
-    ],
-    targetAudience: "Corsi avanzati di microeconomia, studenti di economia con basi matematiche solide, preparazione per dottorati"
-  },
+
   {
     title: "Economia: un approccio semplice ad una realtà complessa",
     authors: ["Paola Parravicini", "Alessandro Graffi"],
