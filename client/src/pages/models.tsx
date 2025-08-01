@@ -312,6 +312,20 @@ export default function Models() {
         </TabsList>
 
         <TabsContent value="all" className="space-y-8">
+          {/* Empty state message when no models to display */}
+          {displayMode === "selected" && selectedModels.length === 0 && (
+            <div className="text-center py-12">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+                <Calculator className="w-8 h-8 text-gray-400" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Nessun modello selezionato</h3>
+              <p className="text-gray-600 mb-4">Seleziona alcuni modelli per visualizzarli qui</p>
+              <Button onClick={() => setDisplayMode("all")} variant="outline">
+                Visualizza tutti i modelli
+              </Button>
+            </div>
+          )}
+
           {/* Microeconomic Models */}
           {displayedMicroModels.length > 0 && (
             <div>
@@ -341,6 +355,17 @@ export default function Models() {
                   <ModelCard key={model.id} model={model} />
                 ))}
               </div>
+            </div>
+          )}
+
+          {/* Fallback when no data available at all */}
+          {displayMode === "all" && (!models || models.length === 0) && (
+            <div className="text-center py-12">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+                <Calculator className="w-8 h-8 text-gray-400" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Nessun modello disponibile</h3>
+              <p className="text-gray-600">I modelli economici non sono ancora caricati</p>
             </div>
           )}
         </TabsContent>
