@@ -85,18 +85,19 @@ export default function Models() {
                 <div class="list-item">${model.description}</div>
               </div>
               
+              ${model.school ? `
               <div class="section">
                 <div class="section-title">Scuola di Riferimento:</div>
                 <div class="list-item">${model.school}</div>
+              </div>` : ''}
+              
+              <div class="section">
+                <div class="section-title">Concetti Chiave:</div>
+                ${model.keyConcepts.map((concept: string) => `<div class="list-item">• ${concept}</div>`).join('')}
               </div>
               
               <div class="section">
-                <div class="section-title">Componenti Chiave:</div>
-                ${model.keyComponents.map((component: string) => `<div class="list-item">• ${component}</div>`).join('')}
-              </div>
-              
-              <div class="section">
-                <div class="section-title">Applicazioni:</div>
+                <div class="section-title">Applicazioni Pratiche:</div>
                 ${model.applications.map((app: string) => `<div class="list-item">• ${app}</div>`).join('')}
               </div>
             </div>

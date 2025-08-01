@@ -88,6 +88,11 @@ export default function Schools() {
               <div class="school-title">${school.name}</div>
               
               <div class="section">
+                <div class="section-title">Categoria:</div>
+                <div class="list-item">${school.category === 'mainstream' ? 'Mainstream' : 'Alternativa'}</div>
+              </div>
+              
+              <div class="section">
                 <div class="section-title">Descrizione:</div>
                 <div class="list-item">${school.description}</div>
               </div>
@@ -104,7 +109,9 @@ export default function Schools() {
               
               <div class="section">
                 <div class="section-title">Esempi Pratici:</div>
-                ${school.examples ? `<div class="list-item">${school.examples}</div>` : '<div class="list-item">Nessun esempio disponibile</div>'}
+                ${school.examples && school.examples.length > 0 ? 
+                  school.examples.map((example: string) => `<div class="list-item">• ${example}</div>`).join('') 
+                  : '<div class="list-item">Nessun esempio disponibile</div>'}
               </div>
             </div>
           `).join('')}

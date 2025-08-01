@@ -114,15 +114,39 @@ export default function Manuals() {
               <div class="manual-title">${manual.title}</div>
               <div class="authors">Autori: ${manual.authors.join(', ')}</div>
               
+              ${manual.author ? `
               <div class="section">
-                <div class="section-title">Scuola di Pensiero:</div>
-                <div class="list-item">${manual.school}</div>
-              </div>
+                <div class="section-title">Profilo Autore:</div>
+                <div class="list-item">${manual.author}</div>
+              </div>` : ''}
               
               <div class="section">
                 <div class="section-title">Caratteristiche:</div>
                 <div class="list-item">${manual.characteristics || 'Non specificate'}</div>
               </div>
+              
+              <div class="section">
+                <div class="section-title">Scuola di Pensiero:</div>
+                <div class="list-item">${manual.school}</div>
+              </div>
+              
+              ${manual.models ? `
+              <div class="section">
+                <div class="section-title">Modelli Teorici:</div>
+                <div class="list-item">${manual.models}</div>
+              </div>` : ''}
+              
+              ${manual.shortLongPeriod ? `
+              <div class="section">
+                <div class="section-title">Approccio Breve/Lungo Periodo:</div>
+                <div class="list-item">${manual.shortLongPeriod}</div>
+              </div>` : ''}
+              
+              ${manual.growth ? `
+              <div class="section">
+                <div class="section-title">Crescita Economica:</div>
+                <div class="list-item">${manual.growth}</div>
+              </div>` : ''}
               
               <div class="section">
                 <div class="section-title">Punti di Forza:</div>
@@ -133,6 +157,12 @@ export default function Manuals() {
                 <div class="section-title">Punti di Debolezza:</div>
                 ${manual.weaknesses.map(weakness => `<div class="list-item">• ${weakness}</div>`).join('')}
               </div>
+              
+              ${manual.targetAudience ? `
+              <div class="section">
+                <div class="section-title">Pubblico Target:</div>
+                <div class="list-item">${manual.targetAudience}</div>
+              </div>` : ''}
             </div>
           `).join('')}
           
