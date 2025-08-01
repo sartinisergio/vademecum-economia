@@ -67,7 +67,7 @@ export default function Concepts() {
       setShowFavoritesOnly(false);
       setHighlightedConcept(null);
     }
-  }, [location]);
+  }, [location, favorites]); // Aggiungo favorites come dipendenza
 
   const filteredConcepts = concepts?.filter(concept => {
     // Filtro per preferiti

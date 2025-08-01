@@ -10,9 +10,7 @@ import {
   Hash,
   MessageSquare,
   Bookmark,
-  Download,
-  HelpCircle,
-  Clock,
+  Shuffle,
   Sparkles
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -64,36 +62,7 @@ export default function Dashboard() {
     setLocation("/concepts?filter=favorites");
   };
 
-  const handleExport = () => {
-    // Esporta i contenuti in formato PDF o JSON
-    const dataToExport = {
-      timestamp: new Date().toISOString(),
-      schools: stats?.schoolsCount || 0,
-      models: stats?.modelsCount || 0,
-      manuals: stats?.manualsCount || 0,
-      concepts: stats?.conceptsCount || 0
-    };
-    
-    const blob = new Blob([JSON.stringify(dataToExport, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'vademecum-economia-export.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
 
-  const handleQuiz = () => {
-    // Avvia un quiz sui concetti economici
-    setLocation("/concepts?mode=quiz");
-  };
-
-  const handleTimeline = () => {
-    // Mostra una timeline storica delle teorie economiche
-    setLocation("/schools?view=timeline");
-  };
 
   if (isLoading) {
     return (
@@ -244,7 +213,7 @@ export default function Dashboard() {
         <Card>
           <CardContent className="p-6">
             <h2 className="text-lg font-bold text-gray-900 mb-4">Azioni Rapide</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <Button 
                 variant="outline" 
                 className="flex items-center justify-center space-x-2 h-12"
@@ -256,26 +225,10 @@ export default function Dashboard() {
               <Button 
                 variant="outline" 
                 className="flex items-center justify-center space-x-2 h-12"
-                onClick={handleExport}
+                onClick={handleRandomConcept}
               >
-                <Download className="w-4 h-4" />
-                <span className="text-sm">Esporta Contenuti</span>
-              </Button>
-              <Button 
-                variant="outline" 
-                className="flex items-center justify-center space-x-2 h-12"
-                onClick={handleQuiz}
-              >
-                <HelpCircle className="w-4 h-4" />
-                <span className="text-sm">Quiz di Verifica</span>
-              </Button>
-              <Button 
-                variant="outline" 
-                className="flex items-center justify-center space-x-2 h-12"
-                onClick={handleTimeline}
-              >
-                <Clock className="w-4 h-4" />
-                <span className="text-sm">Timeline Storica</span>
+                <Shuffle className="w-4 h-4" />
+                <span className="text-sm">Concetto Casuale</span>
               </Button>
             </div>
           </CardContent>
