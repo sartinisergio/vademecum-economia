@@ -56,14 +56,11 @@ export default function Schools() {
   };
 
   const handlePrint = () => {
-    // Debug: let's see what we have
-    console.log('displayedSchools:', displayedSchools?.map(s => s.name));
-    console.log('selectedSchools:', selectedSchools);
-    console.log('displayMode:', displayMode);
+    // Simple debug alert
+    alert(`Stampa chiamata. Selezionati: ${selectedSchools.length}, Visualizzati: ${displayedSchools?.length || 0}, Modalità: ${displayMode}`);
     
     // Get only the selected schools that are currently displayed
     const schoolsForPrint = displayedSchools?.filter(school => selectedSchools.includes(school.id)) || [];
-    console.log('schoolsForPrint:', schoolsForPrint?.map(s => s.name));
     
     const printContent = `
       <html>
