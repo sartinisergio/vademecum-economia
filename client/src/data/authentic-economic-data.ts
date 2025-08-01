@@ -225,11 +225,13 @@ export const manualsData = [
   {
     title: "Economia",
     authors: ["Paul Samuelson", "William Nordhaus"],
-    school: "Sintesi Neoclassica-Keynesiana",
+    school: "Sintesi Neoclassica-Keynesiana (dominante nel dopoguerra): micro neoclassica, macro keynesiana nel breve, neoclassica nel lungo. Pragmatismo. Capacità di evolversi incorporando nuovi sviluppi (monetarismo, supply-side, nuova crescita, economia dell'informazione, economia ambientale)",
     characteristics: [
-      "Monumento nella storia del pensiero economico, ha definito come l'economia viene insegnata",
-      "Completezza enciclopedica, approccio sistematico",
-      "Aperture storiche, biografie, box 'Economia in Azione'"
+      "Autori: Paul Samuelson (Nobel 1970, padre della sintesi neoclassica-keynesiana), William Nordhaus (Nobel 2018, economia del cambiamento climatico)",
+      "Monumento nella storia del pensiero economico, ha definito come l'economia viene insegnata. Completezza enciclopedica, approccio sistematico. Aperture storiche, biografie, box 'Economia in Azione'",
+      "Modelli: Microeconomia con approccio classico perfezionato (scarsità/scelta, domanda/offerta meticolose, teoria del consumatore/produttore dettagliate, strutture di mercato, mercati dei fattori completi, economia del benessere). Macroeconomia della sintesi (contabilità nazionale, modello keynesiano completo con 'croce keynesiana', IS-LM, inflazione/disoccupazione con Curva di Phillips e critica Friedman-Phelps, crescita, economia internazionale, economia ambientale)",
+      "Breve/Lungo Periodo: Trattamento equilibrato e integrato: breve periodo keynesiano, lungo periodo neoclassico, ma sempre mostrando le connessioni e i trade-off intertemporali",
+      "Crescita: Trattamento evolutivo che riflette lo sviluppo della teoria: prospettiva storica, modello di Solow canonico (algebra e geometria), contabilità della crescita, cenni a nuove teorie. Forte integrazione dell'economia ambientale (Nordhaus)"
     ],
     strengths: [
       "Completezza senza pari, autorevolezza assoluta (autori Nobel)",
@@ -247,11 +249,13 @@ export const manualsData = [
   {
     title: "Principi di Economia",
     authors: ["Robert Frank", "Ben Bernanke"],
-    school: "Base neoclassica con apertura comportamentale",
+    school: "Base neoclassica con forte apertura ai temi comportamentali (bias cognitivi, limiti razionalità). Pragmatico: teoria per risolvere problemi concreti. Bernanke apporta prospettiva di policy reale (crisi 2008)",
     characteristics: [
-      "Molto narrativo, esempi dalla vita quotidiana",
-      "Attenzione alle scelte individuali tramite 'puzzle' economici ('Economic Naturalist')",
-      "Integrazione elementi di economia comportamentale e psicologia"
+      "Autori: Robert Frank (economia comportamentale, didattica innovativa), Ben Bernanke (ex presidente Federal Reserve, Nobel 2022 per studi sulle crisi bancarie)",
+      "Molto narrativo, esempi dalla vita quotidiana, attenzione alle scelte individuali tramite 'puzzle' economici ('Economic Naturalist'). Integrazione elementi di economia comportamentale e psicologia. Taglio pratico",
+      "Modelli: Microeconomia con domanda/offerta su mercati reali, teoria del consumatore con esempi psicologici (framing). Macroeconomia con indicatori fondamentali, modello di Solow intuitivo senza eccessiva matematizzazione. Spiegazione delle crisi con aspettative e fiducia",
+      "Breve/Lungo Periodo: Forte attenzione al breve periodo (recessioni, ruolo politiche pubbliche, banca centrale). Lungo periodo su crescita e differenze tra paesi (istituzioni, capitale umano), con spiegazioni narrative",
+      "Crescita: Solow semplice ed efficace, enfasi sul capitale umano, istituzioni discusse marginalmente. Crescita endogena non trattata"
     ],
     strengths: [
       "Chiarezza didattica e stile coinvolgente",
@@ -269,23 +273,88 @@ export const manualsData = [
   {
     title: "Economia",
     authors: ["David Begg", "Gianluigi Vernasca", "Stanley Fischer", "Rüdiger Dornbusch"],
-    school: "Mainstream contemporaneo",
+    school: "Mainstream contemporaneo, riflette il consenso tra neoclassici e neokeynesiani. Equilibrio tra rigore teorico e attenzione a dati, istituzioni e politiche reali, con riferimenti a Europa e Italia",
     characteristics: [
-      "Struttura didattica articolata, schede di approfondimento",
-      "Focus, Confronto, Caso italiano, Policy in pratica, Dati e fatti",
-      "Esercizi applicativi, riepilogo e glossario. Integrazione teoria e realtà"
+      "Autori: David Begg (didattica, manuali diffusi), Gianluigi Vernasca (edizioni recenti, prospettive contemporanee), Stanley Fischer (macroeconomista, policy maker), Rüdiger Dornbusch (macroeconomia internazionale)",
+      "Struttura didattica articolata, schede di approfondimento (Focus, Confronto, Caso italiano, Policy in pratica, Dati e fatti), esercizi applicativi, riepilogo e glossario. Integrazione teoria e realtà",
+      "Modelli: Microeconomia con concetti fondamentali graduali, domanda/offerta con applicazioni reali, elasticità con casi empirici, teoria del consumatore/produttore con intuizione e formalizzazione, strutture di mercato con esempi europei, temi di policy. Macroeconomia con indicatori fondamentali su dati europei, modelli di crescita (Solow, capitale umano, progresso tecnico), ciclo economico (IS-LM, AD-AS), politiche economiche con istituzioni europee (BCE, UE)",
+      "Breve/Lungo Periodo: Distingue nettamente tra tendenze di lungo periodo (crescita, produttività) e fluttuazioni di breve periodo (cicli, crisi), per interpretare le crisi come deviazioni temporanee",
+      "Crescita: Modello di Solow con dati empirici, cenni a crescita endogena e capitale umano, discussione su politiche per lo sviluppo"
     ],
     strengths: [
-      "Equilibrio didattico, focus europeo/italiano",
-      "Struttura modulare, esempi concreti e aggiornati",
-      "Integrazione teoria-policy-dati, accessibilità graduata"
+      "Chiarezza e gradualità didattica, forte attenzione al contesto europeo e italiano",
+      "Apparato didattico ricco, attualità (crisi, politiche europee, globalizzazione)"
     ],
     weaknesses: [
-      "Innovazione teorica limitata, mainstream bias",
-      "Può risultare 'pesante' per corsi introduttivi",
-      "Meno coinvolgente di alternative più moderne"
+      "Approfondimenti quantitativi/specialistici limitati",
+      "Ricchezza esempi/dati impegnativa per principianti, focus europeo può richiedere integrazioni"
     ],
-    targetAudience: "Corsi standard europei/italiani, studenti che necessitano di equilibrio tra rigore e applicazione pratica"
+    targetAudience: "Corsi universitari di base in Europa, studenti di discipline economiche, politiche, aziendali che desiderano un quadro completo e aggiornato"
+  },
+  {
+    title: "Essenziale di Economia",
+    authors: ["Stanley L. Brue", "Campbell R. McConnell", "Sean M. Flynn"],
+    school: "Mainstream neoclassica in microeconomia (agenti razionali, scelta ottimale, efficienza di mercato). Sintesi neo-keynesiana in macroeconomia (aggiustamenti automatici vs politiche di stabilizzazione), neutralità sulle controversie",
+    characteristics: [
+      "Autori: Stanley L. Brue (eccellenza didattica), Campbell R. McConnell (ricerca, didattica), Sean M. Flynn (finanza comportamentale, economia sanitaria)",
+      "Versione compatta, approccio didattico tradizionale ma aggiornato. Apparato didattico sistematico e visivo (Confronto per immagini, Focus sul concetto, Analisi applicata, Istantanea dal mondo)",
+      "Modelli: Microeconomia con scarsità, scelta, costo opportunità, domanda/offerta graduale, elasticità, teoria del consumatore/produttore progressiva, mercati e fallimenti. Macroeconomia con indicatori fondamentali, modello di Solow centrale, ciclo economico (IS-LM, AD-AS, Curva di Phillips), politiche economiche",
+      "Breve/Lungo Periodo: Distingue tra tendenze di lungo periodo (crescita, progresso tecnico) e fluttuazioni di breve periodo (cicli, recessioni)",
+      "Crescita: Centralità del modello di Solow (crescita esogena dipendente da progresso tecnologico), funzione di produzione Cobb-Douglas, convergenza. Cenni a teorie della crescita endogena"
+    ],
+    strengths: [
+      "Chiarezza e gradualità didattica, apparato visivo e applicativo",
+      "Neutralità e pluralismo (sulle controversie), materiali didattici ricchi, attualità"
+    ],
+    weaknesses: [
+      "Temi innovativi (comportamentale, digitale, sostenibilità) introduttivi",
+      "Esempi USA prevalenti (seppur integrati), sinteticità può limitare approfondimenti specialistici"
+    ],
+    targetAudience: "Migliori sintesi didattiche per l'introduzione all'economia. Corsi base, studenti di facoltà non economiche che necessitano di una panoramica chiara, rigorosa ma accessibile"
+  },
+  {
+    title: "Principi di Economia",
+    authors: ["Marc Lieberman", "Robert Hall"],
+    school: "Mainstream neoclassica per micro e macro, attenzione ad analisi empirica e applicazioni pratiche. Più approfondito di Krugman, con maggiore attenzione a connessioni logiche e processi analitici",
+    characteristics: [
+      "Autori: Marc Lieberman (testi universitari di successo), Robert Hall (macroeconomia, mercati del lavoro)",
+      "Modulare, sequenza da concetti di base a micro e macro. Ricco di esempi, box, domande di verifica. Linguaggio chiaro e accessibile. Risorse digitali. Approccio schematico e logico",
+      "Modelli: Microeconomia approfondita (scelta razionale, vincoli, incentivi, domanda/offerta, teoria del consumatore/impresa con strumenti grafici/numerici, forme di mercato, fallimenti). Macroeconomia più articolata (indicatori, modelli di crescita, ciclo economico, politiche fiscali/monetarie, economia internazionale)",
+      "Breve/Lungo Periodo: Maggiore enfasi sull'equilibrio tra breve e lungo periodo, analizzando sia effetti immediati sia cambiamenti strutturali. Distingue tra trend di lungo e variazioni di breve",
+      "Crescita: Spazio al modello di Solow e principali teorie, con implicazioni empiriche e politiche. Integrazione di osservazioni sui modelli di crescita endogena (conoscenza e innovazione)"
+    ],
+    strengths: [
+      "Struttura didattica lineare e modulare, numerosi esempi/box/materiali digitali",
+      "Chiarezza espositiva, forte collegamento teoria/realtà"
+    ],
+    weaknesses: [
+      "Focus su esempi USA, temi innovativi introduttivi",
+      "Trattazione quantitativa essenziale"
+    ],
+    targetAudience: "Corsi introduttivi, studenti senza background quantitativo avanzato, didattica blended o online"
+  },
+  {
+    title: "Economia",
+    authors: ["Gilberto Antonelli", "Nicola De Liso", "Giovanni Guidetti", "Giuseppe Vittucci Marzetti"],
+    school: "Prospettiva mainstream neoclassica. Integrazione di innovazione, lavoro, istituzioni e crescita. Trattazione approfondita e critica, confronto tra diverse scuole (neoclassica, keynesiana, evolutivi). Matematica e riflessioni sui limiti dei modelli",
+    characteristics: [
+      "Autori: Gilberto Antonelli, Nicola De Liso, Giovanni Guidetti, Giuseppe Vittucci Marzetti (docenti con esperienza didattica e di ricerca)",
+      "Modulare e progressiva. Obiettivi chiari, esempi, esercizi, materiali di approfondimento. Linguaggio accessibile, rigore teorico, aggiornamento. Riferimenti a dati, casi reali e politiche italiane/europee",
+      "Modelli: Microeconomia con vincoli, scelte, preferenze, domanda/offerta con elasticità, teoria del consumatore/produttore con strumenti grafici, strutture di mercato, economia del benessere, fallimenti di mercato. Macroeconomia con indicatori, crescita (Solow, capitale umano, innovazione), ciclo economico, politiche economiche, commercio internazionale",
+      "Breve/Lungo Periodo: Equilibrio tra breve e lungo periodo, enfasi su crescita e innovazione, ma attenzione a cicli e politiche nel breve",
+      "Crescita: Modello di Solow con particolare attenzione a progresso tecnico e capitale umano, cenni a crescita endogena e innovazione, casi di sviluppo italiano/europeo"
+    ],
+    strengths: [
+      "Rigore teorico con accessibilità, forte attenzione al contesto italiano/europeo",
+      "Confronto tra scuole di pensiero, attenzione a innovazione e dinamiche evolutive",
+      "Apparato didattico ricco, aggiornamento costante"
+    ],
+    weaknesses: [
+      "Complessità per principianti assoluti",
+      "Lunghezza considerevole, richiede tempo e impegno",
+      "Focus italiano/europeo può richiedere integrazioni globali"
+    ],
+    targetAudience: "Corsi universitari di base e intermedi in Italia, studenti di economia, scienze politiche, ingegneria gestionale che desiderano una preparazione solida e critica"
   },
   {
     title: "Microeconomia",
