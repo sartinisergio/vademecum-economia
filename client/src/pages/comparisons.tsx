@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { GitCompare, Plus, X, ChevronDown, ChevronUp, Search, Filter } from "lucide-react";
+import { GitCompare, Plus, X, ChevronDown, ChevronUp, Search, Filter, Trash2 } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { queryClient } from "@/lib/queryClient";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -60,7 +60,6 @@ export default function Comparisons() {
       return apiRequest("POST", "/api/comparisons", newComparison);
     },
     onSuccess: () => {
-      // Aggiorna la cache delle comparazioni
       queryClient.invalidateQueries({ queryKey: ["/api/comparisons"] });
       toast({
         title: "Confronto salvato!",
@@ -79,6 +78,26 @@ export default function Comparisons() {
       toast({
         title: "Errore",
         description: "Si è verificato un errore durante la creazione del confronto.",
+        variant: "destructive",
+      });
+    }
+  });
+
+  const deleteComparisonMutation = useMutation({
+    mutationFn: async (id: string) => {
+      return apiRequest("DELETE", `/api/comparisons/${id}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/comparisons"] });
+      toast({
+        title: "Confronto eliminato",
+        description: "Il confronto è stato eliminato con successo.",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Errore",
+        description: "Si è verificato un errore durante l'eliminazione del confronto.",
         variant: "destructive",
       });
     }
@@ -397,7 +416,136 @@ export default function Comparisons() {
                   <Button 
                     onClick={() => {
                       if (createState.selectedItems.length >= 2 && createState.title.trim()) {
-                        // Prepara il confronto nel formato corretto
+                        // Genera contenuti automatici ricchi basati sui dati autentici
+                        const generateSmartContent = (item: any, aspectName: string) => {
+                          const allData = { schools, models, manuals, concepts };
+                          
+                          if (item.type === "school") {
+                            const school = schools?.find(s => s.id === item.id);
+                            if (school) {
+                              if (aspectName === "Principi Chiave") return school.keyPrinciples.slice(0, 3).join(", ");
+                              if (aspectName === "Economisti di Riferimento") return school.economists.slice(0, 3).join(", ");
+                              if (aspectName === "Esempi Pratici") return school.examples || "Esempi di applicazione pratica";
+                              return school.description;
+                            }
+                          }
+                          
+                          if (item.type === "model") {
+                            const model = models?.find(m => m.id === item.id);
+                            if (model) {
+                              if (aspectName === "Concetti Chiave") return model.keyConcepts.slice(0, 3).join(", ");
+                              if (aspectName === "Applicazioni") return model.applications.slice(0, 3).join(", ");
+                              if (aspectName === "Tipo") return model.type === "micro" ? "Microeconomico" : "Macroeconomico";
+                              return model.description;
+                            }
+                          }
+                          
+                          if (item.type === "manual") {
+                            const manual = manuals?.find(m => m.id === item.id);
+                            if (manual) {
+                              if (aspectName === "Autori") return manual.authors.join(", ");
+                              if (aspectName === "Scuola di Pensiero") return manual.school;
+                              if (aspectName === "Punti di Forza") return manual.strengths.slice(0, 3).join(", ");
+                              if (aspectName === "Target") return manual.targetAudience;
+                              return manual.characteristics;
+                            }
+                          }
+                          
+                          if (item.type === "concept") {
+                            const concept = concepts?.find(c => c.id === item.id);
+                            if (concept) {
+                              if (aspectName === "Definizione") return concept.definition;
+                              if (aspectName === "Categoria") return concept.category;
+                              if (aspectName === "Termini Correlati") return concept.relatedTerms.slice(0, 3).join(", ");
+                              if (aspectName === "Esempi") return concept.examples || "Esempi di applicazione";
+                              return concept.definition;
+                            }
+                          }
+                          
+                          return `Analisi di ${item.name}`;
+                        };
+
+                        // Determina aspetti intelligenti basati sui tipi selezionati
+                        const selectedTypes = [...new Set(createState.selectedItems.map(item => item.type))];
+                        let aspects = [];
+                        
+                        if (selectedTypes.includes("school")) {
+                          aspects.push({
+                            name: "Principi Chiave",
+                            comparisons: createState.selectedItems.map(item => ({
+                              itemId: item.id,
+                              value: generateSmartContent(item, "Principi Chiave")
+                            }))
+                          });
+                          aspects.push({
+                            name: "Economisti di Riferimento", 
+                            comparisons: createState.selectedItems.map(item => ({
+                              itemId: item.id,
+                              value: generateSmartContent(item, "Economisti di Riferimento")
+                            }))
+                          });
+                        }
+                        
+                        if (selectedTypes.includes("model")) {
+                          aspects.push({
+                            name: "Concetti Chiave",
+                            comparisons: createState.selectedItems.map(item => ({
+                              itemId: item.id,
+                              value: generateSmartContent(item, "Concetti Chiave")
+                            }))
+                          });
+                          aspects.push({
+                            name: "Applicazioni",
+                            comparisons: createState.selectedItems.map(item => ({
+                              itemId: item.id,
+                              value: generateSmartContent(item, "Applicazioni")
+                            }))
+                          });
+                        }
+                        
+                        if (selectedTypes.includes("manual")) {
+                          aspects.push({
+                            name: "Autori e Scuola",
+                            comparisons: createState.selectedItems.map(item => ({
+                              itemId: item.id,
+                              value: generateSmartContent(item, "Autori") + " - " + generateSmartContent(item, "Scuola di Pensiero")
+                            }))
+                          });
+                          aspects.push({
+                            name: "Punti di Forza",
+                            comparisons: createState.selectedItems.map(item => ({
+                              itemId: item.id,
+                              value: generateSmartContent(item, "Punti di Forza")
+                            }))
+                          });
+                        }
+                        
+                        if (selectedTypes.includes("concept")) {
+                          aspects.push({
+                            name: "Definizioni",
+                            comparisons: createState.selectedItems.map(item => ({
+                              itemId: item.id,
+                              value: generateSmartContent(item, "Definizione")
+                            }))
+                          });
+                          aspects.push({
+                            name: "Termini Correlati",
+                            comparisons: createState.selectedItems.map(item => ({
+                              itemId: item.id,
+                              value: generateSmartContent(item, "Termini Correlati")
+                            }))
+                          });
+                        }
+                        
+                        // Aspetto generale sempre presente
+                        aspects.push({
+                          name: "Panoramica Generale",
+                          comparisons: createState.selectedItems.map(item => ({
+                            itemId: item.id,
+                            value: generateSmartContent(item, "Generale")
+                          }))
+                        });
+
                         const newComparison = {
                           title: createState.title,
                           description: createState.description || "Confronto personalizzato",
@@ -407,15 +555,7 @@ export default function Comparisons() {
                             id: item.id,
                             name: item.name
                           })),
-                          aspects: [
-                            {
-                              name: "Caratteristiche Principali",
-                              comparisons: createState.selectedItems.map(item => ({
-                                itemId: item.id,
-                                value: `Analisi di ${item.name} - da aggiornare con contenuti specifici`
-                              }))
-                            }
-                          ]
+                          aspects: aspects
                         };
                         createComparisonMutation.mutate(newComparison);
                       }
@@ -481,9 +621,27 @@ export default function Comparisons() {
                       ))}
                     </div>
                   </div>
-                  <Button variant="ghost" size="sm">
-                    {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
-                  </Button>
+                  <div className="flex items-center space-x-2">
+                    {comparison.isCustom === "true" && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (window.confirm("Sei sicuro di voler eliminare questo confronto?")) {
+                            deleteComparisonMutation.mutate(comparison.id);
+                          }
+                        }}
+                        className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                        disabled={deleteComparisonMutation.isPending}
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    )}
+                    <Button variant="ghost" size="sm">
+                      {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                    </Button>
+                  </div>
                 </div>
               </CardHeader>
               
