@@ -9,8 +9,6 @@ import {
   GitCompare, 
   Hash,
   MessageSquare,
-  Bookmark,
-  Shuffle,
   Sparkles
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -49,18 +47,7 @@ export default function Dashboard() {
     setLocation("/concepts");
   };
 
-  const handleRandomConcept = () => {
-    if (concepts && concepts.length > 0) {
-      const randomIndex = Math.floor(Math.random() * concepts.length);
-      const randomConcept = concepts[randomIndex];
-      setLocation(`/concepts?highlight=${encodeURIComponent(randomConcept.name)}`);
-    }
-  };
 
-  const handleFavorites = () => {
-    // Naviga ai preferiti salvati localmente
-    setLocation("/concepts?filter=favorites");
-  };
 
 
 
@@ -111,13 +98,6 @@ export default function Dashboard() {
               className="bg-primary hover:bg-primary/90 text-white px-6 py-4 rounded-xl font-medium"
             >
               Ricerca Avanzata
-            </Button>
-            <Button 
-              onClick={handleRandomConcept}
-              variant="outline"
-              className="px-6 py-4 rounded-xl font-medium"
-            >
-              Concetto Casuale
             </Button>
           </div>
         </div>
@@ -208,32 +188,7 @@ export default function Dashboard() {
         </div>
       </section>
 
-      {/* Quick Actions */}
-      <section className="mb-12">
-        <Card>
-          <CardContent className="p-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">Azioni Rapide</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <Button 
-                variant="outline" 
-                className="flex items-center justify-center space-x-2 h-12"
-                onClick={handleFavorites}
-              >
-                <Bookmark className="w-4 h-4" />
-                <span className="text-sm">I Miei Preferiti</span>
-              </Button>
-              <Button 
-                variant="outline" 
-                className="flex items-center justify-center space-x-2 h-12"
-                onClick={handleRandomConcept}
-              >
-                <Shuffle className="w-4 h-4" />
-                <span className="text-sm">Concetto Casuale</span>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </section>
+
     </div>
   );
 }
