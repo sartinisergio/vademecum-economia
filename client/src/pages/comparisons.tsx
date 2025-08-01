@@ -429,8 +429,8 @@ export default function Comparisons() {
                           if (item.type === "school") {
                             const school = schools?.find(s => s.id === item.id);
                             if (school) {
-                              if (aspectName === "Principi Chiave") return school.keyPrinciples.slice(0, 3).join(", ");
-                              if (aspectName === "Economisti di Riferimento") return school.economists.slice(0, 3).join(", ");
+                              if (aspectName === "Principi Chiave") return school.keyPrinciples.join("; ");
+                              if (aspectName === "Economisti di Riferimento") return school.economists.join(", ");
                               if (aspectName === "Esempi Pratici") return school.examples || "Esempi di applicazione pratica";
                               return school.description;
                             }
@@ -439,8 +439,8 @@ export default function Comparisons() {
                           if (item.type === "model") {
                             const model = models?.find(m => m.id === item.id);
                             if (model) {
-                              if (aspectName === "Concetti Chiave") return model.keyConcepts.slice(0, 3).join(", ");
-                              if (aspectName === "Applicazioni") return model.applications.slice(0, 3).join(", ");
+                              if (aspectName === "Concetti Chiave") return model.keyConcepts.join("; ");
+                              if (aspectName === "Applicazioni") return model.applications.join("; ");
                               if (aspectName === "Tipo") return model.type === "micro" ? "Microeconomico" : "Macroeconomico";
                               return model.description;
                             }
@@ -451,7 +451,7 @@ export default function Comparisons() {
                             if (manual) {
                               if (aspectName === "Autori") return manual.authors.join(", ");
                               if (aspectName === "Scuola di Pensiero") return manual.school;
-                              if (aspectName === "Punti di Forza") return manual.strengths.slice(0, 3).join(", ");
+                              if (aspectName === "Punti di Forza") return manual.strengths.join("; ");
                               if (aspectName === "Target") return manual.targetAudience;
                               return manual.characteristics;
                             }
@@ -462,7 +462,7 @@ export default function Comparisons() {
                             if (concept) {
                               if (aspectName === "Definizione") return concept.definition;
                               if (aspectName === "Categoria") return concept.category;
-                              if (aspectName === "Termini Correlati") return concept.relatedTerms.slice(0, 3).join(", ");
+                              if (aspectName === "Termini Correlati") return concept.relatedTerms.join(", ");
                               if (aspectName === "Esempi") return concept.examples || "Esempi di applicazione";
                               return concept.definition;
                             }
