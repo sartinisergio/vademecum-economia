@@ -98,12 +98,12 @@ export const economicSchoolsData: InsertEconomicSchool[] = [
 export const economicModelsData: InsertEconomicModel[] = [
   {
     name: "Teoria del Consumatore",
-    description: "Spiega come le persone allocano il reddito per massimizzare la soddisfazione, utilizzando concetti di utilità marginale e curve di indifferenza.",
+    description: "Spiega come le persone allocano il reddito per massimizzare la soddisfazione, utilizzando vincoli di bilancio, preferenze e curve di indifferenza.",
     type: "micro",
     keyConcepts: [
       "Vincolo di Bilancio",
       "Preferenze e Utilità",
-      "Curve di Indifferenza",
+      "Curve di Indifferenza", 
       "Scelta Ottimale",
       "Utilità Marginale Decrescente"
     ],
@@ -117,33 +117,33 @@ export const economicModelsData: InsertEconomicModel[] = [
   },
   {
     name: "Teoria del Produttore",
-    description: "Analizza come le imprese trasformano input in output e decidono quanto produrre per massimizzare il profitto.",
+    description: "Analizza come le imprese trasformano input in output e decidono quanto produrre per massimizzare il profitto usando funzioni di produzione e analisi dei costi.",
     type: "micro",
     keyConcepts: [
-      "Funzione di Produzione",
+      "Funzione di Produzione (Cobb-Douglas)",
       "Rendimenti di Scala",
       "Legge dei Rendimenti Marginali Decrescenti",
       "Costi di Produzione",
-      "Massimizzazione del Profitto"
+      "Massimizzazione del Profitto (RM=CM)"
     ],
     applications: [
       "Concorrenza Perfetta",
       "Monopolio",
-      "Oligopolio",
+      "Oligopolio", 
       "Concorrenza Monopolistica"
     ],
     schoolId: null
   },
   {
     name: "Modello IS-LM",
-    description: "Analizza l'equilibrio tra mercato dei beni (IS) e mercato della moneta (LM) per determinare tasso di interesse e produzione.",
+    description: "L'equilibrio tra mercato dei beni (curva IS, pendenza negativa) e mercato della moneta (curva LM, pendenza positiva) che determina tasso di interesse e produzione di equilibrio.",
     type: "macro",
     keyConcepts: [
       "Curva IS (mercato dei beni)",
       "Curva LM (mercato della moneta)",
       "Equilibrio macroeconomico",
-      "Politica fiscale",
-      "Politica monetaria"
+      "Politica fiscale sposta IS",
+      "Politica monetaria sposta LM"
     ],
     applications: [
       "Analisi degli effetti delle politiche",
@@ -155,13 +155,13 @@ export const economicModelsData: InsertEconomicModel[] = [
   },
   {
     name: "Modello AD-AS",
-    description: "Estensione di IS-LM che permette ai prezzi di variare, analizzando l'interazione tra domanda aggregata e offerta aggregata.",
+    description: "Estensione di IS-LM che permette ai prezzi di variare. La domanda aggregata (spesa totale) incontra l'offerta aggregata per determinare prezzi e produzione.",
     type: "macro",
     keyConcepts: [
       "Domanda Aggregata (AD)",
       "Offerta Aggregata di Breve Periodo (SRAS)",
       "Offerta Aggregata di Lungo Periodo (LRAS)",
-      "Livello dei prezzi",
+      "Livello dei prezzi endogeno",
       "Produzione potenziale"
     ],
     applications: [
@@ -174,20 +174,115 @@ export const economicModelsData: InsertEconomicModel[] = [
   },
   {
     name: "Modello di Solow",
-    description: "Teoria della crescita esogena che spiega l'accumulo di capitale e il ruolo del progresso tecnologico nella crescita economica.",
+    description: "Teoria della crescita esogena (Premio Nobel 1987). La produzione Y = F(K, L, A) con accumulazione di capitale, rendimenti decrescenti e progresso tecnologico esogeno.",
     type: "macro",
     keyConcepts: [
-      "Funzione di produzione aggregata",
+      "Funzione di produzione Y = F(K, L, A)",
       "Accumulazione di capitale",
-      "Rendimenti decrescenti",
+      "Rendimenti decrescenti del capitale",
       "Stato stazionario",
       "Progresso tecnologico esogeno"
     ],
     applications: [
       "Convergenza condizionale",
       "Politiche per la crescita",
-      "Differenze di reddito tra paesi",
-      "Ruolo del risparmio"
+      "Paradosso della crescita",
+      "Differenze di reddito tra paesi"
+    ],
+    schoolId: null
+  },
+  {
+    name: "Modelli DSGE",
+    description: "Dynamic Stochastic General Equilibrium: stato dell'arte nella macroeconomia accademica. Microfondazioni, aspettative razionali, equilibrio generale, dinamico e stocastico.",
+    type: "macro",
+    keyConcepts: [
+      "Microfondazioni",
+      "Aspettative Razionali",
+      "Equilibrio Generale",
+      "Dinamico e Stocastico",
+      "Shock casuali"
+    ],
+    applications: [
+      "Analisi delle politiche delle banche centrali",
+      "Previsioni macroeconomiche",
+      "Modellazione delle crisi",
+      "Policy analysis"
+    ],
+    schoolId: null
+  },
+  {
+    name: "Modello a Tre Equazioni",
+    description: "Modello macroeconomico moderno: 1) Curva IS Dinamica (output gap), 2) Curva di Phillips (inflazione), 3) Regola di Politica Monetaria (banca centrale).",
+    type: "macro",
+    keyConcepts: [
+      "Curva IS Dinamica",
+      "Curva di Phillips",
+      "Regola di Politica Monetaria",
+      "Comportamento banca centrale",
+      "Gestione aspettative"
+    ],
+    applications: [
+      "Politica monetaria moderna",
+      "Targeting dell'inflazione",
+      "Stabilizzazione economica",
+      "Analisi delle decisioni BCE"
+    ],
+    schoolId: null
+  },
+  {
+    name: "Teoria dei Giochi",
+    description: "Analizza situazioni strategiche dove il risultato dipende dalle azioni reciproche dei partecipanti. Include Dilemma del Prigioniero, Equilibrio di Nash e giochi ripetuti.",
+    type: "micro",
+    keyConcepts: [
+      "Dilemma del Prigioniero",
+      "Equilibrio di Nash",
+      "Strategie dominanti",
+      "Giochi ripetuti",
+      "Reputazione"
+    ],
+    applications: [
+      "Guerre di prezzo",
+      "Problemi ambientali",
+      "Corse agli armamenti",
+      "Contratti e negoziazioni"
+    ],
+    schoolId: null
+  },
+  {
+    name: "Modello di Romer",
+    description: "Crescita endogena basata su idee e innovazione (Nobel 2018). Le idee sono non-rivali e parzialmente escludibili, generando rendimenti crescenti e crescita sostenuta.",
+    type: "macro",
+    keyConcepts: [
+      "Idee come motore della crescita",
+      "Non-rivalità delle idee",
+      "R&D e innovazione",
+      "Spillover di conoscenza",
+      "Rendimenti crescenti"
+    ],
+    applications: [
+      "Politiche per l'innovazione",
+      "Sussidi alla ricerca",
+      "Sistema dei brevetti",
+      "Investimenti in università"
+    ],
+    schoolId: null
+  },
+  {
+    name: "Modello AK",
+    description: "Modello di crescita endogena semplice: Y = AK dove K include capitale umano. Se K non ha rendimenti decrescenti, il tasso di crescita = sA con effetti permanenti delle politiche.",
+    type: "macro",
+    keyConcepts: [
+      "Funzione di produzione Y = AK",
+      "Capitale allargato (include conoscenze)",
+      "Rendimenti costanti",
+      "Crescita endogena",
+      "Politiche con effetti permanenti"
+    ],
+    applications: [
+      "Politiche per la crescita",
+      "Investimenti in capitale umano",
+      "Nessuna convergenza automatica",
+      "Differenze persistenti tra paesi"
     ],
     schoolId: null
   }
@@ -202,7 +297,7 @@ export const manualsData: InsertManual[] = [
     strengths: [
       "Accessibilità estrema",
       "Rilevanza e attualità",
-      "Approccio globale",
+      "Approccio globale", 
       "Stile coinvolgente",
       "Integrazione micro-macro",
       "Onestà intellettuale"
@@ -227,7 +322,7 @@ export const manualsData: InsertManual[] = [
       "Framework dei Dieci Principi",
       "Chiarezza espositiva",
       "Equilibrio e fairness",
-      "Versatilità didattica",
+      "Versatilità didattica", 
       "Preparazione per corsi avanzati",
       "Aggiornamenti costanti"
     ],
@@ -243,12 +338,12 @@ export const manualsData: InsertManual[] = [
   },
   {
     title: "Elementi di Economia",
-    authors: ["John Sloman", "Dean Garratt"],
+    authors: ["John Sloman", "Dean Garratt"], 
     school: "Pragmatismo eclettico pedagogico",
     characteristics: "Approccio pragmatico e orientato all'applicazione, con design visivo ricco e focus sulla pratica manageriale.",
     strengths: [
       "Rilevanza immediata",
-      "Accessibilità estrema",
+      "Accessibilità estrema", 
       "Design pedagogico eccellente",
       "Approccio olistico",
       "Orientamento pratico",
@@ -274,7 +369,7 @@ export const manualsData: InsertManual[] = [
       "Innovazione pedagogica radicale",
       "Rigore con accessibilità",
       "Pluralismo produttivo",
-      "Gratuità e accessibilità",
+      "Gratuità e accessibilità", 
       "Approccio scientifico",
       "Globalità"
     ],
@@ -289,88 +384,219 @@ export const manualsData: InsertManual[] = [
     targetAudience: "Corsi innovativi, studenti motivati, programmi digitali o interdisciplinari"
   },
   {
-    title: "Microeconomia",
-    authors: ["Hal Varian"],
-    school: "Neoclassica",
-    characteristics: "Manuale avanzato di microeconomia con approccio matematico rigoroso e focus su ottimizzazione e teoria dei giochi.",
+    title: "Principi di Economia",
+    authors: ["Daron Acemoglu", "David Laibson", "John List"],
+    school: "Mainstream empirico del XXI Secolo",
+    characteristics: "Nuovo paradigma che combina rigore teorico, attenzione alle istituzioni, insights comportamentali e approccio sperimentale. Include Evidence-Based Economics e esperimenti replicabili.",
     strengths: [
-      "Rigore matematico eccellente",
-      "Chiarezza espositiva",
-      "Approccio sistematico",
-      "Copertura completa",
-      "Esercizi di qualità"
-    ],
-    weaknesses: [
-      "Eccessiva formalizzazione",
-      "Scarsa attenzione a istituzioni",
-      "Approccio poco critico",
-      "Matematica impegnativa"
-    ],
-    targetAudience: "Corsi avanzati di microeconomia, studenti specialistici"
-  },
-  {
-    title: "Macroeconomia",
-    authors: ["Olivier Blanchard"],
-    school: "Nuova Sintesi Neoclassica", 
-    characteristics: "Standard mondiale per la macroeconomia intermedia, con equilibrio tra rigore teorico e rilevanza empirica.",
-    strengths: [
-      "Autorevolezza dell'autore",
-      "Equilibrio teoria-pratica",
-      "Aggiornamenti continui",
-      "Copertura crisi 2008",
-      "Approccio europeo"
-    ],
-    weaknesses: [
-      "Complessità crescente",
-      "Alcune parti datate",
-      "Focus su breve-medio periodo",
-      "Matematica intermedia"
-    ],
-    targetAudience: "Corsi intermedi e avanzati di macroeconomia, policy makers"
-  },
-  {
-    title: "Economia dello Sviluppo",
-    authors: ["Debraj Ray"],
-    school: "Economia dello Sviluppo",
-    characteristics: "Testo di riferimento per l'economia dello sviluppo con approccio teorico ed empirico integrato.",
-    strengths: [
-      "Copertura completa",
-      "Rigore analitico", 
-      "Evidenza empirica",
-      "Approccio critico",
-      "Rilevanza contemporanea"
+      "All'avanguardia della ricerca",
+      "Rigore empirico senza precedenti",
+      "Behavioral economics integrata",
+      "Istituzioni al centro",
+      "Pedagogia basata su evidenza",
+      "Preparazione per economia moderna",
+      "Rilevanza senza sacrificare rigore"
     ],
     weaknesses: [
       "Complessità elevata",
-      "Matematica avanzata",
-      "Lunghezza eccessiva",
-      "Aggiornamenti lenti"
+      "Lunghezza considerevole", 
+      "Prerequisiti impliciti",
+      "Relativamente nuovo",
+      "Americano-centrico"
     ],
-    targetAudience: "Corsi specialistici di economia dello sviluppo, ricercatori"
+    targetAudience: "Corsi avanzati, studenti ambiziosi, programmi honors, preparazione alla ricerca"
+  },
+  {
+    title: "Economia",
+    authors: ["Paul Samuelson", "William Nordhaus"],
+    school: "Sintesi Neoclassica-Keynesiana",
+    characteristics: "Monumento nella storia del pensiero economico con completezza enciclopedica. Micro neoclassica, macro keynesiana nel breve e neoclassica nel lungo periodo.",
+    strengths: [
+      "Completezza senza pari",
+      "Autorevolezza assoluta",
+      "Equilibrio magistrale",
+      "Pedagogia raffinata",
+      "Evoluzione continua",
+      "Visione storica",
+      "Integrazione unica"
+    ],
+    weaknesses: [
+      "Lunghezza intimidatoria",
+      "Densità del testo",
+      "Mainstream bias",
+      "Americano-centrico",
+      "Innovazione pedagogica limitata"
+    ],
+    targetAudience: "Corsi annuali, studenti seri e motivati che vogliono preparazione completa e profonda"
+  },
+  {
+    title: "Principi di Economia",
+    authors: ["Robert Frank", "Ben Bernanke"],
+    school: "Neoclassica con aperture comportamentali",
+    characteristics: "Molto narrativo con esempi dalla vita quotidiana e attenzione alle scelte individuali tramite puzzle economici. Integrazione elementi di economia comportamentale.",
+    strengths: [
+      "Chiarezza didattica",
+      "Stile coinvolgente",
+      "Collegamento teoria-pratica",
+      "Approccio pragmatico",
+      "Attenzione ai limiti di razionalità",
+      "Temi di attualità"
+    ],
+    weaknesses: [
+      "Profondità teorica limitata",
+      "Poco adatto per preparazione matematica",
+      "Crescita endogena non trattata",
+      "Matematica superficiale"
+    ],
+    targetAudience: "Studenti meno matematicamente orientati, corsi introduttivi con enfasi su applicazioni pratiche"
+  },
+  {
+    title: "Economia",
+    authors: ["David Begg", "Gianluigi Vernasca", "Stanley Fischer", "Rudiger Dornbusch"],
+    school: "Mainstream contemporaneo",
+    characteristics: "Struttura didattica articolata con schede di approfondimento. Equilibrio tra rigore teorico e attenzione a dati, istituzioni e politiche reali.",
+    strengths: [
+      "Chiarezza e gradualità didattica",
+      "Forte attenzione al contesto europeo",
+      "Apparato didattico ricco",
+      "Attualità su crisi e politiche",
+      "Focus su istituzioni europee"
+    ],
+    weaknesses: [
+      "Approfondimenti quantitativi limitati",
+      "Ricchezza esempi impegnativa",
+      "Focus europeo può richiedere integrazioni"
+    ],
+    targetAudience: "Corsi universitari di base in Europa, studenti di discipline economiche e politiche"
+  },
+  {
+    title: "Essenziale di Economia",
+    authors: ["Stanley L. Brue", "Campbell R. McConnell", "Sean M. Flynn"],
+    school: "Mainstream neoclassica",
+    characteristics: "Versione compatta con approccio didattico tradizionale ma aggiornato. Apparato didattico sistematico e visivo.",
+    strengths: [
+      "Chiarezza e gradualità didattica",
+      "Apparato visivo e applicativo",
+      "Neutralità sulle controversie",
+      "Materiali didattici ricchi",
+      "Attualità"
+    ],
+    weaknesses: [
+      "Temi innovativi introduttivi",
+      "Esempi USA prevalenti",
+      "Sinteticità limita approfondimenti"
+    ],
+    targetAudience: "Corsi base, studenti di facoltà non economiche che necessitano panoramica chiara e accessibile"
+  },
+  {
+    title: "Principi di Economia",
+    authors: ["Marc Lieberman", "Robert Hall"],
+    school: "Mainstream neoclassica",
+    characteristics: "Modulare e sequenziale da concetti base a micro e macro. Ricco di esempi, linguaggio chiaro, attenzione a connessioni logiche.",
+    strengths: [
+      "Struttura didattica lineare",
+      "Numerosi esempi e materiali digitali",
+      "Chiarezza espositiva",
+      "Forte collegamento teoria-realtà"
+    ],
+    weaknesses: [
+      "Focus su esempi USA",
+      "Temi innovativi introduttivi",
+      "Trattazione quantitativa essenziale"
+    ],
+    targetAudience: "Corsi introduttivi, studenti senza background quantitativo avanzato, didattica blended"
+  },
+  {
+    title: "Economia",
+    authors: ["Gilberto Antonelli", "Nicola De Liso", "Giovanni Guidetti", "Giuseppe Vittucci Marzetti"],
+    school: "Mainstream neoclassica con innovazione",
+    characteristics: "Modulare e progressiva. Integrazione di innovazione, lavoro, istituzioni. Trattazione approfondita e critica con confronto tra scuole diverse.",
+    strengths: [
+      "Completo e interdisciplinare",
+      "Enfasi su contesti italiani ed europei",
+      "Approccio critico e analitico",
+      "Attenzione alle istituzioni"
+    ],
+    weaknesses: [
+      "Complessità scoraggiante per principianti",
+      "Richiede conoscenze preliminari",
+      "Minore attenzione ad accessibilità"
+    ],
+    targetAudience: "Studenti universitari avanzati interessati ad aspetti teorici e critici con contesto italiano"
+  },
+  {
+    title: "Economia: un approccio semplice ad una realtà complessa",
+    authors: ["Paola Parravicini", "Alessandro Graffi"],
+    school: "Critico-riflessivo con base neoclassica",
+    characteristics: "Approccio narrativo riflessivo e interdisciplinare. Mette in discussione efficacia dei mercati e loro impatto sociale.",
+    strengths: [
+      "Chiarezza e gradualità didattica",
+      "Forte attenzione al contesto italiano",
+      "Approccio critico e riflessivo",
+      "Equilibrio tra rigore e inclusività"
+    ],
+    weaknesses: [
+      "Temi emergenti introduttivi",
+      "Aspetti quantitativi sacrificati",
+      "Struttura meno stimolante per avanzati"
+    ],
+    targetAudience: "Corsi introduttivi universitari, studenti che affrontano la materia per la prima volta"
+  },
+  {
+    title: "Introduzione all'Economia",
+    authors: ["Giuseppe Bertola", "Anna Lo Prete"],
+    school: "Mainstream con rigore metodologico",
+    characteristics: "Approccio accademico combinando teoria e matematica. Base teorica solida con riferimenti a dati europei e italiani.",
+    strengths: [
+      "Rigore e chiarezza espositiva",
+      "Rilevanza empirica italiana/europea",
+      "Apparato didattico ricco",
+      "Attenzione alle istituzioni"
+    ],
+    weaknesses: [
+      "Struttura lineare poco stimolante",
+      "Formalizzazione può scoraggiare",
+      "Temi emergenti introduttivi"
+    ],
+    targetAudience: "Corsi universitari che cercano rigore metodologico e attenzione ai dati reali italiani ed europei"
   }
 ];
 
 export const conceptsData: InsertConcept[] = [
   {
     name: "Equilibrio di Mercato",
-    definition: "Punto in cui la quantità domandata è uguale alla quantità offerta, determinando prezzo e quantità di equilibrio.",
+    definition: "Punto in cui la quantità domandata eguaglia la quantità offerta, e il prezzo si stabilizza senza tendenze a salire o scendere.",
     category: "microeconomia",
     relatedTerms: ["Domanda", "Offerta", "Prezzo di equilibrio", "Quantità di equilibrio"],
     examples: "Nel mercato del grano, quando i produttori vogliono vendere esattamente la stessa quantità che i consumatori vogliono acquistare."
   },
   {
-    name: "Utilità Marginale",
-    definition: "La soddisfazione aggiuntiva che un consumatore ottiene dal consumo di un'unità aggiuntiva di un bene.",
+    name: "Costo Opportunità",
+    definition: "Il valore della migliore alternativa a cui si rinuncia quando si prende una decisione.",
     category: "microeconomia",
-    relatedTerms: ["Utilità totale", "Legge dell'utilità marginale decrescente", "Scelta del consumatore"],
-    examples: "La prima pizza ti dà molta soddisfazione, la seconda un po' meno, la terza ancora meno (utilità marginale decrescente)."
+    relatedTerms: ["Scelta razionale", "Trade-off", "Scarsità", "Efficienza allocativa"],
+    examples: "Se scegli di studiare invece di lavorare, il costo opportunità è il salario che avresti guadagnato lavorando."
   },
   {
-    name: "PIL (Prodotto Interno Lordo)",
-    definition: "Il valore di mercato di tutti i beni e servizi finali prodotti in un paese in un determinato periodo.",
-    category: "macroeconomia",
-    relatedTerms: ["Crescita economica", "PIL nominale", "PIL reale", "PIL pro capite"],
-    examples: "Il PIL italiano nel 2023 include tutte le auto Fiat prodotte, i servizi bancari erogati, i pasti serviti nei ristoranti, ecc."
+    name: "Elasticità della Domanda",
+    definition: "Misura la reattività della quantità domandata di un bene o servizio alle variazioni del suo prezzo, del reddito o del prezzo di altri beni.",
+    category: "microeconomia",
+    relatedTerms: ["Elasticità anelastica", "Elasticità elastica", "Elasticità unitaria", "Elasticità incrociata"],
+    examples: "La benzina ha domanda anelastica (aumenti di prezzo riducono poco la quantità), mentre i viaggi di lusso hanno domanda elastica."
+  },
+  {
+    name: "Esternalità",
+    definition: "Effetti di un'attività economica che ricadono su terzi non direttamente coinvolti nella transazione, potendo essere positivi o negativi.",
+    category: "microeconomia",
+    relatedTerms: ["Esternalità positive", "Esternalità negative", "Fallimenti di mercato", "Intervento pubblico"],
+    examples: "L'inquinamento industriale è un'esternalità negativa; l'educazione genera esternalità positive per la società."
+  },
+  {
+    name: "Asimmetria Informativa",
+    definition: "Situazione in cui una parte di una transazione ha più o migliori informazioni rispetto all'altra, che può portare a problemi come selezione avversa e azzardo morale.",
+    category: "microeconomia",
+    relatedTerms: ["Selezione avversa", "Azzardo morale", "Segnalazione", "Screening"],
+    examples: "Nel mercato delle auto usate, il venditore conosce meglio i difetti dell'auto rispetto al compratore."
   },
   {
     name: "Inflazione",
@@ -378,6 +604,34 @@ export const conceptsData: InsertConcept[] = [
     category: "macroeconomia",
     relatedTerms: ["Deflazione", "Iperinflazione", "Indice dei prezzi", "Potere d'acquisto"],
     examples: "Se un caffè costa 1€ oggi e 1,02€ l'anno prossimo, c'è stata un'inflazione del 2% per quel bene."
+  },
+  {
+    name: "Aspettative Razionali",
+    definition: "Teoria secondo cui gli agenti economici utilizzano tutte le informazioni disponibili per formare le loro aspettative sui futuri valori delle variabili economiche.",
+    category: "macroeconomia",
+    relatedTerms: ["Lucas critique", "Politica economica", "Credibilità", "Aspettative adattive"],
+    examples: "Se la banca centrale annuncia un target di inflazione del 2%, gli agenti si aspettano che l'inflazione sia del 2%."
+  },
+  {
+    name: "Convergenza Condizionale",
+    definition: "Nel modello di Solow, l'idea che i paesi poveri dovrebbero crescere più velocemente dei ricchi e convergere verso lo stesso stato stazionario, a condizione che abbiano gli stessi parametri strutturali.",
+    category: "macroeconomia",
+    relatedTerms: ["Modello di Solow", "Crescita economica", "Stato stazionario", "Catch-up"],
+    examples: "I paesi dell'Est Europa dopo il 1989 hanno mostrato crescita più rapida convergendo verso i livelli dell'Ovest."
+  },
+  {
+    name: "Incertezza Radicale",
+    definition: "La convinzione post-keynesiana che il futuro sia fondamentalmente imprevedibile e non possa essere ridotto a probabilità calcolabili.",
+    category: "macroeconomia",
+    relatedTerms: ["Post-keynesiani", "Keynes", "Convenzioni", "Preferenza per la liquidità"],
+    examples: "Nessuno poteva prevedere con precisione probabilistica la pandemia COVID-19 e i suoi effetti economici."
+  },
+  {
+    name: "Istituzioni Inclusive",
+    definition: "Strutture politiche ed economiche che garantiscono ampia partecipazione, tutelano i diritti di proprietà e la concorrenza, promuovendo l'innovazione e la crescita diffusa.",
+    category: "macroeconomia",
+    relatedTerms: ["Istituzioni estrattive", "Acemoglu", "Crescita economica", "Sviluppo"],
+    examples: "Le democrazie consolidate con stati di diritto forti che garantiscono libertà di impresa e concorrenza."
   },
   {
     name: "Elasticità della Domanda",
