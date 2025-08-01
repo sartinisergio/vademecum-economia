@@ -43,6 +43,7 @@ export interface IStorage {
   // Comparisons
   getAllComparisons(): Promise<Comparison[]>;
   getComparisonById(id: string): Promise<Comparison | undefined>;
+  createComparison(comparison: InsertComparison): Promise<Comparison>;
   
   // Search functionality
   searchAll(query: string): Promise<{
@@ -166,6 +167,16 @@ export class MemStorage implements IStorage {
 
   async getComparisonById(id: string): Promise<Comparison | undefined> {
     return this.comparisons.get(id);
+  }
+
+  async createComparison(comparison: InsertComparison): Promise<Comparison> {
+    const id = randomUUID();
+    const newComparison: Comparison = {
+      id,
+      ...comparison
+    };
+    this.comparisons.set(id, newComparison);
+    return newComparison;
   }
 
   async searchAll(query: string): Promise<{

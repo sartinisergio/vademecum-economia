@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { GitCompare, Plus, X, ChevronDown, ChevronUp, Search, Filter } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
+import { queryClient } from "@/lib/queryClient";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -51,6 +53,35 @@ export default function Comparisons() {
 
   const { data: concepts } = useQuery<Concept[]>({
     queryKey: ["/api/concepts"],
+  });
+
+  const createComparisonMutation = useMutation({
+    mutationFn: async (newComparison: any) => {
+      return apiRequest("POST", "/api/comparisons", newComparison);
+    },
+    onSuccess: () => {
+      // Aggiorna la cache delle comparazioni
+      queryClient.invalidateQueries({ queryKey: ["/api/comparisons"] });
+      toast({
+        title: "Confronto salvato!",
+        description: "Il tuo confronto personalizzato è stato creato con successo.",
+      });
+      setShowCreateDialog(false);
+      setDialogSearchQuery("");
+      setCreateState({
+        title: "",
+        description: "",
+        selectedItems: [],
+        aspects: []
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Errore",
+        description: "Si è verificato un errore durante la creazione del confronto.",
+        variant: "destructive",
+      });
+    }
   });
 
   const toggleExpanded = (id: string) => {
@@ -366,23 +397,32 @@ export default function Comparisons() {
                   <Button 
                     onClick={() => {
                       if (createState.selectedItems.length >= 2 && createState.title.trim()) {
-                        toast({
-                          title: "Confronto salvato!",
-                          description: "Il tuo confronto personalizzato è stato creato con successo.",
-                        });
-                        setShowCreateDialog(false);
-                        setDialogSearchQuery("");
-                        setCreateState({
-                          title: "",
-                          description: "",
-                          selectedItems: [],
-                          aspects: []
-                        });
+                        // Prepara il confronto nel formato corretto
+                        const newComparison = {
+                          title: createState.title,
+                          description: createState.description || "Confronto personalizzato",
+                          isCustom: "true",
+                          items: createState.selectedItems.map(item => ({
+                            type: item.type,
+                            id: item.id,
+                            name: item.name
+                          })),
+                          aspects: [
+                            {
+                              name: "Caratteristiche Principali",
+                              comparisons: createState.selectedItems.map(item => ({
+                                itemId: item.id,
+                                value: `Analisi di ${item.name} - da aggiornare con contenuti specifici`
+                              }))
+                            }
+                          ]
+                        };
+                        createComparisonMutation.mutate(newComparison);
                       }
                     }}
-                    disabled={createState.selectedItems.length < 2 || !createState.title.trim()}
+                    disabled={createState.selectedItems.length < 2 || !createState.title.trim() || createComparisonMutation.isPending}
                   >
-                    Crea Confronto
+                    {createComparisonMutation.isPending ? "Creazione..." : "Crea Confronto"}
                   </Button>
                 </div>
               </div>

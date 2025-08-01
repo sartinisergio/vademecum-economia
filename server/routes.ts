@@ -144,6 +144,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.post("/api/comparisons", async (req, res) => {
+    try {
+      const newComparison = await storage.createComparison(req.body);
+      res.status(201).json(newComparison);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to create comparison" });
+    }
+  });
+
   // Search routes
   app.get("/api/search", async (req, res) => {
     try {
