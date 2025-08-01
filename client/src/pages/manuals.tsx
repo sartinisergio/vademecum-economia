@@ -79,7 +79,9 @@ export default function Manuals() {
   };
 
   const handlePrint = () => {
-    // Create print-friendly content
+    // Get only the selected manuals that are currently displayed
+    const selectedDisplayedManuals = displayedManuals.filter(manual => selectedManuals.includes(manual.id));
+    
     const printContent = `
       <html>
         <head>
@@ -104,10 +106,10 @@ export default function Manuals() {
           <div class="header">
             <h1>Confronto Manuali di Economia</h1>
             <p>Vademecum di Economia - ${new Date().toLocaleDateString('it-IT')}</p>
-            <p>Confronto di ${selectedManuals.length} manuali selezionati</p>
+            <p>Confronto di ${selectedDisplayedManuals.length} manuali selezionati</p>
           </div>
           
-          ${displayedManuals.filter(manual => selectedManuals.includes(manual.id)).map(manual => `
+          ${selectedDisplayedManuals.map(manual => `
             <div class="manual">
               <div class="manual-title">${manual.title}</div>
               <div class="authors">Autori: ${manual.authors.join(', ')}</div>
