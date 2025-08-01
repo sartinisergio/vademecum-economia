@@ -56,11 +56,8 @@ export default function Schools() {
   };
 
   const handlePrint = () => {
-    // Simple debug alert
-    alert(`Stampa chiamata. Selezionati: ${selectedSchools.length}, Visualizzati: ${displayedSchools?.length || 0}, Modalità: ${displayMode}`);
-    
-    // Get only the selected schools that are currently displayed
-    const schoolsForPrint = displayedSchools?.filter(school => selectedSchools.includes(school.id)) || [];
+    // Il problema potrebbe essere nella logica di filtro - usiamo semplicemente le scuole selezionate
+    const schoolsForPrint = schools?.filter(school => selectedSchools.includes(school.id)) || [];
     
     const printContent = `
       <html>

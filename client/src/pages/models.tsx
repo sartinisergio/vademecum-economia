@@ -48,11 +48,8 @@ export default function Models() {
   };
 
   const handlePrint = () => {
-    // Simple debug alert
-    alert(`Stampa chiamata. Selezionati: ${selectedModels.length}, Visualizzati: ${displayedModels?.length || 0}, Modalità: ${displayMode}`);
-    
-    // Get only the selected models that are currently displayed
-    const modelsForPrint = displayedModels?.filter(model => selectedModels.includes(model.id)) || [];
+    // Il problema potrebbe essere nella logica di filtro - usiamo semplicemente i modelli selezionati
+    const modelsForPrint = models?.filter(model => selectedModels.includes(model.id)) || [];
     
     const printContent = `
       <html>

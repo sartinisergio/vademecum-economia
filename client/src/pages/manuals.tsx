@@ -58,16 +58,11 @@ export default function Manuals() {
   }, [location, manuals]);
 
   const toggleManualSelection = (manualId: string) => {
-    setSelectedManuals(prev => {
-      const newSelection = prev.includes(manualId) 
+    setSelectedManuals(prev => 
+      prev.includes(manualId) 
         ? prev.filter(id => id !== manualId)
-        : [...prev, manualId];
-      
-      // Debug: show selection count
-      alert(`Manuale ${prev.includes(manualId) ? 'deselezionato' : 'selezionato'}. Totale: ${newSelection.length}`);
-      
-      return newSelection;
-    });
+        : [...prev, manualId]
+    );
   };
 
   const resetSelection = () => {
@@ -84,11 +79,8 @@ export default function Manuals() {
   };
 
   const handlePrint = () => {
-    // Simple debug alert
-    alert(`Stampa chiamata. Selezionati: ${selectedManuals.length}, Visualizzati: ${displayedManuals.length}, Modalità: ${displayMode}`);
-    
-    // Get only the selected manuals that are currently displayed
-    const manualsForPrint = displayedManuals.filter(manual => selectedManuals.includes(manual.id));
+    // Il problema potrebbe essere nella logica di filtro - usiamo semplicemente i manuali selezionati
+    const manualsForPrint = manuals?.filter(manual => selectedManuals.includes(manual.id)) || [];
     
     const printContent = `
       <html>
