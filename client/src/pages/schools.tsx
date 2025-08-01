@@ -109,8 +109,8 @@ export default function Schools() {
               
               <div class="section">
                 <div class="section-title">Esempi Pratici:</div>
-                ${school.examples && school.examples.length > 0 ? 
-                  school.examples.map((example: string) => `<div class="list-item">• ${example}</div>`).join('') 
+                ${school.examples ? 
+                  `<div class="list-item">${school.examples}</div>` 
                   : '<div class="list-item">Nessun esempio disponibile</div>'}
               </div>
             </div>
@@ -221,7 +221,7 @@ export default function Schools() {
                 className="flex items-center space-x-2"
               >
                 <Printer className="w-4 h-4" />
-                <span>Stampa confronto</span>
+                <span translate="no">Stampa confronto</span>
               </Button>
             )}
             

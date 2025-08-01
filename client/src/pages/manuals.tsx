@@ -293,7 +293,7 @@ export default function Manuals() {
                 className="flex items-center space-x-2"
               >
                 <Printer className="w-4 h-4" />
-                <span>Stampa confronto</span>
+                <span translate="no">Stampa confronto</span>
               </Button>
             )}
             
