@@ -19,10 +19,12 @@ export default function SearchResults() {
   const [searchQuery, setSearchQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
 
-  const { data: schools } = useQuery<EconomicSchool[]>({ queryKey: ["/api/schools"] });
-  const { data: models } = useQuery<EconomicModel[]>({ queryKey: ["/api/models"] });
-  const { data: manuals } = useQuery<Manual[]>({ queryKey: ["/api/manuals"] });
-  const { data: concepts } = useQuery<Concept[]>({ queryKey: ["/api/concepts"] });
+  const { data: schools, isLoading: schoolsLoading } = useQuery<EconomicSchool[]>({ queryKey: ["/api/schools"] });
+  const { data: models, isLoading: modelsLoading } = useQuery<EconomicModel[]>({ queryKey: ["/api/models"] });
+  const { data: manuals, isLoading: manualsLoading } = useQuery<Manual[]>({ queryKey: ["/api/manuals"] });
+  const { data: concepts, isLoading: conceptsLoading } = useQuery<Concept[]>({ queryKey: ["/api/concepts"] });
+
+  const isLoading = schoolsLoading || modelsLoading || manualsLoading || conceptsLoading;
 
   // Funzione di ricerca globale
   const performGlobalSearch = (query: string) => {
@@ -194,7 +196,9 @@ export default function SearchResults() {
     });
 
     // Ordina per rilevanza
-    return searchResults.sort((a, b) => b.relevanceScore - a.relevanceScore);
+    const sortedResults = searchResults.sort((a, b) => b.relevanceScore - a.relevanceScore);
+    console.log('Risultati ricerca:', sortedResults.length, 'per query:', query);
+    return sortedResults;
   };
 
   // Gestisce i parametri URL per ricerca
@@ -204,8 +208,12 @@ export default function SearchResults() {
     
     if (search) {
       setSearchQuery(search);
-      const searchResults = performGlobalSearch(search);
-      setResults(searchResults);
+      // Aspetta che tutti i dati siano caricati prima di fare la ricerca
+      if (schools && models && manuals && concepts) {
+        const searchResults = performGlobalSearch(search);
+        console.log('Risultati trovati:', searchResults.length);
+        setResults(searchResults);
+      }
     }
   }, [location, schools, models, manuals, concepts]);
 
@@ -276,6 +284,18 @@ export default function SearchResults() {
           <Search className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Nessuna ricerca attiva</h1>
           <p className="text-gray-600">Torna alla dashboard per effettuare una ricerca.</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="text-center py-12">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-primary mx-auto mb-4"></div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Ricerca in corso...</h1>
+          <p className="text-gray-600">Analizzando tutto il contenuto per "{searchQuery}"</p>
         </div>
       </div>
     );
