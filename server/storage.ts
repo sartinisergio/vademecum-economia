@@ -17,7 +17,7 @@ import {
   manualsData, 
   conceptsData, 
   comparisonsData 
-} from "../client/src/data/economic-data";
+} from "../client/src/data/authentic-economic-data";
 
 export interface IStorage {
   // Economic Schools
