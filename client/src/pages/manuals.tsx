@@ -107,7 +107,7 @@ export default function Manuals() {
             <p>Confronto di ${selectedManuals.length} manuali selezionati</p>
           </div>
           
-          ${displayedManuals.map(manual => `
+          ${displayedManuals.filter(manual => selectedManuals.includes(manual.id)).map(manual => `
             <div class="manual">
               <div class="manual-title">${manual.title}</div>
               <div class="authors">Autori: ${manual.authors.join(', ')}</div>
@@ -254,7 +254,7 @@ export default function Manuals() {
               <span>{comparisonMode ? "Vista normale" : "Confronta selezionati"}</span>
             </Button>
             
-            {comparisonMode && selectedManuals.length >= 2 && (
+            {selectedManuals.length >= 2 && (
               <Button 
                 variant="outline" 
                 onClick={handlePrint}

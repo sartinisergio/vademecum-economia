@@ -80,7 +80,7 @@ export default function Schools() {
             <p>Confronto di ${selectedSchools.length} scuole selezionate</p>
           </div>
           
-          ${displayedSchools?.map((school: any) => `
+          ${displayedSchools?.filter(school => selectedSchools.includes(school.id)).map((school: any) => `
             <div class="school">
               <div class="school-title">${school.name}</div>
               
@@ -204,7 +204,7 @@ export default function Schools() {
               <span>{comparisonMode ? "Vista normale" : "Confronta selezionate"}</span>
             </Button>
             
-            {comparisonMode && selectedSchools.length >= 2 && (
+            {selectedSchools.length >= 2 && (
               <Button 
                 variant="outline" 
                 onClick={handlePrint}

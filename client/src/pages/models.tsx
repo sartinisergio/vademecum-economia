@@ -72,7 +72,7 @@ export default function Models() {
             <p>Confronto di ${selectedModels.length} modelli selezionati</p>
           </div>
           
-          ${displayedModels.map((model: any) => `
+          ${displayedModels?.filter(model => selectedModels.includes(model.id)).map((model: any) => `
             <div class="model">
               <div class="model-title">${model.name}</div>
               <div class="type-badge">${model.type === 'microeconomico' ? 'Microeconomico' : 'Macroeconomico'}</div>
@@ -268,7 +268,7 @@ export default function Models() {
               <span>{comparisonMode ? "Vista normale" : "Confronta selezionati"}</span>
             </Button>
             
-            {comparisonMode && selectedModels.length >= 2 && (
+            {selectedModels.length >= 2 && (
               <Button 
                 variant="outline" 
                 onClick={handlePrint}

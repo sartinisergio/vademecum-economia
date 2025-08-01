@@ -11,6 +11,8 @@ EconoLab is an educational web application focused on economic schools of though
 - **10 Economic Models**: Complete microeconomic and macroeconomic models with applications and school connections
 - **Unified Models Section**: Combined micro and macroeconomic models into single "Modelli Teorici" section with unified interface and comparison tools
 - **Interactive Selection System**: All major sections (Manuals, Schools, Models) now feature checkbox selection, filtering, and detailed comparison tables
+- **Print/Export Functionality**: Complete print functionality for comparison results across all three main sections (Manuals, Schools, Models) with professional PDF formatting and Italian localization
+- **Enhanced User Experience**: Print button always visible when 2+ items selected, regardless of view mode; print content reflects exactly selected items
 - **Search functionality removed**: Eliminated problematic search feature due to technical complexity and user preference for cleaner interface
 - **Header simplified**: Cleaned up navigation to only include Dashboard link
 - **Interface streamlined**: Focus on direct access to authentic educational content with interactive comparison capabilities
