@@ -170,8 +170,8 @@ export default function Dashboard() {
           />
 
           <SectionCard
-            title="Confronti Multilivello"
-            description="Analisi comparative tra teorie e approcci"
+            title="Confronti Dinamici"
+            description="Confronta scuole, modelli, manuali e concetti"
             icon={<GitCompare className="w-8 h-8 text-white" />}
             count={`${stats?.comparisonsCount || 6} confronti`}
             href="/comparisons"

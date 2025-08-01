@@ -330,59 +330,120 @@ export const conceptsData: InsertConcept[] = [
 
 export const comparisonsData: InsertComparison[] = [
   {
-    title: "Saltwater vs Freshwater Economics",
-    description: "Il grande dibattito che ha diviso l'economia macroeconomica americana, formalizzato da Robert Hall nel 1976.",
-    schools: ["Saltwater (coste)", "Freshwater (Grandi Laghi)"],
-    keyDifferences: [
+    title: "Scuole di Pensiero: Neoclassica vs Post-Keynesiana",
+    description: "Confronto tra l'approccio dominante e la principale scuola critica nell'economia contemporanea.",
+    items: [
+      { type: "school", id: "neoclassical-school", name: "Scuola Neoclassica" },
+      { type: "school", id: "post-keynesian-school", name: "Scuola Post-Keynesiana" }
+    ],
+    aspects: [
       {
-        aspect: "Visione del Mercato",
-        differences: [
-          "Saltwater: I mercati possono fallire e rimanere in disequilibrio, la disoccupazione involontaria esiste",
-          "Freshwater: I mercati sono generalmente efficienti e autoregolantesi, la disoccupazione è largamente volontaria"
+        name: "Concezione del Futuro",
+        comparisons: [
+          { itemId: "neoclassical-school", value: "Futuro prevedibile attraverso aspettative razionali e probabilità" },
+          { itemId: "post-keynesian-school", value: "Incertezza radicale, il futuro è fondamentalmente imprevedibile" }
         ]
       },
       {
-        aspect: "Ruolo del Governo",
-        differences: [
-          "Saltwater: Cruciale per la stabilizzazione economica usando politiche fiscali e monetarie",
-          "Freshwater: Spesso inefficace o controproducente, preferiscono regole fisse alla discrezionalità"
+        name: "Ruolo della Moneta",
+        comparisons: [
+          { itemId: "neoclassical-school", value: "Moneta neutrale nel lungo periodo, controllata dalla banca centrale" },
+          { itemId: "post-keynesian-school", value: "Moneta endogena, creata dalle banche attraverso i prestiti" }
         ]
       },
       {
-        aspect: "Metodologia",
-        differences: [
-          "Saltwater: Più pragmatici, aperti a modelli ad hoc se empiricamente utili",
-          "Freshwater: Insistenza su rigore matematico e coerenza logica con microfondazioni"
+        name: "Determinazione dei Prezzi",
+        comparisons: [
+          { itemId: "neoclassical-school", value: "Prezzi determinati dall'equilibrio di domanda e offerta" },
+          { itemId: "post-keynesian-school", value: "Prezzi amministrati dalle imprese con ricarico sui costi" }
+        ]
+      },
+      {
+        name: "Metodo di Analisi",
+        comparisons: [
+          { itemId: "neoclassical-school", value: "Ampio uso della matematica per formalizzare teorie" },
+          { itemId: "post-keynesian-school", value: "Focus su tempo storico e analisi istituzionale" }
         ]
       }
-    ]
+    ],
+    isCustom: "false"
   },
   {
-    title: "Scuola Neoclassica vs Post-Keynesiana",
-    description: "Confronto tra l'approccio dominante e la principale scuola critica nell'economia contemporanea.",
-    schools: ["Neoclassica", "Post-Keynesiana"],
-    keyDifferences: [
+    title: "Modelli Micro vs Macro: Consumatore vs IS-LM",
+    description: "Confronto tra un modello microeconomico fondamentale e uno macroeconomico classico.",
+    items: [
+      { type: "model", id: "consumer-theory", name: "Teoria del Consumatore" },
+      { type: "model", id: "is-lm-model", name: "Modello IS-LM" }
+    ],
+    aspects: [
       {
-        aspect: "Concezione del Futuro",
-        differences: [
-          "Neoclassica: Futuro prevedibile attraverso aspettative razionali e probabilità",
-          "Post-Keynesiana: Incertezza radicale, il futuro è fondamentalmente imprevedibile"
+        name: "Livello di Analisi",
+        comparisons: [
+          { itemId: "consumer-theory", value: "Comportamento individuale del consumatore" },
+          { itemId: "is-lm-model", value: "Equilibrio macroeconomico aggregato" }
         ]
       },
       {
-        aspect: "Ruolo della Moneta",
-        differences: [
-          "Neoclassica: Moneta neutrale nel lungo periodo, controllata dalla banca centrale",
-          "Post-Keynesiana: Moneta endogena, creata dalle banche attraverso i prestiti"
+        name: "Variabili Chiave",
+        comparisons: [
+          { itemId: "consumer-theory", value: "Reddito, prezzi, utilità, preferenze individuali" },
+          { itemId: "is-lm-model", value: "Tasso di interesse, produzione, investimenti, moneta" }
         ]
       },
       {
-        aspect: "Determinazione dei Prezzi",
-        differences: [
-          "Neoclassica: Prezzi determinati dall'equilibrio di domanda e offerta",
-          "Post-Keynesiana: Prezzi amministrati dalle imprese con ricarico sui costi"
+        name: "Obiettivo",
+        comparisons: [
+          { itemId: "consumer-theory", value: "Massimizzazione dell'utilità soggetta al vincolo di bilancio" },
+          { itemId: "is-lm-model", value: "Equilibrio simultaneo nei mercati dei beni e della moneta" }
+        ]
+      },
+      {
+        name: "Applicazioni Pratiche",
+        comparisons: [
+          { itemId: "consumer-theory", value: "Analisi della domanda, elasticità, effetti di prezzo e reddito" },
+          { itemId: "is-lm-model", value: "Politiche fiscali e monetarie, analisi congiunturale" }
         ]
       }
-    ]
+    ],
+    isCustom: "false"
+  },
+  {
+    title: "Manuali: Approcci Pedagogici a Confronto",
+    description: "Confronto tra diversi approcci didattici nella presentazione dell'economia.",
+    items: [
+      { type: "manual", id: "mankiw-manual", name: "Mankiw - Essenziale di Economia" },
+      { type: "manual", id: "core-manual", name: "CORE Team - Capire l'Economia" }
+    ],
+    aspects: [
+      {
+        name: "Scuola di Pensiero",
+        comparisons: [
+          { itemId: "mankiw-manual", value: "Nuova Sintesi Neoclassica - approccio ortodosso" },
+          { itemId: "core-manual", value: "Pluralismo integrato - approccio post-2008" }
+        ]
+      },
+      {
+        name: "Struttura Didattica",
+        comparisons: [
+          { itemId: "mankiw-manual", value: "Organizzazione sui 'Dieci Principi dell'Economia'" },
+          { itemId: "core-manual", value: "Struttura rivoluzionaria con integrazione multimediale" }
+        ]
+      },
+      {
+        name: "Metodologia",
+        comparisons: [
+          { itemId: "mankiw-manual", value: "Rigore neoclassico in micro, pragmatismo neo-keynesiano in macro" },
+          { itemId: "core-manual", value: "Approccio scientifico con focus su rilevanza contemporanea" }
+        ]
+      },
+      {
+        name: "Pubblico Target",
+        comparisons: [
+          { itemId: "mankiw-manual", value: "Corsi standard, studenti che intendono proseguire in economia" },
+          { itemId: "core-manual", value: "Corsi innovativi, programmi digitali e interdisciplinari" }
+        ]
+      }
+    ],
+    isCustom: "false"
   }
 ];

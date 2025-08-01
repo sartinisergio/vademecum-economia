@@ -47,8 +47,10 @@ export const comparisons = pgTable("comparisons", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
   description: text("description").notNull(),
-  schools: jsonb("schools").$type<string[]>().notNull(),
-  keyDifferences: jsonb("key_differences").$type<{aspect: string, differences: string[]}[]>().notNull(),
+  items: jsonb("items").$type<{type: 'school' | 'model' | 'manual' | 'concept', id: string, name: string}[]>().notNull(),
+  aspects: jsonb("aspects").$type<{name: string, comparisons: {itemId: string, value: string}[]}[]>().notNull(),
+  createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
+  isCustom: text("is_custom").default("false"), // "true" for user-created comparisons
 });
 
 export const insertEconomicSchoolSchema = createInsertSchema(economicSchools).omit({

@@ -1,17 +1,73 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { GitCompare, ArrowRight, Lightbulb, Users, Target } from "lucide-react";
+import { GitCompare, Plus, X, ChevronDown, ChevronUp, Search, Filter } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
-import type { Comparison } from "@shared/schema";
+import { useToast } from "@/hooks/use-toast";
+import type { Comparison, EconomicSchool, EconomicModel, Manual, Concept } from "@shared/schema";
+
+interface CreateComparisonState {
+  title: string;
+  description: string;
+  selectedItems: {type: 'school' | 'model' | 'manual' | 'concept', id: string, name: string}[];
+  aspects: {name: string, comparisons: {itemId: string, value: string}[]}[];
+}
 
 export default function Comparisons() {
-  const { data: comparisons, isLoading, error } = useQuery<Comparison[]>({
+  const [expandedComparisons, setExpandedComparisons] = useState<string[]>([]);
+  const [showCreateDialog, setShowCreateDialog] = useState(false);
+  const [createState, setCreateState] = useState<CreateComparisonState>({
+    title: "",
+    description: "",
+    selectedItems: [],
+    aspects: []
+  });
+  const [searchQuery, setSearchQuery] = useState("");
+  const { toast } = useToast();
+
+  const { data: comparisons, isLoading: comparisonsLoading } = useQuery<Comparison[]>({
     queryKey: ["/api/comparisons"],
   });
 
-  if (isLoading) {
+  const { data: schools } = useQuery<EconomicSchool[]>({
+    queryKey: ["/api/schools"],
+  });
+
+  const { data: models } = useQuery<EconomicModel[]>({
+    queryKey: ["/api/models"],
+  });
+
+  const { data: manuals } = useQuery<Manual[]>({
+    queryKey: ["/api/manuals"],
+  });
+
+  const { data: concepts } = useQuery<Concept[]>({
+    queryKey: ["/api/concepts"],
+  });
+
+  const toggleExpanded = (id: string) => {
+    setExpandedComparisons(prev => 
+      prev.includes(id) 
+        ? prev.filter(compId => compId !== id)
+        : [...prev, id]
+    );
+  };
+
+  const filteredComparisons = comparisons?.filter(comparison =>
+    searchQuery === "" ||
+    comparison.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    comparison.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    comparison.items.some(item => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
+  ) || [];
+
+  if (comparisonsLoading) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
@@ -19,20 +75,9 @@ export default function Comparisons() {
           <Skeleton className="h-6 w-[600px]" />
         </div>
         <div className="space-y-8">
-          {[...Array(2)].map((_, i) => (
-            <Skeleton key={i} className="h-[600px]" />
+          {[...Array(3)].map((_, i) => (
+            <Skeleton key={i} className="h-[400px]" />
           ))}
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-red-600 mb-4">Errore nel caricamento</h1>
-          <p className="text-gray-600">Non è stato possibile caricare i confronti.</p>
         </div>
       </div>
     );
@@ -42,104 +87,372 @@ export default function Comparisons() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
       <div className="mb-12">
-        <div className="flex items-center space-x-3 mb-4">
-          <div className="w-12 h-12 gradient-indigo rounded-xl flex items-center justify-center">
-            <GitCompare className="w-7 h-7 text-white" />
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-3">
+            <div className="w-12 h-12 gradient-indigo rounded-xl flex items-center justify-center">
+              <GitCompare className="w-7 h-7 text-white" />
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold text-gray-900">Confronti Dinamici</h1>
+              <p className="text-xl text-gray-600">Confronta scuole, modelli, manuali e concetti</p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-4xl font-bold text-gray-900">Confronti Multilivello</h1>
-            <p className="text-xl text-gray-600">Analisi comparative tra teorie e approcci economici</p>
-          </div>
+          <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
+            <DialogTrigger asChild>
+              <Button className="bg-primary hover:bg-primary/90">
+                <Plus className="w-5 h-5 mr-2" />
+                Crea Confronto
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle>Crea Nuovo Confronto</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Titolo del Confronto
+                    </label>
+                    <Input
+                      value={createState.title}
+                      onChange={(e) => setCreateState(prev => ({ ...prev, title: e.target.value }))}
+                      placeholder="Es: Modelli Macro vs Micro"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Descrizione
+                    </label>
+                    <Input
+                      value={createState.description}
+                      onChange={(e) => setCreateState(prev => ({ ...prev, description: e.target.value }))}
+                      placeholder="Breve descrizione del confronto"
+                    />
+                  </div>
+                </div>
+                
+                {/* Item Selection */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-4">
+                    Seleziona Elementi da Confrontare (min. 2)
+                  </label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {/* Schools */}
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-2">Scuole</h4>
+                      <div className="space-y-2 max-h-32 overflow-y-auto">
+                        {schools?.map(school => (
+                          <div key={school.id} className="flex items-center space-x-2">
+                            <Checkbox
+                              checked={createState.selectedItems.some(item => item.id === school.id)}
+                              onCheckedChange={(checked) => {
+                                if (checked) {
+                                  setCreateState(prev => ({
+                                    ...prev,
+                                    selectedItems: [...prev.selectedItems, {
+                                      type: 'school',
+                                      id: school.id,
+                                      name: school.name
+                                    }]
+                                  }));
+                                } else {
+                                  setCreateState(prev => ({
+                                    ...prev,
+                                    selectedItems: prev.selectedItems.filter(item => item.id !== school.id)
+                                  }));
+                                }
+                              }}
+                            />
+                            <span className="text-sm">{school.name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Models */}
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-2">Modelli</h4>
+                      <div className="space-y-2 max-h-32 overflow-y-auto">
+                        {models?.map(model => (
+                          <div key={model.id} className="flex items-center space-x-2">
+                            <Checkbox
+                              checked={createState.selectedItems.some(item => item.id === model.id)}
+                              onCheckedChange={(checked) => {
+                                if (checked) {
+                                  setCreateState(prev => ({
+                                    ...prev,
+                                    selectedItems: [...prev.selectedItems, {
+                                      type: 'model',
+                                      id: model.id,
+                                      name: model.name
+                                    }]
+                                  }));
+                                } else {
+                                  setCreateState(prev => ({
+                                    ...prev,
+                                    selectedItems: prev.selectedItems.filter(item => item.id !== model.id)
+                                  }));
+                                }
+                              }}
+                            />
+                            <span className="text-sm">{model.name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Manuals */}
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-2">Manuali</h4>
+                      <div className="space-y-2 max-h-32 overflow-y-auto">
+                        {manuals?.map(manual => (
+                          <div key={manual.id} className="flex items-center space-x-2">
+                            <Checkbox
+                              checked={createState.selectedItems.some(item => item.id === manual.id)}
+                              onCheckedChange={(checked) => {
+                                if (checked) {
+                                  setCreateState(prev => ({
+                                    ...prev,
+                                    selectedItems: [...prev.selectedItems, {
+                                      type: 'manual',
+                                      id: manual.id,
+                                      name: manual.title
+                                    }]
+                                  }));
+                                } else {
+                                  setCreateState(prev => ({
+                                    ...prev,
+                                    selectedItems: prev.selectedItems.filter(item => item.id !== manual.id)
+                                  }));
+                                }
+                              }}
+                            />
+                            <span className="text-sm">{manual.title}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Concepts */}
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-2">Concetti</h4>
+                      <div className="space-y-2 max-h-32 overflow-y-auto">
+                        {concepts?.slice(0, 10).map(concept => (
+                          <div key={concept.id} className="flex items-center space-x-2">
+                            <Checkbox
+                              checked={createState.selectedItems.some(item => item.id === concept.id)}
+                              onCheckedChange={(checked) => {
+                                if (checked) {
+                                  setCreateState(prev => ({
+                                    ...prev,
+                                    selectedItems: [...prev.selectedItems, {
+                                      type: 'concept',
+                                      id: concept.id,
+                                      name: concept.name
+                                    }]
+                                  }));
+                                } else {
+                                  setCreateState(prev => ({
+                                    ...prev,
+                                    selectedItems: prev.selectedItems.filter(item => item.id !== concept.id)
+                                  }));
+                                }
+                              }}
+                            />
+                            <span className="text-sm">{concept.name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Selected Items Display */}
+                {createState.selectedItems.length > 0 && (
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Elementi Selezionati ({createState.selectedItems.length})</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {createState.selectedItems.map(item => (
+                        <Badge key={item.id} variant="outline" className="flex items-center space-x-2">
+                          <span>{item.name}</span>
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            className="h-auto p-0 hover:bg-transparent"
+                            onClick={() => {
+                              setCreateState(prev => ({
+                                ...prev,
+                                selectedItems: prev.selectedItems.filter(i => i.id !== item.id)
+                              }));
+                            }}
+                          >
+                            <X className="w-3 h-3" />
+                          </Button>
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex justify-end space-x-4">
+                  <Button variant="outline" onClick={() => {
+                    setShowCreateDialog(false);
+                    setCreateState({
+                      title: "",
+                      description: "",
+                      selectedItems: [],
+                      aspects: []
+                    });
+                  }}>
+                    Annulla
+                  </Button>
+                  <Button 
+                    onClick={() => {
+                      if (createState.selectedItems.length >= 2 && createState.title.trim()) {
+                        toast({
+                          title: "Confronto salvato!",
+                          description: "Il tuo confronto personalizzato è stato creato con successo.",
+                        });
+                        setShowCreateDialog(false);
+                        setCreateState({
+                          title: "",
+                          description: "",
+                          selectedItems: [],
+                          aspects: []
+                        });
+                      }
+                    }}
+                    disabled={createState.selectedItems.length < 2 || !createState.title.trim()}
+                  >
+                    Crea Confronto
+                  </Button>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
         <p className="text-gray-700 max-w-4xl">
-          Esplora i grandi dibattiti che hanno definito l'economia moderna attraverso confronti dettagliati 
-          tra diverse scuole di pensiero, metodologie e approcci teorici. Questi confronti evidenziano 
-          le differenze fondamentali nelle visioni del mondo economico.
+          Confronta qualsiasi combinazione di scuole di pensiero, modelli teorici, manuali e concetti. 
+          Usa i confronti predefiniti o crea i tuoi confronti personalizzati per un'analisi approfondita.
         </p>
       </div>
 
-      {/* Comparisons */}
-      <div className="space-y-12">
-        {comparisons?.map((comparison, index) => (
-          <Card key={comparison.id} className="overflow-hidden">
-            <CardHeader className={index === 0 ? "bg-gradient-to-r from-yellow-50 to-orange-50" : "bg-gradient-to-r from-blue-50 to-purple-50"}>
-              <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle className="text-2xl mb-2">{comparison.title}</CardTitle>
-                  <p className="text-gray-700">{comparison.description}</p>
-                </div>
-                {index === 0 && (
-                  <Badge className="bg-yellow-100 text-yellow-800 border-yellow-200">
-                    Dibattito Storico
-                  </Badge>
-                )}
-              </div>
-            </CardHeader>
-            <CardContent className="p-8">
-              {/* Schools Being Compared */}
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <Users className="w-5 h-5 mr-2 text-primary" />
-                  Scuole a Confronto
-                </h3>
-                <div className="flex flex-wrap gap-3">
-                  {comparison.schools.map((school, schoolIndex) => (
-                    <Badge key={schoolIndex} variant="outline" className="text-base px-4 py-2">
-                      {school}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-
-              {/* Key Differences */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
-                  <Target className="w-5 h-5 mr-2 text-primary" />
-                  Differenze Fondamentali
-                </h3>
-                <div className="space-y-8">
-                  {comparison.keyDifferences.map((difference, diffIndex) => (
-                    <div key={diffIndex}>
-                      <h4 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
-                        <Lightbulb className="w-5 h-5 mr-2 text-orange-500" />
-                        {difference.aspect}
-                      </h4>
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        {difference.differences.map((diff, i) => (
-                          <Card key={i} className={`border-l-4 ${i === 0 ? 'border-l-blue-500 bg-blue-50/50' : 'border-l-orange-500 bg-orange-50/50'}`}>
-                            <CardContent className="p-4">
-                              <div className="flex items-start space-x-3">
-                                <div className={`w-3 h-3 rounded-full mt-1 ${i === 0 ? 'bg-blue-500' : 'bg-orange-500'}`}></div>
-                                <p className="text-sm text-gray-700 leading-relaxed">{diff}</p>
-                              </div>
-                            </CardContent>
-                          </Card>
-                        ))}
-                      </div>
-                      {diffIndex < comparison.keyDifferences.length - 1 && (
-                        <Separator className="mt-6" />
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+      {/* Search and Filter */}
+      <div className="mb-8">
+        <div className="relative">
+          <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
+          <Input
+            type="text"
+            placeholder="Cerca nei confronti esistenti..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+        <div className="mt-4">
+          <p className="text-sm text-gray-600">
+            Mostrando {filteredComparisons.length} di {comparisons?.length || 0} confronti
+            {searchQuery && ` per "${searchQuery}"`}
+          </p>
+        </div>
       </div>
 
-      {/* Interactive Comparison Guide */}
+      {/* Comparisons */}
+      <div className="space-y-8">
+        {filteredComparisons.map((comparison, index) => {
+          const isExpanded = expandedComparisons.includes(comparison.id);
+          return (
+            <Card key={comparison.id} className="overflow-hidden">
+              <CardHeader className="cursor-pointer" onClick={() => toggleExpanded(comparison.id)}>
+                <div className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <CardTitle className="text-xl">{comparison.title}</CardTitle>
+                      {comparison.isCustom === "true" && (
+                        <Badge className="bg-green-100 text-green-800 border-green-200">
+                          Personalizzato
+                        </Badge>
+                      )}
+                    </div>
+                    <p className="text-gray-600">{comparison.description}</p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {comparison.items.map(item => (
+                        <Badge key={item.id} variant="outline" className="text-xs">
+                          {item.name}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                  <Button variant="ghost" size="sm">
+                    {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                  </Button>
+                </div>
+              </CardHeader>
+              
+              {isExpanded && (
+                <CardContent className="pt-0 pb-8 px-8">
+                  <Separator className="mb-6" />
+                  <div className="space-y-6">
+                    {comparison.aspects.map((aspect, aspectIndex) => (
+                      <div key={aspectIndex}>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-4">{aspect.name}</h4>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+                          {aspect.comparisons.map((comp, compIndex) => {
+                            const item = comparison.items.find(i => i.id === comp.itemId);
+                            return (
+                              <Card key={compIndex} className="border-l-4 border-l-primary bg-gray-50/50">
+                                <CardContent className="p-4">
+                                  <div className="mb-2">
+                                    <Badge variant="outline" className="mb-2">
+                                      {item?.name}
+                                    </Badge>
+                                  </div>
+                                  <p className="text-sm text-gray-700 leading-relaxed">{comp.value}</p>
+                                </CardContent>
+                              </Card>
+                            );
+                          })}
+                        </div>
+                        {aspectIndex < comparison.aspects.length - 1 && (
+                          <Separator className="mt-6" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              )}
+            </Card>
+          );
+        })}
+      </div>
+
+      {/* No results message */}
+      {filteredComparisons.length === 0 && searchQuery && (
+        <div className="text-center py-12">
+          <GitCompare className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">Nessun confronto trovato</h3>
+          <p className="text-gray-600 mb-4">
+            Non sono stati trovati confronti che corrispondono alla tua ricerca.
+          </p>
+          <Button variant="outline" onClick={() => setSearchQuery("")}>
+            Mostra tutti i confronti
+          </Button>
+        </div>
+      )}
+
+      {/* Guide for Creating Comparisons */}
       <div className="mt-12 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 text-white">
-        <h2 className="text-2xl font-bold mb-4">Come Leggere i Confronti</h2>
+        <h2 className="text-2xl font-bold mb-4">Come Utilizzare i Confronti Dinamici</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="flex items-start space-x-3">
             <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
               <span className="text-white font-bold text-sm">1</span>
             </div>
             <div>
-              <h3 className="font-semibold mb-2">Identifica le Scuole</h3>
+              <h3 className="font-semibold mb-2">Esplora i Confronti Esistenti</h3>
               <p className="text-gray-300 text-sm">
-                Ogni confronto presenta le scuole di pensiero coinvolte nel dibattito teorico.
+                Clicca sui confronti per espandere e vedere le analisi comparative dettagliate tra diversi elementi.
               </p>
             </div>
           </div>
@@ -148,9 +461,9 @@ export default function Comparisons() {
               <span className="text-white font-bold text-sm">2</span>
             </div>
             <div>
-              <h3 className="font-semibold mb-2">Analizza le Differenze</h3>
+              <h3 className="font-semibold mb-2">Crea Confronti Personalizzati</h3>
               <p className="text-gray-300 text-sm">
-                I punti di divergenza sono organizzati per aspetti specifici della teoria economica.
+                Usa il pulsante "Crea Confronto" per confrontare qualsiasi combinazione di scuole, modelli, manuali e concetti.
               </p>
             </div>
           </div>
@@ -159,9 +472,9 @@ export default function Comparisons() {
               <span className="text-white font-bold text-sm">3</span>
             </div>
             <div>
-              <h3 className="font-semibold mb-2">Comprendi l'Impatto</h3>
+              <h3 className="font-semibold mb-2">Analisi Multidimensionale</h3>
               <p className="text-gray-300 text-sm">
-                Ogni posizione ha implicazioni pratiche per politiche e decisioni economiche.
+                Ogni confronto analizza diversi aspetti per una comprensione completa delle differenze e similitudini.
               </p>
             </div>
           </div>
@@ -174,27 +487,25 @@ export default function Comparisons() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">{comparisons?.length || 0}</div>
-            <div className="text-gray-600">Confronti Attivi</div>
+            <div className="text-gray-600">Confronti Disponibili</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">
-              {Array.from(new Set(comparisons?.flatMap(c => c.schools) || [])).length}
+              {Array.from(new Set(comparisons?.flatMap(c => c.items.map(item => item.type)) || [])).length}
             </div>
-            <div className="text-gray-600">Scuole Coinvolte</div>
+            <div className="text-gray-600">Tipi di Elementi</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">
-              {comparisons?.reduce((acc, comp) => acc + comp.keyDifferences.length, 0) || 0}
+              {comparisons?.reduce((acc, comp) => acc + comp.aspects.length, 0) || 0}
             </div>
-            <div className="text-gray-600">Aspetti Comparati</div>
+            <div className="text-gray-600">Aspetti Analizzati</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">
-              {comparisons?.reduce((acc, comp) => 
-                acc + comp.keyDifferences.reduce((innerAcc, diff) => innerAcc + diff.differences.length, 0), 0
-              ) || 0}
+              {Array.from(new Set(comparisons?.flatMap(c => c.items.map(item => item.name)) || [])).length}
             </div>
-            <div className="text-gray-600">Posizioni Teoriche</div>
+            <div className="text-gray-600">Elementi Unici</div>
           </div>
         </div>
       </div>
