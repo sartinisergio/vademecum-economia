@@ -287,6 +287,66 @@ export const manualsData: InsertManual[] = [
       "Ancora in evoluzione"
     ],
     targetAudience: "Corsi innovativi, studenti motivati, programmi digitali o interdisciplinari"
+  },
+  {
+    title: "Microeconomia",
+    authors: ["Hal Varian"],
+    school: "Neoclassica",
+    characteristics: "Manuale avanzato di microeconomia con approccio matematico rigoroso e focus su ottimizzazione e teoria dei giochi.",
+    strengths: [
+      "Rigore matematico eccellente",
+      "Chiarezza espositiva",
+      "Approccio sistematico",
+      "Copertura completa",
+      "Esercizi di qualità"
+    ],
+    weaknesses: [
+      "Eccessiva formalizzazione",
+      "Scarsa attenzione a istituzioni",
+      "Approccio poco critico",
+      "Matematica impegnativa"
+    ],
+    targetAudience: "Corsi avanzati di microeconomia, studenti specialistici"
+  },
+  {
+    title: "Macroeconomia",
+    authors: ["Olivier Blanchard"],
+    school: "Nuova Sintesi Neoclassica", 
+    characteristics: "Standard mondiale per la macroeconomia intermedia, con equilibrio tra rigore teorico e rilevanza empirica.",
+    strengths: [
+      "Autorevolezza dell'autore",
+      "Equilibrio teoria-pratica",
+      "Aggiornamenti continui",
+      "Copertura crisi 2008",
+      "Approccio europeo"
+    ],
+    weaknesses: [
+      "Complessità crescente",
+      "Alcune parti datate",
+      "Focus su breve-medio periodo",
+      "Matematica intermedia"
+    ],
+    targetAudience: "Corsi intermedi e avanzati di macroeconomia, policy makers"
+  },
+  {
+    title: "Economia dello Sviluppo",
+    authors: ["Debraj Ray"],
+    school: "Economia dello Sviluppo",
+    characteristics: "Testo di riferimento per l'economia dello sviluppo con approccio teorico ed empirico integrato.",
+    strengths: [
+      "Copertura completa",
+      "Rigore analitico", 
+      "Evidenza empirica",
+      "Approccio critico",
+      "Rilevanza contemporanea"
+    ],
+    weaknesses: [
+      "Complessità elevata",
+      "Matematica avanzata",
+      "Lunghezza eccessiva",
+      "Aggiornamenti lenti"
+    ],
+    targetAudience: "Corsi specialistici di economia dello sviluppo, ricercatori"
   }
 ];
 
@@ -325,6 +385,69 @@ export const conceptsData: InsertConcept[] = [
     category: "microeconomia",
     relatedTerms: ["Elasticità anelastica", "Elasticità elastica", "Elasticità unitaria"],
     examples: "La benzina ha domanda anelastica (aumenti di prezzo riducono poco la quantità domandata), mentre i viaggi di lusso hanno domanda elastica."
+  },
+  {
+    name: "Costi di Opportunità",
+    definition: "Il valore della migliore alternativa cui si rinuncia quando si fa una scelta.",
+    category: "microeconomia",
+    relatedTerms: ["Scelta razionale", "Trade-off", "Efficienza allocativa"],
+    examples: "Se scegli di studiare invece di lavorare, il costo opportunità è il salario che avresti guadagnato lavorando."
+  },
+  {
+    name: "Disoccupazione",
+    definition: "La condizione di persone che sono senza lavoro, disponibili a lavorare e che cercano attivamente un'occupazione.",
+    category: "macroeconomia",
+    relatedTerms: ["Tasso di disoccupazione", "Disoccupazione strutturale", "Disoccupazione ciclica", "NAIRU"],
+    examples: "Durante la crisi del 2008, la disoccupazione in molti paesi europei è aumentata drammaticamente."
+  },
+  {
+    name: "Politica Monetaria",
+    definition: "L'insieme di decisioni e misure adottate dalla banca centrale per influenzare l'offerta di moneta e i tassi di interesse.",
+    category: "macroeconomia", 
+    relatedTerms: ["Banca centrale", "Tassi di interesse", "Quantitative easing", "Inflazione target"],
+    examples: "La BCE utilizza i tassi di interesse per controllare l'inflazione nell'eurozona."
+  },
+  {
+    name: "Esternalità",
+    definition: "Effetti delle attività economiche su terze parti che non partecipano direttamente alla transazione.",
+    category: "microeconomia",
+    relatedTerms: ["Esternalità positive", "Esternalità negative", "Fallimenti di mercato", "Intervento pubblico"],
+    examples: "L'inquinamento industriale è un'esternalità negativa; l'educazione genera esternalità positive per la società."
+  },
+  {
+    name: "Teoria dei Giochi",
+    definition: "Studio matematico delle interazioni strategiche tra decisori razionali.",
+    category: "microeconomia",
+    relatedTerms: ["Equilibrio di Nash", "Strategia dominante", "Dilemma del prigioniero", "Informazione asimmetrica"],
+    examples: "Due aziende che decidono se competere o colludere sui prezzi si trovano in una situazione di teoria dei giochi."
+  },
+  {
+    name: "Crescita Economica",
+    definition: "L'aumento sostenuto nel tempo della produzione di beni e servizi di un'economia.",
+    category: "macroeconomia",
+    relatedTerms: ["PIL pro capite", "Produttività", "Investimenti", "Capitale umano", "Innovazione tecnologica"],
+    examples: "La Cina ha registrato una crescita economica media del 10% annuo per tre decenni."
+  },
+  {
+    name: "Mercati Finanziari",
+    definition: "Luoghi fisici o virtuali dove vengono scambiati strumenti finanziari come azioni, obbligazioni e derivati.",
+    category: "macroeconomia",
+    relatedTerms: ["Borsa valori", "Mercato dei capitali", "Liquidità", "Volatilità", "Spread"],
+    examples: "La borsa di Milano (Borsa Italiana) è il principale mercato finanziario italiano per le azioni."
+  },
+  {
+    name: "Concorrenza Perfetta",
+    definition: "Struttura di mercato ideale caratterizzata da molti venditori e compratori, prodotti omogenei e libero ingresso.",
+    category: "microeconomia",
+    relatedTerms: ["Monopolio", "Oligopolio", "Concorrenza monopolistica", "Barriere all'entrata"],
+    examples: "Il mercato agricolo dei cereali si avvicina spesso al modello di concorrenza perfetta."
+  },
+  {
+    name: "Bilancia dei Pagamenti",
+    definition: "Registro contabile di tutte le transazioni economiche tra residenti di un paese e il resto del mondo.",
+    category: "macroeconomia",
+    relatedTerms: ["Conto corrente", "Conto capitale", "Riserve valutarie", "Tasso di cambio"],
+    examples: "La Germania ha tradizionalmente un surplus nella bilancia dei pagamenti grazie alle sue esportazioni."
   }
 ];
 
