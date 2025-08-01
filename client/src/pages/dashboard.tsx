@@ -135,19 +135,7 @@ export default function Dashboard() {
             gradient="gradient-teal"
           />
 
-          {/* Featured Debate Card */}
-          <div className="card-hover bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-6 border border-gray-100 cursor-pointer text-white">
-            <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-4">
-              <MessageSquare className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Saltwater vs Freshwater</h3>
-            <p className="text-white/80 mb-4 text-sm">Il grande dibattito che ha diviso l'economia moderna</p>
-            <div className="flex items-center justify-between">
-              <Badge variant="secondary" className="bg-white/20 text-white text-xs">
-                Dibattito in corso
-              </Badge>
-            </div>
-          </div>
+
 
         </div>
       </section>
