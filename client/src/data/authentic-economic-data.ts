@@ -214,14 +214,12 @@ export const manualsData = [
   {
     title: "Economia",
     authors: ["Paul Samuelson", "William Nordhaus"],
+    author: "Paul Samuelson (Nobel 1970, padre della sintesi neoclassica-keynesiana), William Nordhaus (Nobel 2018, economia del cambiamento climatico)",
+    characteristics: "Monumento nella storia del pensiero economico, ha definito come l'economia viene insegnata. Completezza enciclopedica, approccio sistematico. Aperture storiche, biografie, box 'Economia in Azione'",
     school: "Sintesi Neoclassica-Keynesiana (dominante nel dopoguerra): micro neoclassica, macro keynesiana nel breve, neoclassica nel lungo. Pragmatismo. Capacità di evolversi incorporando nuovi sviluppi (monetarismo, supply-side, nuova crescita, economia dell'informazione, economia ambientale)",
-    characteristics: [
-      "Autori: Paul Samuelson (Nobel 1970, padre della sintesi neoclassica-keynesiana), William Nordhaus (Nobel 2018, economia del cambiamento climatico)",
-      "Monumento nella storia del pensiero economico, ha definito come l'economia viene insegnata. Completezza enciclopedica, approccio sistematico. Aperture storiche, biografie, box 'Economia in Azione'",
-      "Modelli: Microeconomia con approccio classico perfezionato (scarsità/scelta, domanda/offerta meticolose, teoria del consumatore/produttore dettagliate, strutture di mercato, mercati dei fattori completi, economia del benessere). Macroeconomia della sintesi (contabilità nazionale, modello keynesiano completo con 'croce keynesiana', IS-LM, inflazione/disoccupazione con Curva di Phillips e critica Friedman-Phelps, crescita, economia internazionale, economia ambientale)",
-      "Breve/Lungo Periodo: Trattamento equilibrato e integrato: breve periodo keynesiano, lungo periodo neoclassico, ma sempre mostrando le connessioni e i trade-off intertemporali",
-      "Crescita: Trattamento evolutivo che riflette lo sviluppo della teoria: prospettiva storica, modello di Solow canonico (algebra e geometria), contabilità della crescita, cenni a nuove teorie. Forte integrazione dell'economia ambientale (Nordhaus)"
-    ],
+    models: "Microeconomia con approccio classico perfezionato (scarsità/scelta, domanda/offerta meticolose, teoria del consumatore/produttore dettagliate, strutture di mercato, mercati dei fattori completi, economia del benessere). Macroeconomia della sintesi (contabilità nazionale, modello keynesiano completo con 'croce keynesiana', IS-LM, inflazione/disoccupazione con Curva di Phillips e critica Friedman-Phelps, crescita, economia internazionale, economia ambientale)",
+    shortLongPeriod: "Trattamento equilibrato e integrato: breve periodo keynesiano, lungo periodo neoclassico, ma sempre mostrando le connessioni e i trade-off intertemporali",
+    growth: "Trattamento evolutivo che riflette lo sviluppo della teoria: prospettiva storica, modello di Solow canonico (algebra e geometria), contabilità della crescita, cenni a nuove teorie. Forte integrazione dell'economia ambientale (Nordhaus)",
     strengths: [
       "Completezza senza pari, autorevolezza assoluta (autori Nobel)",
       "Equilibrio magistrale, pedagogia raffinata (70+ anni di refinement)",
@@ -238,14 +236,12 @@ export const manualsData = [
   {
     title: "Principi di Economia",
     authors: ["Robert Frank", "Ben Bernanke"],
+    author: "Robert Frank (economia comportamentale, didattica innovativa), Ben Bernanke (ex presidente Federal Reserve, Nobel 2022 per studi sulle crisi bancarie)",
+    characteristics: "Molto narrativo, esempi dalla vita quotidiana, attenzione alle scelte individuali tramite 'puzzle' economici ('Economic Naturalist'). Integrazione elementi di economia comportamentale e psicologia. Taglio pratico",
     school: "Base neoclassica con forte apertura ai temi comportamentali (bias cognitivi, limiti razionalità). Pragmatico: teoria per risolvere problemi concreti. Bernanke apporta prospettiva di policy reale (crisi 2008)",
-    characteristics: [
-      "Autori: Robert Frank (economia comportamentale, didattica innovativa), Ben Bernanke (ex presidente Federal Reserve, Nobel 2022 per studi sulle crisi bancarie)",
-      "Molto narrativo, esempi dalla vita quotidiana, attenzione alle scelte individuali tramite 'puzzle' economici ('Economic Naturalist'). Integrazione elementi di economia comportamentale e psicologia. Taglio pratico",
-      "Modelli: Microeconomia con domanda/offerta su mercati reali, teoria del consumatore con esempi psicologici (framing). Macroeconomia con indicatori fondamentali, modello di Solow intuitivo senza eccessiva matematizzazione. Spiegazione delle crisi con aspettative e fiducia",
-      "Breve/Lungo Periodo: Forte attenzione al breve periodo (recessioni, ruolo politiche pubbliche, banca centrale). Lungo periodo su crescita e differenze tra paesi (istituzioni, capitale umano), con spiegazioni narrative",
-      "Crescita: Solow semplice ed efficace, enfasi sul capitale umano, istituzioni discusse marginalmente. Crescita endogena non trattata"
-    ],
+    models: "Microeconomia con domanda/offerta su mercati reali, teoria del consumatore con esempi psicologici (framing). Macroeconomia con indicatori fondamentali, modello di Solow intuitivo senza eccessiva matematizzazione. Spiegazione delle crisi con aspettative e fiducia",
+    shortLongPeriod: "Forte attenzione al breve periodo (recessioni, ruolo politiche pubbliche, banca centrale). Lungo periodo su crescita e differenze tra paesi (istituzioni, capitale umano), con spiegazioni narrative",
+    growth: "Solow semplice ed efficace, enfasi sul capitale umano, istituzioni discusse marginalmente. Crescita endogena non trattata",
     strengths: [
       "Chiarezza didattica e stile coinvolgente",
       "Forte collegamento teoria/decisioni quotidiane",
@@ -262,14 +258,12 @@ export const manualsData = [
   {
     title: "Economia",
     authors: ["David Begg", "Gianluigi Vernasca", "Stanley Fischer", "Rüdiger Dornbusch"],
+    author: "David Begg (didattica, manuali diffusi), Gianluigi Vernasca (edizioni recenti, prospettive contemporanee), Stanley Fischer (macroeconomista, policy maker), Rüdiger Dornbusch (macroeconomia internazionale)",
+    characteristics: "Struttura didattica articolata, schede di approfondimento (Focus, Confronto, Caso italiano, Policy in pratica, Dati e fatti), esercizi applicativi, riepilogo e glossario. Integrazione teoria e realtà",
     school: "Mainstream contemporaneo, riflette il consenso tra neoclassici e neokeynesiani. Equilibrio tra rigore teorico e attenzione a dati, istituzioni e politiche reali, con riferimenti a Europa e Italia",
-    characteristics: [
-      "Autori: David Begg (didattica, manuali diffusi), Gianluigi Vernasca (edizioni recenti, prospettive contemporanee), Stanley Fischer (macroeconomista, policy maker), Rüdiger Dornbusch (macroeconomia internazionale)",
-      "Struttura didattica articolata, schede di approfondimento (Focus, Confronto, Caso italiano, Policy in pratica, Dati e fatti), esercizi applicativi, riepilogo e glossario. Integrazione teoria e realtà",
-      "Modelli: Microeconomia con concetti fondamentali graduali, domanda/offerta con applicazioni reali, elasticità con casi empirici, teoria del consumatore/produttore con intuizione e formalizzazione, strutture di mercato con esempi europei, temi di policy. Macroeconomia con indicatori fondamentali su dati europei, modelli di crescita (Solow, capitale umano, progresso tecnico), ciclo economico (IS-LM, AD-AS), politiche economiche con istituzioni europee (BCE, UE)",
-      "Breve/Lungo Periodo: Distingue nettamente tra tendenze di lungo periodo (crescita, produttività) e fluttuazioni di breve periodo (cicli, crisi), per interpretare le crisi come deviazioni temporanee",
-      "Crescita: Modello di Solow con dati empirici, cenni a crescita endogena e capitale umano, discussione su politiche per lo sviluppo"
-    ],
+    models: "Microeconomia con concetti fondamentali graduali, domanda/offerta con applicazioni reali, elasticità con casi empirici, teoria del consumatore/produttore con intuizione e formalizzazione, strutture di mercato con esempi europei, temi di policy. Macroeconomia con indicatori fondamentali su dati europei, modelli di crescita (Solow, capitale umano, progresso tecnico), ciclo economico (IS-LM, AD-AS), politiche economiche con istituzioni europee (BCE, UE)",
+    shortLongPeriod: "Distingue nettamente tra tendenze di lungo periodo (crescita, produttività) e fluttuazioni di breve periodo (cicli, crisi), per interpretare le crisi come deviazioni temporanee",
+    growth: "Modello di Solow con dati empirici, cenni a crescita endogena e capitale umano, discussione su politiche per lo sviluppo",
     strengths: [
       "Chiarezza e gradualità didattica, forte attenzione al contesto europeo e italiano",
       "Apparato didattico ricco, attualità (crisi, politiche europee, globalizzazione)"
@@ -283,14 +277,12 @@ export const manualsData = [
   {
     title: "Essenziale di Economia",
     authors: ["Stanley L. Brue", "Campbell R. McConnell", "Sean M. Flynn"],
+    author: "Stanley L. Brue (eccellenza didattica), Campbell R. McConnell (ricerca, didattica), Sean M. Flynn (finanza comportamentale, economia sanitaria)",
+    characteristics: "Versione compatta, approccio didattico tradizionale ma aggiornato. Apparato didattico sistematico e visivo (Confronto per immagini, Focus sul concetto, Analisi applicata, Istantanea dal mondo)",
     school: "Mainstream neoclassica in microeconomia (agenti razionali, scelta ottimale, efficienza di mercato). Sintesi neo-keynesiana in macroeconomia (aggiustamenti automatici vs politiche di stabilizzazione), neutralità sulle controversie",
-    characteristics: [
-      "Autori: Stanley L. Brue (eccellenza didattica), Campbell R. McConnell (ricerca, didattica), Sean M. Flynn (finanza comportamentale, economia sanitaria)",
-      "Versione compatta, approccio didattico tradizionale ma aggiornato. Apparato didattico sistematico e visivo (Confronto per immagini, Focus sul concetto, Analisi applicata, Istantanea dal mondo)",
-      "Modelli: Microeconomia con scarsità, scelta, costo opportunità, domanda/offerta graduale, elasticità, teoria del consumatore/produttore progressiva, mercati e fallimenti. Macroeconomia con indicatori fondamentali, modello di Solow centrale, ciclo economico (IS-LM, AD-AS, Curva di Phillips), politiche economiche",
-      "Breve/Lungo Periodo: Distingue tra tendenze di lungo periodo (crescita, progresso tecnico) e fluttuazioni di breve periodo (cicli, recessioni)",
-      "Crescita: Centralità del modello di Solow (crescita esogena dipendente da progresso tecnologico), funzione di produzione Cobb-Douglas, convergenza. Cenni a teorie della crescita endogena"
-    ],
+    models: "Microeconomia con scarsità, scelta, costo opportunità, domanda/offerta graduale, elasticità, teoria del consumatore/produttore progressiva, mercati e fallimenti. Macroeconomia con indicatori fondamentali, modello di Solow centrale, ciclo economico (IS-LM, AD-AS, Curva di Phillips), politiche economiche",
+    shortLongPeriod: "Distingue tra tendenze di lungo periodo (crescita, progresso tecnico) e fluttuazioni di breve periodo (cicli, recessioni)",
+    growth: "Centralità del modello di Solow (crescita esogena dipendente da progresso tecnologico), funzione di produzione Cobb-Douglas, convergenza. Cenni a teorie della crescita endogena",
     strengths: [
       "Chiarezza e gradualità didattica, apparato visivo e applicativo",
       "Neutralità e pluralismo (sulle controversie), materiali didattici ricchi, attualità"
@@ -304,14 +296,12 @@ export const manualsData = [
   {
     title: "Principi di Economia",
     authors: ["Marc Lieberman", "Robert Hall"],
+    author: "Marc Lieberman (testi universitari di successo), Robert Hall (macroeconomia, mercati del lavoro)",
+    characteristics: "Modulare, sequenza da concetti di base a micro e macro. Ricco di esempi, box, domande di verifica. Linguaggio chiaro e accessibile. Risorse digitali. Approccio schematico e logico",
     school: "Mainstream neoclassica per micro e macro, attenzione ad analisi empirica e applicazioni pratiche. Più approfondito di Krugman, con maggiore attenzione a connessioni logiche e processi analitici",
-    characteristics: [
-      "Autori: Marc Lieberman (testi universitari di successo), Robert Hall (macroeconomia, mercati del lavoro)",
-      "Modulare, sequenza da concetti di base a micro e macro. Ricco di esempi, box, domande di verifica. Linguaggio chiaro e accessibile. Risorse digitali. Approccio schematico e logico",
-      "Modelli: Microeconomia approfondita (scelta razionale, vincoli, incentivi, domanda/offerta, teoria del consumatore/impresa con strumenti grafici/numerici, forme di mercato, fallimenti). Macroeconomia più articolata (indicatori, modelli di crescita, ciclo economico, politiche fiscali/monetarie, economia internazionale)",
-      "Breve/Lungo Periodo: Maggiore enfasi sull'equilibrio tra breve e lungo periodo, analizzando sia effetti immediati sia cambiamenti strutturali. Distingue tra trend di lungo e variazioni di breve",
-      "Crescita: Spazio al modello di Solow e principali teorie, con implicazioni empiriche e politiche. Integrazione di osservazioni sui modelli di crescita endogena (conoscenza e innovazione)"
-    ],
+    models: "Microeconomia approfondita (scelta razionale, vincoli, incentivi, domanda/offerta, teoria del consumatore/impresa con strumenti grafici/numerici, forme di mercato, fallimenti). Macroeconomia più articolata (indicatori, modelli di crescita, ciclo economico, politiche fiscali/monetarie, economia internazionale)",
+    shortLongPeriod: "Maggiore enfasi sull'equilibrio tra breve e lungo periodo, analizzando sia effetti immediati sia cambiamenti strutturali. Distingue tra trend di lungo e variazioni di breve",
+    growth: "Spazio al modello di Solow e principali teorie, con implicazioni empiriche e politiche. Integrazione di osservazioni sui modelli di crescita endogena (conoscenza e innovazione)",
     strengths: [
       "Struttura didattica lineare e modulare, numerosi esempi/box/materiali digitali",
       "Chiarezza espositiva, forte collegamento teoria/realtà"
@@ -325,14 +315,12 @@ export const manualsData = [
   {
     title: "Economia",
     authors: ["Gilberto Antonelli", "Nicola De Liso", "Giovanni Guidetti", "Giuseppe Vittucci Marzetti"],
+    author: "Gilberto Antonelli, Nicola De Liso, Giovanni Guidetti, Giuseppe Vittucci Marzetti (docenti con esperienza didattica e di ricerca)",
+    characteristics: "Modulare e progressiva. Obiettivi chiari, esempi, esercizi, materiali di approfondimento. Linguaggio accessibile, rigore teorico, aggiornamento. Riferimenti a dati, casi reali e politiche italiane/europee",
     school: "Prospettiva mainstream neoclassica. Integrazione di innovazione, lavoro, istituzioni e crescita. Trattazione approfondita e critica, confronto tra diverse scuole (neoclassica, keynesiana, evolutivi). Matematica e riflessioni sui limiti dei modelli",
-    characteristics: [
-      "Autori: Gilberto Antonelli, Nicola De Liso, Giovanni Guidetti, Giuseppe Vittucci Marzetti (docenti con esperienza didattica e di ricerca)",
-      "Modulare e progressiva. Obiettivi chiari, esempi, esercizi, materiali di approfondimento. Linguaggio accessibile, rigore teorico, aggiornamento. Riferimenti a dati, casi reali e politiche italiane/europee",
-      "Modelli: Microeconomia con vincoli, scelte, preferenze, domanda/offerta con elasticità, teoria del consumatore/produttore con strumenti grafici, strutture di mercato, economia del benessere, fallimenti di mercato. Macroeconomia con indicatori, crescita (Solow, capitale umano, innovazione), ciclo economico, politiche economiche, commercio internazionale",
-      "Breve/Lungo Periodo: Equilibrio tra breve e lungo periodo, enfasi su crescita e innovazione, ma attenzione a cicli e politiche nel breve",
-      "Crescita: Modello di Solow con particolare attenzione a progresso tecnico e capitale umano, cenni a crescita endogena e innovazione, casi di sviluppo italiano/europeo"
-    ],
+    models: "Microeconomia con vincoli, scelte, preferenze, domanda/offerta con elasticità, teoria del consumatore/produttore con strumenti grafici, strutture di mercato, economia del benessere, fallimenti di mercato. Macroeconomia con indicatori, crescita (Solow, capitale umano, innovazione), ciclo economico, politiche economiche, commercio internazionale",
+    shortLongPeriod: "Equilibrio tra breve e lungo periodo, enfasi su crescita e innovazione, ma attenzione a cicli e politiche nel breve",
+    growth: "Modello di Solow con particolare attenzione a progresso tecnico e capitale umano, cenni a crescita endogena e innovazione, casi di sviluppo italiano/europeo",
     strengths: [
       "Rigore teorico con accessibilità, forte attenzione al contesto italiano/europeo",
       "Confronto tra scuole di pensiero, attenzione a innovazione e dinamiche evolutive",
@@ -349,14 +337,12 @@ export const manualsData = [
   {
     title: "Economia: un approccio semplice ad una realtà complessa",
     authors: ["Paola Parravicini", "Alessandro Graffi"],
+    author: "Paola Parravicini e Alessandro Graffi (Università di Milano, didattica triennale)",
+    characteristics: "Approccio narrativo riflessivo e interdisciplinare, organizzazione meno rigida. Integra riferimenti storici, sociali e istituzionali. Obiettivo di mettere in discussione l'efficacia dei mercati e il loro impatto sociale. Linguaggio chiaro, inclusivo, attento alle difficoltà. Esempi italiani/internazionali",
     school: "Meno 'canonico', focus su interpretazione critica della realtà contemporanea. Maggiore attenzione a interconnessioni e aspetti dinamici. Enfatizza il collegamento teoria/realtà, paradossi e criticità. Prospettiva mainstream neoclassica con collegamento a politiche pubbliche e contesto italiano/europeo",
-    characteristics: [
-      "Autori: Paola Parravicini e Alessandro Graffi (Università di Milano, didattica triennale)",
-      "Approccio narrativo riflessivo e interdisciplinare, organizzazione meno rigida. Integra riferimenti storici, sociali e istituzionali. Obiettivo di mettere in discussione l'efficacia dei mercati e il loro impatto sociale. Linguaggio chiaro, inclusivo, attento alle difficoltà. Esempi italiani/internazionali",
-      "Modelli: Mette in discussione i modelli tradizionali con interpretazione più critica. Enfasi sul senso pratico e limitazioni. Microeconomia con distorsioni di mercato e limiti pratici delle teorie. Macroeconomia con complessità e limiti della teoria tradizionale, esplorando fattori istituzionali e sistemici",
-      "Breve/Lungo Periodo: Distinzione tra breve e lungo periodo inglobata in discussione più ampia su effetti dinamici. Ampio spazio a effetti di lungo termine e cambiamenti strutturali. Favorita comprensione forze strutturali",
-      "Crescita: Analizzata in relazione a disuguaglianze sociali e sfide ambientali. Attenzione a modelli qualitativi e impatto sostenibilità. Spazio al modello Solow, discussi capitale umano, innovazione, istituzioni. Cenni a teorie endogene"
-    ],
+    models: "Mette in discussione i modelli tradizionali con interpretazione più critica. Enfasi sul senso pratico e limitazioni. Microeconomia con distorsioni di mercato e limiti pratici delle teorie. Macroeconomia con complessità e limiti della teoria tradizionale, esplorando fattori istituzionali e sistemici",
+    shortLongPeriod: "Distinzione tra breve e lungo periodo inglobata in discussione più ampia su effetti dinamici. Ampio spazio a effetti di lungo termine e cambiamenti strutturali. Favorita comprensione forze strutturali",
+    growth: "Analizzata in relazione a disuguaglianze sociali e sfide ambientali. Attenzione a modelli qualitativi e impatto sostenibilità. Spazio al modello Solow, discussi capitale umano, innovazione, istituzioni. Cenni a teorie endogene",
     strengths: [
       "Chiarezza e gradualità didattica, forte attenzione al contesto italiano ed europeo",
       "Schede di approfondimento/materiali didattici, equilibrio tra rigore e inclusività"
@@ -370,14 +356,12 @@ export const manualsData = [
   {
     title: "Introduzione all'Economia",
     authors: ["Giuseppe Bertola", "Anna Lo Prete"],
+    author: "Giuseppe Bertola (Università di Torino, esperienza internazionale), Anna Lo Prete (Università di Torino, ricerca su macroeconomia, internazionale, istituzioni)",
+    characteristics: "Approccio più accademico, combinando esposizione teorica e applicazione matematica. Linguaggio meno accessibile per chi ha poca familiarità. Base teorica solida, spiegazioni analitiche e strutturate. Stile lineare e trasparente. Riferimenti a dati europei/italiani. Formalizzazione grafica e matematica spiegata",
     school: "Pensato per corsi universitari strutturati e dettagliati. Combina teoria e formalizzazione matematica, focus rigoroso su fondamenti teorici. Mainstream, solide basi neoclassiche. Costante richiamo a dati reali, istituzioni e specificità europee. Differenza tra analisi teorica e realtà osservata",
-    characteristics: [
-      "Autori: Giuseppe Bertola (Università di Torino, esperienza internazionale), Anna Lo Prete (Università di Torino, ricerca su macroeconomia, internazionale, istituzioni)",
-      "Approccio più accademico, combinando esposizione teorica e applicazione matematica. Linguaggio meno accessibile per chi ha poca familiarità. Base teorica solida, spiegazioni analitiche e strutturate. Stile lineare e trasparente. Riferimenti a dati europei/italiani. Formalizzazione grafica e matematica spiegata",
-      "Modelli: Panoramica ampia e approfondita dell'economia teorica. Discussioni più tecniche su mercati, produttività, meccanismi di equilibrio. Enfasi su ipotesi dei modelli. Microeconomia sistematica e graduale, enfasi su ottimizzazione, equilibrio, elasticità, benessere. Macroeconomia con maggiore spazio a meccanismi di equilibrio generale e politiche economiche, analisi più tecnica. Rilievo a istituzioni economiche (BCE, UE), policy mix, contesto italiano",
-      "Breve/Lungo Periodo: Trattazione più tecnica, separando chiaramente effetti di breve e lungo periodo. Visione più sistematica e profonda. Sequenza logica da trend di lungo a fluttuazioni di breve",
-      "Crescita: Approfondisce modelli di crescita (Solow, endogeni). Integrazione di formalizzazione, dati storici su convergenza, divergenza, 'caso Italia'. Dibattito su politiche per la crescita. Sezione su crescita offre visione classica e nuove prospettive"
-    ],
+    models: "Panoramica ampia e approfondita dell'economia teorica. Discussioni più tecniche su mercati, produttività, meccanismi di equilibrio. Enfasi su ipotesi dei modelli. Microeconomia sistematica e graduale, enfasi su ottimizzazione, equilibrio, elasticità, benessere. Macroeconomia con maggiore spazio a meccanismi di equilibrio generale e politiche economiche, analisi più tecnica. Rilievo a istituzioni economiche (BCE, UE), policy mix, contesto italiano",
+    shortLongPeriod: "Trattazione più tecnica, separando chiaramente effetti di breve e lungo periodo. Visione più sistematica e profonda. Sequenza logica da trend di lungo a fluttuazioni di breve",
+    growth: "Approfondisce modelli di crescita (Solow, endogeni). Integrazione di formalizzazione, dati storici su convergenza, divergenza, 'caso Italia'. Dibattito su politiche per la crescita. Sezione su crescita offre visione classica e nuove prospettive",
     strengths: [
       "Rigore e chiarezza espositiva, rilevanza empirica (dati italiani/europei)",
       "Apparato didattico ricco, attenzione alle istituzioni"
