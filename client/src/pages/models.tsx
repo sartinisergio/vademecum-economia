@@ -158,14 +158,14 @@ export default function Models() {
             <Calculator className="w-7 h-7 text-white" />
           </div>
           <div>
-            <h1 className="text-4xl font-bold text-gray-900">Modelli Economici</h1>
-            <p className="text-xl text-gray-600">Strumenti teorici per comprendere la realtà economica</p>
+            <h1 className="text-4xl font-bold text-gray-900">Modelli Teorici</h1>
+            <p className="text-xl text-gray-600">Strumenti micro e macroeconomici per comprendere la realtà economica</p>
           </div>
         </div>
         <p className="text-gray-700 max-w-4xl">
-          I modelli economici sono rappresentazioni semplificate della realtà usate per comprendere 
-          fenomeni complessi. Dividendo l'analisi tra microeconomia (comportamento dei singoli agenti) 
-          e macroeconomia (sistema economico nel suo insieme).
+          I modelli teorici sono rappresentazioni semplificate della realtà economica, suddivisi tra 
+          microeconomia (comportamento di consumatori e imprese) e macroeconomia (sistema economico complessivo). 
+          Ogni modello offre strumenti specifici per analizzare fenomeni economici diversi.
         </p>
       </div>
 
@@ -175,7 +175,7 @@ export default function Models() {
           <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
             <div className="flex items-center space-x-2">
               <Filter className="w-5 h-5 text-gray-600" />
-              <h3 className="font-semibold text-gray-900">Seleziona Modelli</h3>
+              <h3 className="font-semibold text-gray-900">Seleziona Modelli Teorici</h3>
             </div>
             
             <Select value={displayMode} onValueChange={(value: "all" | "selected") => setDisplayMode(value)}>
@@ -365,7 +365,7 @@ export default function Models() {
                 <Calculator className="w-8 h-8 text-gray-400" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Nessun modello disponibile</h3>
-              <p className="text-gray-600">I modelli economici non sono ancora caricati</p>
+              <p className="text-gray-600">I modelli teorici non sono ancora caricati</p>
             </div>
           )}
         </TabsContent>
@@ -390,7 +390,7 @@ export default function Models() {
       {/* Summary Stats */}
       <div className="mt-12 bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl p-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          {comparisonMode ? `Analisi dei ${selectedModels.length} Modelli Selezionati` : "Panoramica dei Modelli"}
+          {comparisonMode ? `Analisi dei ${selectedModels.length} Modelli Selezionati` : "Panoramica dei Modelli Teorici"}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="text-center">

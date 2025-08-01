@@ -109,21 +109,12 @@ export default function Dashboard() {
           />
 
           <SectionCard
-            title="Modelli Microeconomici"
-            description="Teoria del consumatore, dell'impresa e dei mercati"
+            title="Modelli Teorici"
+            description="Modelli micro e macroeconomici per comprendere i fenomeni economici"
             icon={<Calculator className="w-8 h-8 text-white" />}
-            count={`${stats?.microModelsCount || 8} modelli`}
-            href="/models?type=micro"
+            count={`${stats?.modelsCount || 10} modelli`}
+            href="/models"
             gradient="gradient-orange"
-          />
-
-          <SectionCard
-            title="Modelli Macroeconomici"
-            description="Crescita, cicli economici e politiche pubbliche"
-            icon={<TrendingUp className="w-8 h-8 text-white" />}
-            count={`${stats?.macroModelsCount || 12} modelli`}
-            href="/models?type=macro"
-            gradient="gradient-red"
           />
 
           <SectionCard
