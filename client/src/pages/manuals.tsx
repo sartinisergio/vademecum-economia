@@ -79,8 +79,14 @@ export default function Manuals() {
   };
 
   const handlePrint = () => {
+    // Debug: let's see what we have
+    console.log('displayedManuals:', displayedManuals?.map(m => m.title));
+    console.log('selectedManuals:', selectedManuals);
+    console.log('displayMode:', displayMode);
+    
     // Get only the selected manuals that are currently displayed
     const manualsForPrint = displayedManuals.filter(manual => selectedManuals.includes(manual.id));
+    console.log('manualsForPrint:', manualsForPrint?.map(m => m.title));
     
     const printContent = `
       <html>

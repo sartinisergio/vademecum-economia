@@ -48,8 +48,14 @@ export default function Models() {
   };
 
   const handlePrint = () => {
+    // Debug: let's see what we have
+    console.log('displayedModels:', displayedModels?.map(m => m.name));
+    console.log('selectedModels:', selectedModels);
+    console.log('displayMode:', displayMode);
+    
     // Get only the selected models that are currently displayed
     const modelsForPrint = displayedModels?.filter(model => selectedModels.includes(model.id)) || [];
+    console.log('modelsForPrint:', modelsForPrint?.map(m => m.name));
     
     const printContent = `
       <html>
