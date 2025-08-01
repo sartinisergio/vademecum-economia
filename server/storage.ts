@@ -82,7 +82,7 @@ export class MemStorage implements IStorage {
         description: schoolData.description,
         keyPrinciples: schoolData.keyPrinciples,
         economists: schoolData.economists,
-        examples: schoolData.examples || null,
+        examples: Array.isArray(schoolData.examples) ? schoolData.examples.join('\n\n') : schoolData.examples || null,
         category: schoolData.category
       };
       this.schools.set(id, school);
@@ -132,7 +132,7 @@ export class MemStorage implements IStorage {
         definition: conceptData.definition,
         category: conceptData.category,
         relatedTerms: conceptData.relatedTerms,
-        examples: conceptData.examples || null
+        examples: null
       };
       this.concepts.set(id, concept);
     });
