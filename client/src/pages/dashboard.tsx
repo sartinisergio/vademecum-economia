@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import SearchBar from "@/components/ui/search-bar";
+
 import SectionCard from "@/components/ui/section-card";
 import { Badge } from "@/components/ui/badge";
 
@@ -37,16 +37,7 @@ export default function Dashboard() {
     queryKey: ["/api/concepts"],
   });
 
-  const handleSearch = (query: string) => {
-    if (query.trim()) {
-      // Ricerca globale in tutte le sezioni
-      setLocation(`/search?search=${encodeURIComponent(query)}`);
-    }
-  };
 
-  const handleAdvancedSearch = () => {
-    setLocation("/concepts");
-  };
 
 
 
@@ -83,26 +74,7 @@ export default function Dashboard() {
         </div>
       </section>
 
-      {/* Search Section */}
-      <section className="mb-12">
-        <div className="flex flex-col lg:flex-row gap-6 items-center">
-          <div className="flex-1 w-full">
-            <SearchBar
-              onSearch={handleSearch}
-              placeholder="Cerca concetti, economisti, teorie..."
-              className="w-full"
-            />
-          </div>
-          <div className="flex gap-4">
-            <Button 
-              onClick={handleAdvancedSearch}
-              className="bg-primary hover:bg-primary/90 text-white px-6 py-4 rounded-xl font-medium"
-            >
-              Ricerca Avanzata
-            </Button>
-          </div>
-        </div>
-      </section>
+
 
       {/* Main Dashboard */}
       <section className="mb-12">

@@ -2,6 +2,12 @@
 
 EconoLab is an educational web application focused on economic schools of thought. It serves as a comprehensive platform for exploring economic theories, models, concepts, and textbooks. The application provides structured access to different economic perspectives including Neoclassical, Post-Keynesian, Austrian, Behavioral, and Complexity schools, along with their associated models, key concepts, and academic resources.
 
+## Recent Changes (January 2025)
+
+- **Search functionality removed**: Eliminated problematic search feature due to technical complexity and user preference for cleaner interface
+- **Header simplified**: Cleaned up navigation to only include Dashboard link
+- **Interface streamlined**: Removed all non-working features to focus on core content browsing
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
