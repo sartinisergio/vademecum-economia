@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
-import { Calculator, TrendingUp, Brain, Layers, ChevronRight, Filter, RotateCcw, ArrowLeftRight } from "lucide-react";
+import { Calculator, TrendingUp, Brain, Layers, ChevronRight, Filter, RotateCcw, ArrowLeftRight, Printer } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -44,6 +44,74 @@ export default function Models() {
     if (selectedModels.length >= 2) {
       setComparisonMode(!comparisonMode);
       setDisplayMode("selected");
+    }
+  };
+
+  const handlePrint = () => {
+    const printContent = `
+      <html>
+        <head>
+          <title>Confronto Modelli Teorici - Vademecum di Economia</title>
+          <style>
+            body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+            .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #333; padding-bottom: 10px; }
+            .model { margin-bottom: 25px; page-break-inside: avoid; }
+            .model-title { font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px; }
+            .type-badge { display: inline-block; padding: 4px 8px; background-color: #f0f0f0; border-radius: 4px; font-size: 12px; margin-bottom: 10px; }
+            .section { margin-bottom: 15px; }
+            .section-title { font-weight: bold; color: #555; margin-bottom: 5px; }
+            .list-item { margin-left: 20px; margin-bottom: 3px; }
+            .date { font-size: 12px; color: #666; margin-top: 20px; text-align: center; }
+            @media print { .no-print { display: none; } }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1>Confronto Modelli Teorici Economici</h1>
+            <p>Vademecum di Economia - ${new Date().toLocaleDateString('it-IT')}</p>
+            <p>Confronto di ${selectedModels.length} modelli selezionati</p>
+          </div>
+          
+          ${displayedModels.map((model: any) => `
+            <div class="model">
+              <div class="model-title">${model.name}</div>
+              <div class="type-badge">${model.type === 'microeconomico' ? 'Microeconomico' : 'Macroeconomico'}</div>
+              
+              <div class="section">
+                <div class="section-title">Descrizione:</div>
+                <div class="list-item">${model.description}</div>
+              </div>
+              
+              <div class="section">
+                <div class="section-title">Scuola di Riferimento:</div>
+                <div class="list-item">${model.school}</div>
+              </div>
+              
+              <div class="section">
+                <div class="section-title">Componenti Chiave:</div>
+                ${model.keyComponents.map((component: string) => `<div class="list-item">• ${component}</div>`).join('')}
+              </div>
+              
+              <div class="section">
+                <div class="section-title">Applicazioni:</div>
+                ${model.applications.map((app: string) => `<div class="list-item">• ${app}</div>`).join('')}
+              </div>
+            </div>
+          `).join('')}
+          
+          <div class="date">
+            Documento generato il ${new Date().toLocaleString('it-IT')} - Vademecum di Economia
+          </div>
+        </body>
+      </html>
+    `;
+
+    const printWindow = window.open('', '_blank');
+    if (printWindow) {
+      printWindow.document.write(printContent);
+      printWindow.document.close();
+      printWindow.focus();
+      printWindow.print();
     }
   };
 
@@ -199,6 +267,17 @@ export default function Models() {
               <ArrowLeftRight className="w-4 h-4" />
               <span>{comparisonMode ? "Vista normale" : "Confronta selezionati"}</span>
             </Button>
+            
+            {comparisonMode && selectedModels.length >= 2 && (
+              <Button 
+                variant="outline" 
+                onClick={handlePrint}
+                className="flex items-center space-x-2"
+              >
+                <Printer className="w-4 h-4" />
+                <span>Stampa confronto</span>
+              </Button>
+            )}
             
             <Button 
               variant="outline" 

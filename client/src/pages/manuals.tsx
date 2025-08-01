@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
-import { BookOpen, Users, Target, CheckCircle, XCircle, GraduationCap, Filter, RotateCcw, ArrowLeftRight } from "lucide-react";
+import { BookOpen, Users, Target, CheckCircle, XCircle, GraduationCap, Filter, RotateCcw, ArrowLeftRight, Printer } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -78,6 +78,79 @@ export default function Manuals() {
     }
   };
 
+  const handlePrint = () => {
+    // Create print-friendly content
+    const printContent = `
+      <html>
+        <head>
+          <title>Confronto Manuali - Vademecum di Economia</title>
+          <style>
+            body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+            .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #333; padding-bottom: 10px; }
+            .manual { margin-bottom: 25px; page-break-inside: avoid; }
+            .manual-title { font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px; }
+            .authors { font-style: italic; margin-bottom: 10px; }
+            .section { margin-bottom: 15px; }
+            .section-title { font-weight: bold; color: #555; margin-bottom: 5px; }
+            .list-item { margin-left: 20px; margin-bottom: 3px; }
+            .comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+            .comparison-table th, .comparison-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            .comparison-table th { background-color: #f5f5f5; font-weight: bold; }
+            .date { font-size: 12px; color: #666; margin-top: 20px; text-align: center; }
+            @media print { .no-print { display: none; } }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1>Confronto Manuali di Economia</h1>
+            <p>Vademecum di Economia - ${new Date().toLocaleDateString('it-IT')}</p>
+            <p>Confronto di ${selectedManuals.length} manuali selezionati</p>
+          </div>
+          
+          ${displayedManuals.map(manual => `
+            <div class="manual">
+              <div class="manual-title">${manual.title}</div>
+              <div class="authors">Autori: ${manual.authors.join(', ')}</div>
+              
+              <div class="section">
+                <div class="section-title">Scuola di Pensiero:</div>
+                <div class="list-item">${manual.school}</div>
+              </div>
+              
+              <div class="section">
+                <div class="section-title">Caratteristiche:</div>
+                <div class="list-item">${manual.characteristics || 'Non specificate'}</div>
+              </div>
+              
+              <div class="section">
+                <div class="section-title">Punti di Forza:</div>
+                ${manual.strengths.map(strength => `<div class="list-item">• ${strength}</div>`).join('')}
+              </div>
+              
+              <div class="section">
+                <div class="section-title">Punti di Debolezza:</div>
+                ${manual.weaknesses.map(weakness => `<div class="list-item">• ${weakness}</div>`).join('')}
+              </div>
+            </div>
+          `).join('')}
+          
+          <div class="date">
+            Documento generato il ${new Date().toLocaleString('it-IT')} - Vademecum di Economia
+          </div>
+        </body>
+      </html>
+    `;
+
+    // Open print window
+    const printWindow = window.open('', '_blank');
+    if (printWindow) {
+      printWindow.document.write(printContent);
+      printWindow.document.close();
+      printWindow.focus();
+      printWindow.print();
+    }
+  };
+
   // Filtra i manuali in base alla ricerca
   const filteredManuals = manuals?.filter(manual => {
     if (!searchQuery) return true;
@@ -86,7 +159,7 @@ export default function Manuals() {
     return (
       manual.title.toLowerCase().includes(query) ||
       manual.authors.some(author => author.toLowerCase().includes(query)) ||
-      manual.characteristics.toLowerCase().includes(query) ||
+      manual.characteristics?.toLowerCase().includes(query) ||
       manual.strengths.some(strength => strength.toLowerCase().includes(query)) ||
       manual.weaknesses.some(weakness => weakness.toLowerCase().includes(query))
     );
@@ -180,6 +253,17 @@ export default function Manuals() {
               <ArrowLeftRight className="w-4 h-4" />
               <span>{comparisonMode ? "Vista normale" : "Confronta selezionati"}</span>
             </Button>
+            
+            {comparisonMode && selectedManuals.length >= 2 && (
+              <Button 
+                variant="outline" 
+                onClick={handlePrint}
+                className="flex items-center space-x-2"
+              >
+                <Printer className="w-4 h-4" />
+                <span>Stampa confronto</span>
+              </Button>
+            )}
             
             <Button 
               variant="outline" 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Building, Users, BookOpen, Target, Filter, RotateCcw, ArrowLeftRight } from "lucide-react";
+import { Building, Users, BookOpen, Target, Filter, RotateCcw, ArrowLeftRight, Printer } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -52,6 +52,73 @@ export default function Schools() {
     if (selectedSchools.length >= 2) {
       setComparisonMode(!comparisonMode);
       setDisplayMode("selected");
+    }
+  };
+
+  const handlePrint = () => {
+    const printContent = `
+      <html>
+        <head>
+          <title>Confronto Scuole di Pensiero - Vademecum di Economia</title>
+          <style>
+            body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+            .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #333; padding-bottom: 10px; }
+            .school { margin-bottom: 25px; page-break-inside: avoid; }
+            .school-title { font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px; }
+            .section { margin-bottom: 15px; }
+            .section-title { font-weight: bold; color: #555; margin-bottom: 5px; }
+            .list-item { margin-left: 20px; margin-bottom: 3px; }
+            .economists { font-style: italic; margin-bottom: 10px; }
+            .date { font-size: 12px; color: #666; margin-top: 20px; text-align: center; }
+            @media print { .no-print { display: none; } }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1>Confronto Scuole di Pensiero Economico</h1>
+            <p>Vademecum di Economia - ${new Date().toLocaleDateString('it-IT')}</p>
+            <p>Confronto di ${selectedSchools.length} scuole selezionate</p>
+          </div>
+          
+          ${displayedSchools?.map((school: any) => `
+            <div class="school">
+              <div class="school-title">${school.name}</div>
+              
+              <div class="section">
+                <div class="section-title">Descrizione:</div>
+                <div class="list-item">${school.description}</div>
+              </div>
+              
+              <div class="section">
+                <div class="section-title">Principi Fondamentali:</div>
+                ${school.keyPrinciples.map((principle: string) => `<div class="list-item">• ${principle}</div>`).join('')}
+              </div>
+              
+              <div class="section">
+                <div class="section-title">Economisti Principali:</div>
+                <div class="economists">${school.economists.join(', ')}</div>
+              </div>
+              
+              <div class="section">
+                <div class="section-title">Esempi Pratici:</div>
+                ${school.examples ? `<div class="list-item">${school.examples}</div>` : '<div class="list-item">Nessun esempio disponibile</div>'}
+              </div>
+            </div>
+          `).join('')}
+          
+          <div class="date">
+            Documento generato il ${new Date().toLocaleString('it-IT')} - Vademecum di Economia
+          </div>
+        </body>
+      </html>
+    `;
+
+    const printWindow = window.open('', '_blank');
+    if (printWindow) {
+      printWindow.document.write(printContent);
+      printWindow.document.close();
+      printWindow.focus();
+      printWindow.print();
     }
   };
 
@@ -137,6 +204,17 @@ export default function Schools() {
               <span>{comparisonMode ? "Vista normale" : "Confronta selezionate"}</span>
             </Button>
             
+            {comparisonMode && selectedSchools.length >= 2 && (
+              <Button 
+                variant="outline" 
+                onClick={handlePrint}
+                className="flex items-center space-x-2"
+              >
+                <Printer className="w-4 h-4" />
+                <span>Stampa confronto</span>
+              </Button>
+            )}
+            
             <Button 
               variant="outline" 
               onClick={resetSelection}
@@ -173,7 +251,7 @@ export default function Schools() {
               <thead className="bg-gray-50">
                 <tr>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 w-32">Aspetto</th>
-                  {displayedSchools.map((school) => (
+                  {displayedSchools?.map((school) => (
                     <th key={school.id} className="px-6 py-3 text-left text-sm font-semibold text-gray-900 min-w-80">
                       <div>
                         <div className="font-medium">{school.name}</div>
@@ -186,7 +264,7 @@ export default function Schools() {
               <tbody className="divide-y divide-gray-200">
                 <tr>
                   <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Categoria</td>
-                  {displayedSchools.map((school) => (
+                  {displayedSchools?.map((school) => (
                     <td key={school.id} className="px-6 py-4">
                       <Badge className={schoolColors[school.category as keyof typeof schoolColors]}>
                         {school.category.charAt(0).toUpperCase() + school.category.slice(1)}
@@ -196,7 +274,7 @@ export default function Schools() {
                 </tr>
                 <tr>
                   <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Descrizione</td>
-                  {displayedSchools.map((school) => (
+                  {displayedSchools?.map((school) => (
                     <td key={school.id} className="px-6 py-4">
                       <div className="text-sm text-gray-600">{school.description}</div>
                     </td>
@@ -204,7 +282,7 @@ export default function Schools() {
                 </tr>
                 <tr>
                   <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Principi Chiave</td>
-                  {displayedSchools.map((school) => (
+                  {displayedSchools?.map((school) => (
                     <td key={school.id} className="px-6 py-4">
                       <ul className="space-y-1">
                         {school.keyPrinciples.map((principle, index) => (
@@ -219,7 +297,7 @@ export default function Schools() {
                 </tr>
                 <tr>
                   <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Economisti</td>
-                  {displayedSchools.map((school) => (
+                  {displayedSchools?.map((school) => (
                     <td key={school.id} className="px-6 py-4">
                       <div className="flex flex-wrap gap-1">
                         {school.economists.map((economist, index) => (
@@ -231,10 +309,10 @@ export default function Schools() {
                     </td>
                   ))}
                 </tr>
-                {displayedSchools.some(school => school.examples) && (
+                {displayedSchools?.some(school => school.examples) && (
                   <tr>
                     <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Esempi Pratici</td>
-                    {displayedSchools.map((school) => (
+                    {displayedSchools?.map((school) => (
                       <td key={school.id} className="px-6 py-4">
                         <div className="text-sm text-gray-600 italic">
                           {school.examples || "Non specificato"}
