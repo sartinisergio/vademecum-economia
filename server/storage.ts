@@ -76,35 +76,75 @@ export class MemStorage implements IStorage {
     // Initialize schools
     economicSchoolsData.forEach(schoolData => {
       const id = randomUUID();
-      const school: EconomicSchool = { ...schoolData, id };
+      const school: EconomicSchool = { 
+        id,
+        name: schoolData.name,
+        description: schoolData.description,
+        keyPrinciples: schoolData.keyPrinciples,
+        economists: schoolData.economists,
+        examples: schoolData.examples,
+        category: schoolData.category
+      };
       this.schools.set(id, school);
     });
 
     // Initialize models
     economicModelsData.forEach(modelData => {
       const id = randomUUID();
-      const model: EconomicModel = { ...modelData, id };
+      const model: EconomicModel = { 
+        id,
+        name: modelData.name,
+        description: modelData.description,
+        type: modelData.type,
+        keyConcepts: modelData.keyConcepts,
+        applications: modelData.applications,
+        schoolId: modelData.schoolId
+      };
       this.models.set(id, model);
     });
 
     // Initialize manuals
     manualsData.forEach(manualData => {
       const id = randomUUID();
-      const manual: Manual = { ...manualData, id };
+      const manual: Manual = { 
+        id,
+        title: manualData.title,
+        authors: manualData.authors,
+        school: manualData.school,
+        characteristics: manualData.characteristics,
+        strengths: manualData.strengths,
+        weaknesses: manualData.weaknesses,
+        targetAudience: manualData.targetAudience
+      };
       this.manuals.set(id, manual);
     });
 
     // Initialize concepts
     conceptsData.forEach(conceptData => {
       const id = randomUUID();
-      const concept: Concept = { ...conceptData, id };
+      const concept: Concept = { 
+        id,
+        name: conceptData.name,
+        definition: conceptData.definition,
+        category: conceptData.category,
+        relatedTerms: conceptData.relatedTerms,
+        examples: conceptData.examples || null
+      };
       this.concepts.set(id, concept);
     });
 
     // Initialize comparisons
     comparisonsData.forEach(comparisonData => {
       const id = randomUUID();
-      const comparison: Comparison = { ...comparisonData, id };
+      const comparison: Comparison = { 
+        id,
+        title: comparisonData.title,
+        description: comparisonData.description,
+        items: comparisonData.items,
+        aspects: comparisonData.aspects,
+        createdAt: comparisonData.createdAt || null,
+        isCustom: comparisonData.isCustom || null
+      };
       this.comparisons.set(id, comparison);
     });
   }
