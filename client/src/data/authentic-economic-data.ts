@@ -359,107 +359,65 @@ export const manualsData = [
   {
     title: "Microeconomia",
     authors: ["Robert Pindyck", "Daniel Rubinfeld"],
-    school: "Neoclassica avanzata",
+    school: "Mainstream neoclassica specialistica per microeconomia avanzata. Enfasi su teoria dei giochi, economia dell'informazione, economia industriale. Matematica come linguaggio principale",
     characteristics: [
-      "Trattamento rigoroso e completo della microeconomia",
-      "Ampio uso di matematica e modelli formali",
-      "Casi di studio ed esempi empirici"
+      "Autori: Robert Pindyck (MIT, economia dell'energia e dell'ambiente), Daniel Rubinfeld (Berkeley, antitrust e regolamentazione)",
+      "Trattamento specialistico della microeconomia per corsi avanzati. Ampio uso di matematica e modelli formali, teoria dei giochi, economia dell'informazione, casi di studio ed esempi empirici",
+      "Modelli: Microeconomia matematica avanzata (ottimizzazione vincolata, teoria del consumatore/produttore con calcolo, teoria dei giochi, economia dell'informazione, economia industriale, regolamentazione e antitrust)",
+      "Approfondimenti: Incertezza e rischio, asimmetrie informative, mercati con esternalità, beni pubblici, regolamentazione dei monopoli naturali",
+      "Preparazione per ricerca e dottorati in economia"
     ],
     strengths: [
-      "Rigore analitico elevato",
-      "Preparazione solida per studi avanzati",
-      "Esempi empirici aggiornati"
+      "Rigore analitico elevato, preparazione solida per studi avanzati",
+      "Esempi empirici aggiornati, copertura completa della microeconomia moderna"
     ],
     weaknesses: [
       "Richiede solide basi matematiche",
-      "Può risultare ostico per principianti",
-      "Focus limitato su approcci alternativi"
+      "Può risultare ostico per principianti, focus limitato su approcci alternativi"
     ],
-    targetAudience: "Corsi avanzati di microeconomia, studenti di economia con basi matematiche solide"
+    targetAudience: "Corsi avanzati di microeconomia, studenti di economia con basi matematiche solide, preparazione per dottorati"
   },
   {
-    title: "Macroeconomia",
-    authors: ["Olivier Blanchard", "Alessia Amighini", "Francesco Giavazzi"],
-    school: "Nuova Sintesi Neoclassica",
+    title: "Economia: un approccio semplice ad una realtà complessa",
+    authors: ["Paola Parravicini", "Alessandro Graffi"],
+    school: "Meno 'canonico', focus su interpretazione critica della realtà contemporanea. Maggiore attenzione a interconnessioni e aspetti dinamici. Enfatizza il collegamento teoria/realtà, paradossi e criticità. Prospettiva mainstream neoclassica con collegamento a politiche pubbliche e contesto italiano/europeo",
     characteristics: [
-      "Approccio equilibrato tra rigore teorico e applicazioni pratiche",
-      "Integrazione di elementi keynesiani e neoclassici",
-      "Focus su politiche economiche europee"
+      "Autori: Paola Parravicini e Alessandro Graffi (Università di Milano, didattica triennale)",
+      "Approccio narrativo riflessivo e interdisciplinare, organizzazione meno rigida. Integra riferimenti storici, sociali e istituzionali. Obiettivo di mettere in discussione l'efficacia dei mercati e il loro impatto sociale. Linguaggio chiaro, inclusivo, attento alle difficoltà. Esempi italiani/internazionali",
+      "Modelli: Mette in discussione i modelli tradizionali con interpretazione più critica. Enfasi sul senso pratico e limitazioni. Microeconomia con distorsioni di mercato e limiti pratici delle teorie. Macroeconomia con complessità e limiti della teoria tradizionale, esplorando fattori istituzionali e sistemici",
+      "Breve/Lungo Periodo: Distinzione tra breve e lungo periodo inglobata in discussione più ampia su effetti dinamici. Ampio spazio a effetti di lungo termine e cambiamenti strutturali. Favorita comprensione forze strutturali",
+      "Crescita: Analizzata in relazione a disuguaglianze sociali e sfide ambientali. Attenzione a modelli qualitativi e impatto sostenibilità. Spazio al modello Solow, discussi capitale umano, innovazione, istituzioni. Cenni a teorie endogene"
     ],
     strengths: [
-      "Equilibrio teoria-pratica",
-      "Riferimenti al contesto europeo",
-      "Chiarezza espositiva"
+      "Chiarezza e gradualità didattica, forte attenzione al contesto italiano ed europeo",
+      "Schede di approfondimento/materiali didattici, equilibrio tra rigore e inclusività"
     ],
     weaknesses: [
-      "Complessità per studenti base",
-      "Limitata innovazione teorica",
-      "Mainstream bias"
+      "Temi emergenti introduttivi, aspetti quantitativi più avanzati sacrificati",
+      "Struttura lineare meno stimolante per studenti avanzati"
     ],
-    targetAudience: "Corsi di macroeconomia intermedi e avanzati, studenti con basi economiche"
+    targetAudience: "Corsi introduttivi universitari, studenti che affrontano la materia per la prima volta. Chi cerca un approccio critico e riflessivo che colleghi teoria e realtà"
   },
   {
-    title: "Economia Pubblica",
-    authors: ["Harvey Rosen", "Ted Gayer"],
-    school: "Neoclassica applicata",
+    title: "Introduzione all'Economia",
+    authors: ["Giuseppe Bertola", "Anna Lo Prete"],
+    school: "Pensato per corsi universitari strutturati e dettagliati. Combina teoria e formalizzazione matematica, focus rigoroso su fondamenti teorici. Mainstream, solide basi neoclassiche. Costante richiamo a dati reali, istituzioni e specificità europee. Differenza tra analisi teorica e realtà osservata",
     characteristics: [
-      "Analisi sistematica del ruolo del settore pubblico",
-      "Teoria della tassazione e della spesa pubblica",
-      "Analisi dei fallimenti di mercato"
+      "Autori: Giuseppe Bertola (Università di Torino, esperienza internazionale), Anna Lo Prete (Università di Torino, ricerca su macroeconomia, internazionale, istituzioni)",
+      "Approccio più accademico, combinando esposizione teorica e applicazione matematica. Linguaggio meno accessibile per chi ha poca familiarità. Base teorica solida, spiegazioni analitiche e strutturate. Stile lineare e trasparente. Riferimenti a dati europei/italiani. Formalizzazione grafica e matematica spiegata",
+      "Modelli: Panoramica ampia e approfondita dell'economia teorica. Discussioni più tecniche su mercati, produttività, meccanismi di equilibrio. Enfasi su ipotesi dei modelli. Microeconomia sistematica e graduale, enfasi su ottimizzazione, equilibrio, elasticità, benessere. Macroeconomia con maggiore spazio a meccanismi di equilibrio generale e politiche economiche, analisi più tecnica. Rilievo a istituzioni economiche (BCE, UE), policy mix, contesto italiano",
+      "Breve/Lungo Periodo: Trattazione più tecnica, separando chiaramente effetti di breve e lungo periodo. Visione più sistematica e profonda. Sequenza logica da trend di lungo a fluttuazioni di breve",
+      "Crescita: Approfondisce modelli di crescita (Solow, endogeni). Integrazione di formalizzazione, dati storici su convergenza, divergenza, 'caso Italia'. Dibattito su politiche per la crescita. Sezione su crescita offre visione classica e nuove prospettive"
     ],
     strengths: [
-      "Trattamento completo dell'economia pubblica",
-      "Esempi concreti di politiche",
-      "Rigore analitico"
+      "Rigore e chiarezza espositiva, rilevanza empirica (dati italiani/europei)",
+      "Apparato didattico ricco, attenzione alle istituzioni"
     ],
     weaknesses: [
-      "Approccio prevalentemente neoclassico",
-      "Complessità tecnica elevata",
-      "Limitata considerazione di approcci alternativi"
+      "Struttura lineare può essere poco stimolante per temi comportamentali/digitali",
+      "Formalizzazione può scoraggiare studenti senza basi quantitative, temi emergenti introduttivi"
     ],
-    targetAudience: "Corsi specialistici di economia pubblica, studenti avanzati"
-  },
-  {
-    title: "Economia Monetaria",
-    authors: ["Frederic Mishkin"],
-    school: "Mainstream monetario",
-    characteristics: [
-      "Analisi completa del sistema monetario e finanziario",
-      "Teoria e pratica della politica monetaria",
-      "Focus su banche centrali e mercati finanziari"
-    ],
-    strengths: [
-      "Copertura completa degli aspetti monetari",
-      "Esempi di crisi finanziarie",
-      "Aggiornamenti costanti"
-    ],
-    weaknesses: [
-      "Approccio mainstream dominante",
-      "Complessità tecnica",
-      "Limitata discussione di teorie alternative"
-    ],
-    targetAudience: "Corsi di economia monetaria e finanziaria, studenti specializzandi"
-  },
-  {
-    title: "Economia Internazionale",
-    authors: ["Paul Krugman", "Maurice Obstfeld", "Marc Melitz"],
-    school: "Mainstream con elementi nuovi",
-    characteristics: [
-      "Teoria del commercio internazionale e finanza internazionale",
-      "Nuova teoria del commercio internazionale",
-      "Analisi delle politiche commerciali"
-    ],
-    strengths: [
-      "Autorevolezza degli autori",
-      "Integrazione teoria-pratica",
-      "Esempi contemporanei"
-    ],
-    weaknesses: [
-      "Complessità per principianti",
-      "Bias verso paesi sviluppati",
-      "Limitata considerazione di critiche al libero scambio"
-    ],
-    targetAudience: "Corsi di economia internazionale, studenti con basi economiche solide"
+    targetAudience: "Corsi universitari di primo livello che cercano rigore metodologico e attenzione ai dati reali, specialmente per il contesto italiano ed europeo. Chi desidera una base solida teorica ed empirica"
   }
 ];
 
