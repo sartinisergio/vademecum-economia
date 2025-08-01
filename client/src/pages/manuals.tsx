@@ -58,11 +58,16 @@ export default function Manuals() {
   }, [location, manuals]);
 
   const toggleManualSelection = (manualId: string) => {
-    setSelectedManuals(prev => 
-      prev.includes(manualId) 
+    setSelectedManuals(prev => {
+      const newSelection = prev.includes(manualId) 
         ? prev.filter(id => id !== manualId)
-        : [...prev, manualId]
-    );
+        : [...prev, manualId];
+      
+      // Debug: show selection count
+      alert(`Manuale ${prev.includes(manualId) ? 'deselezionato' : 'selezionato'}. Totale: ${newSelection.length}`);
+      
+      return newSelection;
+    });
   };
 
   const resetSelection = () => {
