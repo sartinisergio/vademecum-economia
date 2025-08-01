@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
-import { BookOpen, Users, Target, CheckCircle, XCircle, GraduationCap } from "lucide-react";
+import { BookOpen, Users, Target, CheckCircle, XCircle, GraduationCap, Filter, RotateCcw, ArrowLeftRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { Manual } from "@shared/schema";
 
@@ -25,6 +28,9 @@ export default function Manuals() {
   const [location] = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
   const [highlightedManual, setHighlightedManual] = useState<string | null>(null);
+  const [selectedManuals, setSelectedManuals] = useState<string[]>([]);
+  const [displayMode, setDisplayMode] = useState<"all" | "selected">("all");
+  const [comparisonMode, setComparisonMode] = useState(false);
 
   const { data: manuals, isLoading, error } = useQuery<Manual[]>({
     queryKey: ["/api/manuals"],
@@ -51,6 +57,27 @@ export default function Manuals() {
     }
   }, [location, manuals]);
 
+  const toggleManualSelection = (manualId: string) => {
+    setSelectedManuals(prev => 
+      prev.includes(manualId) 
+        ? prev.filter(id => id !== manualId)
+        : [...prev, manualId]
+    );
+  };
+
+  const resetSelection = () => {
+    setSelectedManuals([]);
+    setDisplayMode("all");
+    setComparisonMode(false);
+  };
+
+  const handleComparisonToggle = () => {
+    if (selectedManuals.length >= 2) {
+      setComparisonMode(!comparisonMode);
+      setDisplayMode("selected");
+    }
+  };
+
   // Filtra i manuali in base alla ricerca
   const filteredManuals = manuals?.filter(manual => {
     if (!searchQuery) return true;
@@ -64,6 +91,10 @@ export default function Manuals() {
       manual.weaknesses.some(weakness => weakness.toLowerCase().includes(query))
     );
   }) || [];
+
+  // Manuali da visualizzare in base alla modalità
+  const displayedManuals = displayMode === "all" ? filteredManuals : 
+    filteredManuals.filter(manual => selectedManuals.includes(manual.id));
 
   if (isLoading) {
     return (
@@ -119,6 +150,61 @@ export default function Manuals() {
         </p>
       </div>
 
+      {/* Filter and Selection Controls */}
+      <div className="mb-8 bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+        <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
+          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+            <div className="flex items-center space-x-2">
+              <Filter className="w-5 h-5 text-gray-600" />
+              <h3 className="font-semibold text-gray-900">Seleziona Manuali</h3>
+            </div>
+            
+            <Select value={displayMode} onValueChange={(value: "all" | "selected") => setDisplayMode(value)}>
+              <SelectTrigger className="w-48">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Visualizza tutti i manuali</SelectItem>
+                <SelectItem value="selected">Solo manuali selezionati ({selectedManuals.length})</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="flex gap-3">
+            <Button 
+              variant="outline" 
+              onClick={handleComparisonToggle}
+              disabled={selectedManuals.length < 2}
+              className="flex items-center space-x-2"
+            >
+              <ArrowLeftRight className="w-4 h-4" />
+              <span>{comparisonMode ? "Vista normale" : "Confronta selezionati"}</span>
+            </Button>
+            
+            <Button 
+              variant="outline" 
+              onClick={resetSelection}
+              disabled={selectedManuals.length === 0}
+              className="flex items-center space-x-2"
+            >
+              <RotateCcw className="w-4 h-4" />
+              <span>Reset</span>
+            </Button>
+          </div>
+        </div>
+        
+        {selectedManuals.length > 0 && (
+          <div className="mt-4 pt-4 border-t border-gray-200">
+            <p className="text-sm text-gray-600">
+              {selectedManuals.length} manuali selezionati
+              {selectedManuals.length >= 2 && (
+                <span className="text-green-600 ml-2">• Confronto disponibile</span>
+              )}
+            </p>
+          </div>
+        )}
+      </div>
+
       {/* Search Results Message */}
       {searchQuery && filteredManuals.length === 0 && (
         <div className="text-center py-12">
@@ -129,15 +215,21 @@ export default function Manuals() {
       )}
 
       {/* Manuals Grid */}
-      {filteredManuals.length > 0 && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          {filteredManuals.map((manual) => {
+      {displayedManuals.length > 0 && (
+        <div className={`grid gap-8 mb-12 ${comparisonMode ? 'grid-cols-1' : 'grid-cols-1 lg:grid-cols-2'}`}>
+          {displayedManuals.map((manual) => {
           const isHighlighted = highlightedManual === manual.title;
+          const isSelected = selectedManuals.includes(manual.id);
           return (
-            <Card key={manual.id} className={`overflow-hidden hover:shadow-lg transition-shadow ${isHighlighted ? 'ring-2 ring-blue-500 shadow-lg' : ''}`}>
+            <Card key={manual.id} className={`overflow-hidden hover:shadow-lg transition-all ${isHighlighted ? 'ring-2 ring-blue-500 shadow-lg' : ''} ${isSelected ? 'ring-2 ring-green-500 bg-green-50' : ''}`}>
             <CardHeader>
               <div className="flex items-start justify-between">
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 flex-1">
+                  <Checkbox
+                    checked={isSelected}
+                    onCheckedChange={() => toggleManualSelection(manual.id)}
+                    className="mt-1"
+                  />
                   <div className={`w-16 h-16 ${schoolGradients[manual.school as keyof typeof schoolGradients] || 'gradient-blue'} rounded-xl flex items-center justify-center`}>
                     <BookOpen className="w-8 h-8 text-white" />
                   </div>
@@ -272,8 +364,109 @@ export default function Manuals() {
         </div>
       )}
 
-      {/* Comparison Table */}
-      {filteredManuals.length > 0 && (
+      {/* Detailed Comparison Table - Only in comparison mode */}
+      {comparisonMode && selectedManuals.length >= 2 && (
+        <div className="mb-12 bg-white rounded-2xl border border-gray-200 overflow-hidden">
+          <div className="px-6 py-4 bg-gradient-to-r from-green-50 to-blue-50 border-b border-gray-200">
+            <h2 className="text-2xl font-bold text-gray-900">Confronto Dettagliato</h2>
+            <p className="text-gray-600">Analisi comparativa dei {selectedManuals.length} manuali selezionati</p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 w-32">Aspetto</th>
+                  {displayedManuals.map((manual) => (
+                    <th key={manual.id} className="px-6 py-3 text-left text-sm font-semibold text-gray-900 min-w-80">
+                      <div>
+                        <div className="font-medium">{manual.title}</div>
+                        <div className="text-xs text-gray-500 font-normal">{manual.authors.join(", ")}</div>
+                      </div>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                <tr>
+                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Scuola</td>
+                  {displayedManuals.map((manual) => (
+                    <td key={manual.id} className="px-6 py-4">
+                      <Badge className={schoolColors[manual.school as keyof typeof schoolColors] || "bg-gray-100 text-gray-800 border-gray-200"}>
+                        {manual.school}
+                      </Badge>
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Caratteristiche</td>
+                  {displayedManuals.map((manual) => (
+                    <td key={manual.id} className="px-6 py-4">
+                      <div className="text-sm text-gray-600">{manual.characteristics}</div>
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Modelli</td>
+                  {displayedManuals.map((manual) => (
+                    <td key={manual.id} className="px-6 py-4">
+                      <div className="text-sm text-gray-600">{manual.models || "Non specificato"}</div>
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Crescita</td>
+                  {displayedManuals.map((manual) => (
+                    <td key={manual.id} className="px-6 py-4">
+                      <div className="text-sm text-gray-600">{manual.growth || "Non specificato"}</div>
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Punti di Forza</td>
+                  {displayedManuals.map((manual) => (
+                    <td key={manual.id} className="px-6 py-4">
+                      <ul className="space-y-1">
+                        {manual.strengths.map((strength, index) => (
+                          <li key={index} className="flex items-start space-x-2">
+                            <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                            <span className="text-sm text-gray-600">{strength}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Punti di Debolezza</td>
+                  {displayedManuals.map((manual) => (
+                    <td key={manual.id} className="px-6 py-4">
+                      <ul className="space-y-1">
+                        {manual.weaknesses.map((weakness, index) => (
+                          <li key={index} className="flex items-start space-x-2">
+                            <div className="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                            <span className="text-sm text-gray-600">{weakness}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Pubblico Ideale</td>
+                  {displayedManuals.map((manual) => (
+                    <td key={manual.id} className="px-6 py-4">
+                      <div className="text-sm text-gray-600">{manual.targetAudience}</div>
+                    </td>
+                  ))}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* Quick Comparison Table */}
+      {displayedManuals.length > 0 && !comparisonMode && (
         <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
         <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
           <h2 className="text-2xl font-bold text-gray-900">Confronto Rapido</h2>
@@ -327,31 +520,48 @@ export default function Manuals() {
 
       {/* Summary Stats */}
       <div className="mt-12 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-2xl p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Panoramica dei Manuali</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          {comparisonMode ? `Analisi dei ${selectedManuals.length} Manuali Selezionati` : "Panoramica dei Manuali"}
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="text-center">
-            <div className="text-3xl font-bold text-primary mb-2">{filteredManuals.length}</div>
-            <div className="text-gray-600">{searchQuery ? "Manuali Trovati" : "Manuali Analizzati"}</div>
+            <div className="text-3xl font-bold text-primary mb-2">{displayedManuals.length}</div>
+            <div className="text-gray-600">
+              {comparisonMode ? "Manuali Confrontati" : 
+               searchQuery ? "Manuali Trovati" : 
+               displayMode === "selected" ? "Manuali Selezionati" : "Manuali Analizzati"}
+            </div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">
-              {Array.from(new Set(filteredManuals.map(m => m.school))).length}
+              {Array.from(new Set(displayedManuals.map(m => m.school))).length}
             </div>
             <div className="text-gray-600">Scuole Rappresentate</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">
-              {Array.from(new Set(filteredManuals.flatMap(m => m.authors))).length}
+              {Array.from(new Set(displayedManuals.flatMap(m => m.authors))).length}
             </div>
             <div className="text-gray-600">Autori Totali</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">
-              {filteredManuals.reduce((acc, manual) => acc + manual.strengths.length, 0)}
+              {displayedManuals.reduce((acc, manual) => acc + manual.strengths.length, 0)}
             </div>
             <div className="text-gray-600">Punti di Forza</div>
           </div>
         </div>
+        
+        {comparisonMode && selectedManuals.length >= 2 && (
+          <div className="mt-6 pt-6 border-t border-white/20">
+            <div className="text-center">
+              <p className="text-gray-700">
+                <span className="font-semibold">Modalità Confronto Attiva:</span> Stai confrontando {selectedManuals.length} manuali selezionati. 
+                Usa la tabella sopra per analizzare le differenze dettagliate tra scuole di pensiero, caratteristiche e pubblico target.
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
