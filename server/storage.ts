@@ -82,7 +82,7 @@ export class MemStorage implements IStorage {
         description: schoolData.description,
         keyPrinciples: schoolData.keyPrinciples,
         economists: schoolData.economists,
-        examples: schoolData.examples,
+        examples: schoolData.examples || null,
         category: schoolData.category
       };
       this.schools.set(id, school);
@@ -110,8 +110,12 @@ export class MemStorage implements IStorage {
         id,
         title: manualData.title,
         authors: manualData.authors,
+        author: manualData.author || null,
+        characteristics: manualData.characteristics || null,
         school: manualData.school,
-        characteristics: manualData.characteristics,
+        models: manualData.models || null,
+        shortLongPeriod: manualData.shortLongPeriod || null,
+        growth: manualData.growth || null,
         strengths: manualData.strengths,
         weaknesses: manualData.weaknesses,
         targetAudience: manualData.targetAudience
@@ -133,20 +137,20 @@ export class MemStorage implements IStorage {
       this.concepts.set(id, concept);
     });
 
-    // Initialize comparisons
-    comparisonsData.forEach(comparisonData => {
-      const id = randomUUID();
-      const comparison: Comparison = { 
-        id,
-        title: comparisonData.title,
-        description: comparisonData.description,
-        items: comparisonData.items,
-        aspects: comparisonData.aspects,
-        createdAt: comparisonData.createdAt || null,
-        isCustom: comparisonData.isCustom || null
-      };
-      this.comparisons.set(id, comparison);
-    });
+    // Initialize comparisons - temporarily skip complex data
+    // comparisonsData.forEach(comparisonData => {
+    //   const id = randomUUID();
+    //   const comparison: Comparison = { 
+    //     id,
+    //     title: comparisonData.title,
+    //     description: comparisonData.description,
+    //     items: comparisonData.items,
+    //     aspects: comparisonData.aspects,
+    //     createdAt: comparisonData.createdAt || null,
+    //     isCustom: comparisonData.isCustom || null
+    //   };
+    //   this.comparisons.set(id, comparison);
+    // });
   }
 
   async getAllSchools(): Promise<EconomicSchool[]> {

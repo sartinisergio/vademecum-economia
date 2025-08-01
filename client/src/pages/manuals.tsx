@@ -157,16 +157,75 @@ export default function Manuals() {
                 {manual.school}
               </Badge>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-4">
+              {/* Author */}
+              {manual.author && (
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                    <span className="text-blue-500 mr-2">•</span>
+                    Autore
+                  </h4>
+                  <p className="text-sm text-gray-600 ml-6">{manual.author}</p>
+                </div>
+              )}
+
               {/* Characteristics */}
+              {manual.characteristics && (
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                    <span className="text-blue-500 mr-2">•</span>
+                    Caratteristiche
+                  </h4>
+                  <p className="text-sm text-gray-600 ml-6">{manual.characteristics}</p>
+                </div>
+              )}
+
+              {/* School of Thought */}
               <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Caratteristiche</h4>
-                <p className="text-sm text-gray-600 leading-relaxed">{manual.characteristics}</p>
+                <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                  <span className="text-blue-500 mr-2">•</span>
+                  Scuola di Pensiero
+                </h4>
+                <p className="text-sm text-gray-600 ml-6">{manual.school}</p>
               </div>
+
+              {/* Models */}
+              {manual.models && (
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                    <span className="text-blue-500 mr-2">•</span>
+                    Modelli
+                  </h4>
+                  <p className="text-sm text-gray-600 ml-6">{manual.models}</p>
+                </div>
+              )}
+
+              {/* Short/Long Period */}
+              {manual.shortLongPeriod && (
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                    <span className="text-blue-500 mr-2">•</span>
+                    Breve/Lungo Periodo
+                  </h4>
+                  <p className="text-sm text-gray-600 ml-6">{manual.shortLongPeriod}</p>
+                </div>
+              )}
+
+              {/* Growth */}
+              {manual.growth && (
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                    <span className="text-blue-500 mr-2">•</span>
+                    Crescita
+                  </h4>
+                  <p className="text-sm text-gray-600 ml-6">{manual.growth}</p>
+                </div>
+              )}
 
               {/* Strengths */}
               <div>
                 <div className="flex items-center space-x-2 mb-3">
+                  <span className="text-blue-500 mr-2">•</span>
                   <CheckCircle className="w-5 h-5 text-green-600" />
                   <h4 className="font-semibold text-gray-900">Punti di Forza</h4>
                 </div>
@@ -183,6 +242,7 @@ export default function Manuals() {
               {/* Weaknesses */}
               <div>
                 <div className="flex items-center space-x-2 mb-3">
+                  <span className="text-blue-500 mr-2">•</span>
                   <XCircle className="w-5 h-5 text-red-600" />
                   <h4 className="font-semibold text-gray-900">Punti di Debolezza</h4>
                 </div>
@@ -199,6 +259,7 @@ export default function Manuals() {
               {/* Target Audience */}
               <div className="bg-gray-50 p-4 rounded-lg">
                 <div className="flex items-center space-x-2 mb-2">
+                  <span className="text-blue-500 mr-2">•</span>
                   <GraduationCap className="w-5 h-5 text-primary" />
                   <h4 className="font-semibold text-gray-900">Pubblico Ideale</h4>
                 </div>
