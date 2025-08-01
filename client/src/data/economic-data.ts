@@ -702,6 +702,97 @@ export const conceptsData: InsertConcept[] = [
     category: "macroeconomia",
     relatedTerms: ["Conto corrente", "Conto capitale", "Riserve valutarie", "Tasso di cambio"],
     examples: "La Germania ha tradizionalmente un surplus nella bilancia dei pagamenti grazie alle sue esportazioni."
+  },
+  {
+    name: "Equilibrio di Nash",
+    definition: "In teoria dei giochi, una situazione in cui ogni giocatore sceglie la strategia ottimale data la strategia degli altri giocatori, e nessun giocatore ha incentivo a cambiare unilateralmente strategia.",
+    category: "microeconomia",
+    relatedTerms: ["Teoria dei giochi", "Strategia dominante", "Dilemma del prigioniero", "John Nash"],
+    examples: "Nel dilemma del prigioniero, l'equilibrio di Nash è quando entrambi confessano, anche se cooperare sarebbe meglio per entrambi."
+  },
+  {
+    name: "Paradosso di Allais",
+    definition: "Violazione sistematica della teoria dell'utilità attesa che dimostra come le persone non sempre si comportano razionalmente nelle scelte rischiose.",
+    category: "microeconomia",
+    relatedTerms: ["Economia comportamentale", "Utilità attesa", "Maurice Allais", "Bias cognitivi"],
+    examples: "Le persone preferiscono 1 milione certo a una lotteria 89% di 1 milione, 10% di 5 milioni e 1% di 0, violando la teoria razionale."
+  },
+  {
+    name: "Effetto Gregge",
+    definition: "Tendenza degli individui a seguire e imitare le azioni della maggioranza, anche quando le proprie informazioni private suggeriscono il contrario.",
+    category: "comportamentale",
+    relatedTerms: ["Economia comportamentale", "Bolle speculative", "Cascade informazionali", "Irrazionalità collettiva"],
+    examples: "Durante la bolla dot-com, molti investitori hanno comprato azioni tech seguendo la folla, ignorando i fondamentali."
+  },
+  {
+    name: "Curva di Laffer",
+    definition: "Relazione teorica tra aliquote fiscali e gettito fiscale, che suggerisce l'esistenza di un'aliquota ottimale oltre la quale aumenti delle tasse riducono il gettito.",
+    category: "macroeconomia",
+    relatedTerms: ["Supply-side economics", "Arthur Laffer", "Reaganomics", "Politica fiscale"],
+    examples: "La teoria suggerisce che ridurre le tasse può aumentare il gettito stimolando l'attività economica."
+  },
+  {
+    name: "Stagflazione",
+    definition: "Fenomeno economico caratterizzato dalla combinazione simultanea di alta inflazione e alta disoccupazione, che sfida le previsioni della curva di Phillips tradizionale.",
+    category: "macroeconomia",
+    relatedTerms: ["Inflazione", "Disoccupazione", "Curva di Phillips", "Shock petroliferi"],
+    examples: "Gli anni '70 negli Stati Uniti hanno visto stagflazione causata dagli shock petroliferi e dalle politiche monetarie espansive."
+  },
+  {
+    name: "Teoria del Prospetto",
+    definition: "Modello di Kahneman e Tversky che descrive come le persone prendono decisioni in condizioni di rischio, enfatizzando l'avversione alle perdite e l'effetto framing.",
+    category: "comportamentale",
+    relatedTerms: ["Daniel Kahneman", "Amos Tversky", "Avversione alle perdite", "Economia comportamentale"],
+    examples: "Le persone preferiscono evitare una perdita di 100€ piuttosto che guadagnare 100€, mostrando asimmetria nella valutazione."
+  },
+  {
+    name: "Selezione Avversa",
+    definition: "Fenomeno per cui l'informazione asimmetrica porta alla selezione di prodotti o partecipanti di qualità inferiore nel mercato.",
+    category: "microeconomia",
+    relatedTerms: ["Informazione asimmetrica", "Mercato dei limoni", "Akerlof", "Azzardo morale"],
+    examples: "Nel mercato delle auto usate, solo i proprietari di auto con problemi sono incentivati a venderle, riducendo la qualità media."
+  },
+  {
+    name: "Azzardo Morale",
+    definition: "Situazione in cui una parte, protetta dalle conseguenze negative del proprio comportamento, è incentivata a prendere rischi eccessivi.",
+    category: "microeconomia",
+    relatedTerms: ["Informazione asimmetrica", "Assicurazioni", "Banche too big to fail", "Principal-agent"],
+    examples: "Le banche protette dal salvataggio pubblico possono assumere rischi eccessivi sapendo di essere coperte."
+  },
+  {
+    name: "Curva di Phillips",
+    definition: "Relazione empirica che mostra un trade-off di breve periodo tra inflazione e disoccupazione, sfidato dalla stagflazione degli anni '70.",
+    category: "macroeconomia",
+    relatedTerms: ["Inflazione", "Disoccupazione", "NAIRU", "Stagflazione"],
+    examples: "Negli anni '60 sembrava che si potesse ridurre la disoccupazione accettando più inflazione, ma gli anni '70 hanno mostrato i limiti di questa relazione."
+  },
+  {
+    name: "NAIRU",
+    definition: "Non-Accelerating Inflation Rate of Unemployment: tasso di disoccupazione al quale l'inflazione rimane stabile nel tempo.",
+    category: "macroeconomia",
+    relatedTerms: ["Disoccupazione naturale", "Curva di Phillips", "Inflazione", "Politica monetaria"],
+    examples: "Se la disoccupazione scende sotto il NAIRU, l'inflazione tende ad accelerare."
+  },
+  {
+    name: "Quantitative Easing",
+    definition: "Politica monetaria non convenzionale in cui la banca centrale acquista titoli a lungo termine per aumentare l'offerta di moneta quando i tassi sono già a zero.",
+    category: "macroeconomia",
+    relatedTerms: ["Banca centrale", "Politica monetaria", "Zero lower bound", "Crisi finanziaria"],
+    examples: "La BCE ha utilizzato il QE dopo la crisi del 2008 per stimolare l'economia dell'eurozona."
+  },
+  {
+    name: "Ordine Spontaneo",
+    definition: "Concetto della scuola austriaca secondo cui le istituzioni e i mercati emergono spontaneamente dalle interazioni umane senza pianificazione centrale.",
+    category: "microeconomia",
+    relatedTerms: ["Scuola austriaca", "Friedrich Hayek", "Mano invisibile", "Conoscenza dispersa"],
+    examples: "Il linguaggio, la moneta e i mercati sono esempi di ordini spontanei che emergono senza essere progettati centralmente."
+  },
+  {
+    name: "Modelli DSGE",
+    definition: "Dynamic Stochastic General Equilibrium: classe di modelli macroeconomici che incorporano microfondazioni, shock casuali e equilibrio generale.",
+    category: "macroeconomia",
+    relatedTerms: ["Nuova sintesi neoclassica", "Microfondazioni", "Aspettative razionali", "Politica monetaria"],
+    examples: "I modelli DSGE sono utilizzati dalle banche centrali per analizzare gli effetti delle politiche monetarie."
   }
 ];
 
