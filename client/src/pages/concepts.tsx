@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import { Lightbulb, Search, Tag, BookOpen, Filter } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -10,12 +11,28 @@ import { Skeleton } from "@/components/ui/skeleton";
 import type { Concept } from "@shared/schema";
 
 export default function Concepts() {
+  const [location] = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
+  const [highlightedConcept, setHighlightedConcept] = useState<string | null>(null);
 
   const { data: concepts, isLoading, error } = useQuery<Concept[]>({
     queryKey: ["/api/concepts"],
   });
+
+  // Gestisce i parametri URL per evidenziare un concetto specifico
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.split('?')[1] || '');
+    const highlight = urlParams.get('highlight');
+    const search = urlParams.get('search');
+    
+    if (highlight) {
+      setHighlightedConcept(highlight);
+      setSearchQuery(highlight); // Filtra per mostrare solo quel concetto
+    } else if (search) {
+      setSearchQuery(search);
+    }
+  }, [location]);
 
   const filteredConcepts = concepts?.filter(concept => {
     const matchesSearch = searchQuery === "" || 
@@ -129,8 +146,15 @@ export default function Concepts() {
 
       {/* Concepts Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        {filteredConcepts.map((concept) => (
-          <Card key={concept.id} className="hover:shadow-lg transition-shadow h-full">
+        {filteredConcepts.map((concept) => {
+          const isHighlighted = highlightedConcept === concept.name;
+          return (
+          <Card 
+            key={concept.id} 
+            className={`hover:shadow-lg transition-all h-full ${
+              isHighlighted ? 'ring-4 ring-primary ring-opacity-50 shadow-2xl scale-105' : ''
+            }`}
+          >
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div className="flex items-center space-x-3">
@@ -184,7 +208,8 @@ export default function Concepts() {
               </div>
             </CardContent>
           </Card>
-        ))}
+          );
+        })}
       </div>
 
       {/* No results message */}
