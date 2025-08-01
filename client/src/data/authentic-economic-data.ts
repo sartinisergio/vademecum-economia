@@ -102,11 +102,13 @@ export const manualsData = [
   {
     title: "Essenziale di Economia",
     authors: ["Paul Krugman", "Robin Wells"],
-    school: "Post-keynesiana moderna",
+    school: "Post-keynesiana moderna, enfasi su domanda aggregata, scetticismo verso efficienza automatica dei mercati, ruolo attivo della politica economica, attenzione alla distribuzione del reddito",
     characteristics: [
+      "Autore: Paul Krugman (Nobel 2008), figura influente della scuola 'saltwater', editorialista del New York Times",
       "Approccio narrativo e accessibile, strutturato come storie concrete per introdurre concetti",
-      "Enfasi su domanda aggregata, scetticismo verso efficienza automatica dei mercati",
-      "Ruolo attivo della politica economica, attenzione alla distribuzione del reddito"
+      "Modelli: Microeconomia intuitiva (es. domanda/offerta con gas naturale, teoria del consumatore con allocazione tempo studio/lavoro), strutture di mercato con esempi memorabili. Macroeconomia keynesiana moderna (moltiplicatore, paradosso del risparmio, moneta endogena, crisi 2008)",
+      "Breve/Lungo Periodo: Approccio 'dal breve al lungo', privilegiando le fluttuazioni cicliche e la disoccupazione come problemi urgenti ('Nel lungo periodo siamo tutti morti.' - Keynes). Crescita trattata sinteticamente",
+      "Crescita: Modello di Solow essenziale, cenni a crescita endogena, enfasi sul progresso tecnologico"
     ],
     strengths: [
       "Accessibilità, rilevanza e attualità (esempi aggiornati)",
@@ -122,23 +124,26 @@ export const manualsData = [
   },
   {
     title: "Essenziale di Economia",
-    authors: ["Gregory Mankiw"],
-    school: "Nuova Sintesi Neoclassica",
+    authors: ["N. Gregory Mankiw"],
+    school: "Nuova Sintesi Neoclassica (mainstream contemporaneo): rigore neoclassico in microeconomia, pragmatismo neo-keynesiano in macroeconomia (rigidità nel breve periodo, spazio per politiche di stabilizzazione)",
     characteristics: [
-      "Fenomeno editoriale globale. Struttura basata sui 'Dieci Principi dell'Economia'",
-      "Rigore neoclassico in microeconomia, pragmatismo neo-keynesiano in macroeconomia",
-      "Organizzazione logica con framework concettuale coerente"
+      "Autore: N. Gregory Mankiw, Robert M. Beren Professor a Harvard, ex Chairman del Council of Economic Advisers",
+      "Fenomeno editoriale globale. Struttura basata sui 'Dieci Principi dell'Economia', che forniscono una struttura concettuale coerente. Organizzazione logica",
+      "Modelli: Microeconomia sistematica (metodo scientifico, diagramma flusso circolare, frontiera possibilità produttive, domanda/offerta come cavallo di battaglia, elasticità, economia del benessere, teoria del consumatore/impresa graduale, strutture di mercato comparative)",
+      "Macroeconomia 'dal lungo al breve' (PIL, crescita, risparmio, sistema monetario, inflazione, economia aperta, poi fluttuazioni con AD-AS e Curva di Phillips)",
+      "Breve/Lungo Periodo: Inizia dal lungo periodo (determinanti della crescita) per poi passare al breve (fluttuazioni cicliche). La logica pedagogica è 'prima capire dove l'economia vuole andare, poi perché devia'",
+      "Crescita: Modello di Solow presentato magistralmente (intuizione, rendimenti decrescenti, stato stazionario, ruolo tecnologia, convergenza condizionale), cenni a capitale umano e crescita endogena"
     ],
     strengths: [
       "Organizzazione impeccabile, i Dieci Principi come framework",
-      "Chiarezza espositiva, equilibrio e fairness",
+      "Chiarezza espositiva, equilibrio e fairness", 
       "Versatilità didattica, preparazione solida per corsi avanzati",
       "Aggiornamenti costanti"
     ],
     weaknesses: [
       "Eccessiva ortodossia (poco spazio per alternative)",
       "Neutralità che nasconde valori impliciti",
-      "Semplicità che può ingannare, americano-centrico",
+      "Semplicità che può ingannare, approccio culturalmente specifico (americano-centrico)",
       "Matematica 'né carne né pesce', lungo periodo forse troppo lungo"
     ],
     targetAudience: "Corsi standard di economia, studenti di base che intendono proseguire in studi economici"
@@ -146,11 +151,13 @@ export const manualsData = [
   {
     title: "Elementi di Economia",
     authors: ["John Sloman", "Dean Garratt"],
-    school: "Pragmatismo eclettico pedagogico",
+    school: "Pragmatismo eclettico pedagogico, utilizza elementi di diverse tradizioni (neoclassica semplificata, aperture keynesiane, elementi comportamentali, attenzione istituzionale) utili per spiegare fenomeni reali",
     characteristics: [
-      "Approccio pragmatico e orientato all'applicazione",
-      "Design visivo ricco (box 'Caso Studio', 'In Pratica', 'Pausa per Riflettere', grafici a colori)",
-      "Utilizza elementi di diverse tradizioni utili per spiegare fenomeni reali"
+      "Autori: John Sloman (focus su innovazione pedagogica), Dean Garratt (economia applicata)",
+      "Approccio pragmatico e orientato all'applicazione, con design visivo ricco (box 'Caso Studio', 'In Pratica', 'Pausa per Riflettere', grafici a colori)",
+      "Modelli: Microeconomia dal concreto all'astratto (domanda/offerta con casi reali, elasticità come strumento manageriale, comportamento del consumatore semplificato, strutture di mercato per manager, economia del lavoro applicata, fallimenti di mercato con casi concreti). Macroeconomia con focus su policy e pratica (misurazione, modello keynesiano semplificato, moneta e banche, politica fiscale e monetaria, commercio internazionale)",
+      "Breve/Lungo Periodo: Priorità schiacciante al breve periodo (70% del contenuto) e all'analisi di problemi immediati, riflettendo il pubblico target (studenti di business, management, scienze sociali, ingegneria)",
+      "Crescita: Trattamento semplificato e orientato alle implicazioni pratiche, accenni al modello di Solow, focus su sviluppo sostenibile"
     ],
     strengths: [
       "Rilevanza immediata, accessibilità estrema",
@@ -161,7 +168,7 @@ export const manualsData = [
     weaknesses: [
       "Profondità teorica limitata, mancanza di rigore analitico",
       "Crescita e lungo periodo trascurati",
-      "Rischio di eccessiva semplificazione, UK-centrico",
+      "Rischio di eccessiva semplificazione, culturalmente specifico (UK-centrico)",
       "Framework teorico debole"
     ],
     targetAudience: "Studenti di business, management, o altre discipline che necessitano di economia applicata; corsi introduttivi per non economisti"
@@ -169,11 +176,13 @@ export const manualsData = [
   {
     title: "Capire l'Economia",
     authors: ["The CORE Team", "Wendy Carlin", "Samuel Bowles"],
-    school: "Pluralismo integrato",
+    school: "Pluralismo integrato che supera le divisioni tradizionali. Incorpora microeconomia comportamentale, economia istituzionale, economia ecologica, macroeconomia post-keynesiana, economia della complessità, economia politica. Fortemente empiricamente fondato",
     characteristics: [
-      "Progetto ambizioso di ripensare l'insegnamento dell'economia post-2008",
-      "Struttura rivoluzionaria (22 Unità su 'grandi domande')",
-      "Integrazione multimediale (video, simulazioni, dati reali), open access"
+      "Autori: Progetto collaborativo internazionale guidato da Wendy Carlin e Samuel Bowles",
+      "Progetto ambizioso di ripensare l'insegnamento dell'economia post-2008. Struttura rivoluzionaria (22 Unità su 'grandi domande'), integrazione multimediale (video, simulazioni, dati reali), open access, personalizzabile",
+      "Modelli: Rovescia l'approccio tradizionale: parte da problemi reali (es. 'hockey stick' della crescita) per sviluppare strumenti analitici. Microeconomia integrata con temi macro, teoria dei giochi pervasiva con esperimenti. Macroeconomia come sistema complesso, focalizzata su fluttuazioni, crisi e politiche",
+      "Breve/Lungo Periodo: Approccio integrato unico, non separazione artificiale. Breve e lungo connessi continuamente (path dependence), sostenibilità come ponte tra decisioni correnti e conseguenze secolari",
+      "Crescita: Visione sofisticata e moderna: crescita come trasformazione strutturale, istituzioni centrali, innovazione endogena, trappole di povertà, sostenibilità"
     ],
     strengths: [
       "Rilevanza senza precedenti (clima, disuguaglianza, crisi)",
@@ -192,11 +201,13 @@ export const manualsData = [
   {
     title: "Principi di Economia",
     authors: ["Daron Acemoglu", "David Laibson", "John List"],
-    school: "Mainstream empirico del XXI Secolo",
+    school: "Mainstream empirico del XXI Secolo: neoclassico nella struttura ma qualificato da evidenza su deviazioni. Economia comportamentale integrata naturalmente, istituzionalismo moderno, sperimentalismo pervasivo, metodi empirici centrali",
     characteristics: [
-      "Nuovo paradigma, combina rigore teorico, attenzione alle istituzioni, insights comportamentali",
-      "Approccio sperimentale. Più rigoroso e più realista",
-      "Include 'Evidence-Based Economics', esperimenti replicabili, video degli autori"
+      "Autori: Daron Acemoglu (Nobel 2024 per le istituzioni), David Laibson (pioniere economia comportamentale), John List (pioniere esperimenti sul campo)",
+      "Nuovo paradigma, combina rigore teorico, attenzione alle istituzioni, insights comportamentali, approccio sperimentale. Più rigoroso e più realista. Include 'Evidence-Based Economics', esperimenti replicabili, video degli autori",
+      "Modelli: Microeconomia con teoria testata empiricamente (ottimizzazione con qualificazioni comportamentali, domanda/offerta come framework flessibile con evidenza, teoria dei giochi sperimentale, strutture di mercato con dati, economia del lavoro moderna). Macroeconomia micro-fondata ma realistica (crescita economica e istituzioni - qui Acemoglu brilla con evidenza causale - cicli economici micro-fondati con frizioni finanziarie, politica economica evidence-based)",
+      "Breve/Lungo Periodo: Approccio integrato sofisticato. Lungo periodo fondamentale (crescita e istituzioni) ma connesso a decisioni correnti. Breve periodo con micro-fondazioni. Collegamenti continui (es. hysteresis)",
+      "Crescita: Trattamento all'avanguardia. Framework unificato (geografia, cultura, istituzioni, con istituzioni dominanti), istituzioni inclusive vs estrattive, evidenza causale (reversal of fortune), innovazione e crescita, trappole di povertà"
     ],
     strengths: [
       "All'avanguardia della ricerca, rigore empirico senza precedenti",
@@ -207,7 +218,7 @@ export const manualsData = [
     weaknesses: [
       "Complessità elevata (richiede studenti preparati)",
       "Lunghezza considerevole, prerequisiti impliciti (analisi quantitativa)",
-      "Relativamente nuovo (meno testato), americano-centrico"
+      "Relativamente nuovo (meno testato), culturalmente specifico (americano-centrico)"
     ],
     targetAudience: "Corsi avanzati, studenti ambiziosi, programmi 'honors', preparazione alla ricerca. Rappresenta lo stato dell'arte per l'insegnamento universitario di economia"
   },
