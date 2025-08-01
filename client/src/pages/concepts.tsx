@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
-import { Lightbulb, Search, Tag, BookOpen, Filter } from "lucide-react";
+import { Lightbulb, Search, Tag, BookOpen, Filter, Heart } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -15,6 +15,30 @@ export default function Concepts() {
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [highlightedConcept, setHighlightedConcept] = useState<string | null>(null);
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+  const [favorites, setFavorites] = useState<string[]>([]);
+
+  // Carica i preferiti dal localStorage
+  useEffect(() => {
+    const savedFavorites = localStorage.getItem('economyConcepts-favorites');
+    if (savedFavorites) {
+      setFavorites(JSON.parse(savedFavorites));
+    }
+  }, []);
+
+  // Salva i preferiti nel localStorage
+  const saveFavorites = (newFavorites: string[]) => {
+    localStorage.setItem('economyConcepts-favorites', JSON.stringify(newFavorites));
+    setFavorites(newFavorites);
+  };
+
+  // Aggiunge/rimuove un concetto dai preferiti
+  const toggleFavorite = (conceptName: string) => {
+    const newFavorites = favorites.includes(conceptName)
+      ? favorites.filter(name => name !== conceptName)
+      : [...favorites, conceptName];
+    saveFavorites(newFavorites);
+  };
 
   const { data: concepts, isLoading, error } = useQuery<Concept[]>({
     queryKey: ["/api/concepts"],
@@ -25,16 +49,32 @@ export default function Concepts() {
     const urlParams = new URLSearchParams(location.split('?')[1] || '');
     const highlight = urlParams.get('highlight');
     const search = urlParams.get('search');
+    const filter = urlParams.get('filter');
     
     if (highlight) {
       setHighlightedConcept(highlight);
       setSearchQuery(highlight); // Filtra per mostrare solo quel concetto
+      setShowFavoritesOnly(false);
     } else if (search) {
       setSearchQuery(search);
+      setShowFavoritesOnly(false);
+    } else if (filter === 'favorites') {
+      setSearchQuery(''); // Reset search
+      setCategoryFilter('all'); // Reset category
+      setShowFavoritesOnly(true);
+      setHighlightedConcept(null);
+    } else {
+      setShowFavoritesOnly(false);
+      setHighlightedConcept(null);
     }
   }, [location]);
 
   const filteredConcepts = concepts?.filter(concept => {
+    // Filtro per preferiti
+    if (showFavoritesOnly && !favorites.includes(concept.name)) {
+      return false;
+    }
+
     const matchesSearch = searchQuery === "" || 
       concept.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       concept.definition.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -87,8 +127,15 @@ export default function Concepts() {
             <Lightbulb className="w-7 h-7 text-white" />
           </div>
           <div>
-            <h1 className="text-4xl font-bold text-gray-900">Concetti Chiave</h1>
-            <p className="text-xl text-gray-600">I fondamenti teorici dell'economia moderna</p>
+            <h1 className="text-4xl font-bold text-gray-900">
+              {showFavoritesOnly ? "I Miei Concetti Preferiti" : "Concetti Chiave"}
+            </h1>
+            <p className="text-xl text-gray-600">
+              {showFavoritesOnly 
+                ? `${favorites.length} concetti salvati nei tuoi preferiti` 
+                : "I fondamenti teorici dell'economia moderna"
+              }
+            </p>
           </div>
         </div>
         <p className="text-gray-700 max-w-4xl">
@@ -138,13 +185,27 @@ export default function Concepts() {
         <div className="mt-4">
           <p className="text-sm text-gray-600">
             Mostrando {filteredConcepts.length} di {concepts?.length || 0} concetti
+            {showFavoritesOnly && " dai tuoi preferiti"}
             {searchQuery && ` per "${searchQuery}"`}
             {categoryFilter !== "all" && ` nella categoria "${categoryFilter}"`}
           </p>
         </div>
       </div>
 
+      {/* Messaggio se non ci sono preferiti */}
+      {showFavoritesOnly && filteredConcepts.length === 0 && (
+        <div className="text-center py-12">
+          <Heart className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+          <h3 className="text-xl font-semibold text-gray-600 mb-2">Nessun concetto nei preferiti</h3>
+          <p className="text-gray-500 mb-4">Aggiungi alcuni concetti ai tuoi preferiti cliccando sul cuore ❤️</p>
+          <Button onClick={() => window.location.href = '/concepts'}>
+            Esplora tutti i concetti
+          </Button>
+        </div>
+      )}
+
       {/* Concepts Grid */}
+      {filteredConcepts.length > 0 && (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         {filteredConcepts.map((concept) => {
           const isHighlighted = highlightedConcept === concept.name;
@@ -171,6 +232,20 @@ export default function Concepts() {
                     </Badge>
                   </div>
                 </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => toggleFavorite(concept.name)}
+                  className="h-8 w-8 p-0"
+                >
+                  <Heart 
+                    className={`w-4 h-4 ${
+                      favorites.includes(concept.name) 
+                        ? 'fill-red-500 text-red-500' 
+                        : 'text-gray-400 hover:text-red-500'
+                    }`} 
+                  />
+                </Button>
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -211,9 +286,10 @@ export default function Concepts() {
           );
         })}
       </div>
+      )}
 
       {/* No results message */}
-      {filteredConcepts.length === 0 && (
+      {!showFavoritesOnly && filteredConcepts.length === 0 && (
         <div className="text-center py-12">
           <Lightbulb className="w-16 h-16 text-gray-400 mx-auto mb-4" />
           <h3 className="text-xl font-semibold text-gray-900 mb-2">Nessun concetto trovato</h3>
