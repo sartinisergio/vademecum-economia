@@ -4,47 +4,58 @@
 export const economicSchoolsData = [
   {
     name: "Scuola Neoclassica",
-    description: "L'approccio prevalente nell'insegnamento e nella ricerca economica contemporanea. È l'approccio dominante nell'economia moderna.",
+    description: "È l'approccio prevalente nell'insegnamento e nella ricerca economica contemporanea. Si basa su: Razionalità degli Agenti Economici, Equilibrio di Mercato, Efficienza dei Mercati, Metodo Matematico. Include diverse sottoscuole: Nuova Keynesiana, Nuova Classica/RBC, Monetarista, Supply Side Economics.",
     keyPrinciples: [
       "Razionalità degli Agenti Economici: Consumatori e imprese agiscono per massimizzare il proprio benessere (utilità o profitti) date le informazioni disponibili",
       "Equilibrio di Mercato: I mercati tendono naturalmente a un punto di equilibrio dove domanda e offerta si incontrano, tramite un meccanismo automatico di aggiustamento dei prezzi",
       "Efficienza dei Mercati: I mercati liberi, senza interferenze, allocano le risorse in modo efficiente, producendo risultati superiori a alternative come la pianificazione centralizzata",
-      "Metodo Matematico: Ampio uso della matematica per formalizzare teorie, permettendo conclusioni precise e testabili"
+      "Metodo Matematico: Ampio uso della matematica per formalizzare teorie, permettendo conclusioni precise e testabili",
+      "Sottoscuole - Nuova Keynesiana: Tenta di conciliare Keynes con il rigore neoclassico. Riconosce che prezzi e salari sono 'rigidi' nel breve periodo, causando disoccupazione e recessioni temporanee. Sostiene l'utilità della politica monetaria per stabilizzare l'economia e utilizza modelli DSGE",
+      "Sottoscuole - Nuova Classica/RBC: Versione più 'pura' del neoclassicismo. Sostiene che le fluttuazioni economiche sono risposte efficienti a shock reali (tecnologici o di produttività). La disoccupazione è vista come volontaria e l'intervento governativo è inefficace o dannoso",
+      "Sottoscuole - Monetarista: Si concentra sul ruolo della moneta. L'inflazione è sempre un fenomeno monetario. La banca centrale dovrebbe seguire regole fisse",
+      "Sottoscuole - Supply Side Economics: Rilevante dagli anni '70/'80 con la Reaganomics. La crescita economica è favorita dalla rimozione di ostacoli alla produzione. Propone riduzione della pressione fiscale, deregolamentazione, incentivi all'innovazione e liberalizzazione dei mercati. La Curva di Laffer è un contributo chiave"
     ],
     economists: [
-      "Olivier Blanchard", "Gregory Mankiw", "Jordi Galí", "Robert Lucas Jr.", "Edward Prescott", "Robert Barro", "Milton Friedman", "Arthur Laffer", "Robert Mundell", "Jude Wanniski"
+      "Nuova Keynesiana: Olivier Blanchard, Gregory Mankiw, Jordi Galí",
+      "Nuova Classica/RBC: Robert Lucas Jr., Edward Prescott, Robert Barro", 
+      "Monetarista: Milton Friedman",
+      "Supply Side: Arthur Laffer, Robert Mundell, Jude Wanniski"
     ],
     examples: [
-      "Nuova Keynesiana: Politiche di stimolo fiscale e monetario aggressive durante la crisi finanziaria del 2008",
-      "Nuova Classica/RBC: La Grande Recessione del 2008 vista come shock reale, non fallimento di mercato", 
-      "Monetarista: L'inflazione degli anni '70 attribuita a politiche monetarie troppo espansive",
-      "Supply Side Economics: Reaganomics con riduzione della pressione fiscale e deregolamentazione"
+      "Nuova Keynesiana: Hanno sostenuto politiche di stimolo fiscale e monetario aggressive durante la crisi finanziaria del 2008 per evitare una depressione più profonda",
+      "Nuova Classica/RBC: La Grande Recessione del 2008 è vista come uno shock reale, non un fallimento di mercato. Gli interventi governativi hanno solo ritardato l'aggiustamento", 
+      "Monetarista: L'inflazione degli anni '70 è attribuita a politiche monetarie troppo espansive. La soluzione fu la politica restrittiva di Paul Volcker",
+      "Supply Side Economics: I sostenitori ne evidenziano la capacità di rilanciare la crescita, mentre i critici sottolineano i rischi di aumento delle disuguaglianze e riduzione delle risorse pubbliche"
     ],
     category: "mainstream"
   },
   {
     name: "Scuola Post-Keynesiana",
-    description: "Critica radicalmente l'approccio neoclassico, focalizzandosi sul capitalismo moderno. Una visione alternativa che enfatizza l'incertezza e il ruolo della domanda.",
+    description: "Critica radicalmente l'approccio neoclassico, focalizzandosi sul capitalismo moderno. Una visione alternativa che enfatizza l'incertezza e il ruolo della domanda. Include la corrente recente della Teoria Monetaria Moderna (MMT).",
     keyPrinciples: [
       "Incertezza Radicale: Il futuro è intrinsecamente incerto, rendendo impossibile l'ottimizzazione perfetta assunta dai neoclassici",
       "La Domanda Guida l'Economia: La domanda (non l'offerta) determina il livello di produzione e occupazione",
       "La Moneta è Endogena: Le banche creano moneta attraverso i prestiti; l'offerta di moneta risponde alla domanda di credito e non è controllata centralmente",
       "I Prezzi sono Amministrati: Le imprese fissano i prezzi aggiungendo un ricarico sui costi, influenzato dal potere di mercato",
-      "Il Tempo Storico: Le decisioni economiche avvengono nel tempo storico, con il passato che influenza il presente e il futuro incerto"
+      "Il Tempo Storico: Le decisioni economiche avvengono nel tempo storico, con il passato che influenza il presente e il futuro incerto",
+      "Teoria Monetaria Moderna (MMT): Uno Stato che emette la propria moneta sovrana non può 'finire i soldi'. Il vero vincolo alla spesa pubblica è l'inflazione, non la capacità finanziaria",
+      "MMT - Ruolo delle Tasse: Le tasse non finanziano la spesa ma controllano l'inflazione, ridistribuiscono il reddito e incentivano comportamenti",
+      "MMT - Lavoro Garantito: Propone un programma di 'lavoro garantito' per eliminare la disoccupazione involontaria"
     ],
     economists: [
-      "Stephanie Kelton", "L. Randall Wray", "Pavlina Tcherneva", "John Maynard Keynes"
+      "John Maynard Keynes (fondatore teorico)",
+      "MMT: Stephanie Kelton, L. Randall Wray, Pavlina Tcherneva"
     ],
     examples: [
       "Teoria Monetaria Moderna (MMT): Uno Stato che emette la propria moneta sovrana non può 'finire i soldi'",
-      "La massiccia spesa pubblica durante la pandemia COVID-19 vista come conferma della flessibilità fiscale dei governi sovrani",
+      "La massiccia spesa pubblica durante la pandemia COVID-19 è vista come conferma della flessibilità fiscale dei governi sovrani",
       "Programma di 'lavoro garantito' per eliminare la disoccupazione involontaria"
     ],
     category: "alternative"
   },
   {
     name: "Scuola Austriaca", 
-    description: "Visione radicale che enfatizza il ruolo della conoscenza dispersa, dell'imprenditorialità e del processo di mercato. Il mercato come processo di scoperta.",
+    description: "Visione radicale che enfatizza il ruolo della conoscenza dispersa, dell'imprenditorialità e del processo di mercato. Il mercato come processo di scoperta. Critica radicalmente l'approccio matematico dell'economia mainstream.",
     keyPrinciples: [
       "La Conoscenza è Dispersa e Tacita: Nessun pianificatore centrale può avere tutte le informazioni; solo il mercato coordina questa conoscenza tramite il sistema dei prezzi",
       "Il Mercato come Processo di Scoperta: Il mercato non è in equilibrio, ma un processo continuo di scoperta dove gli imprenditori cercano opportunità",
@@ -62,7 +73,7 @@ export const economicSchoolsData = [
   },
   {
     name: "Economia Comportamentale",
-    description: "Sfida il modello neoclassico di razionalità perfetta, integrando insights dalla psicologia. Quando la psicologia incontra l'economia.",
+    description: "Sfida il modello neoclassico di razionalità perfetta, integrando insights dalla psicologia. Quando la psicologia incontra l'economia. Studia come le persone prendono realmente le decisioni economiche.",
     keyPrinciples: [
       "Razionalità Limitata: Le persone usano 'scorciatoie mentali' (euristiche) che possono portare a errori sistematici",
       "Bias Cognitivi Sistematici: Distorsioni prevedibili nelle decisioni (es. avversione alle perdite, effetto ancoraggio, bias del presente, effetto gregge)",
@@ -79,7 +90,7 @@ export const economicSchoolsData = [
   },
   {
     name: "Economia della Complessità",
-    description: "Vede l'economia come un ecosistema complesso, non una macchina in equilibrio. L'economia come sistema adattivo.",
+    description: "Vede l'economia come un ecosistema complesso, non una macchina in equilibrio. L'economia come sistema adattivo che emerge dalle interazioni di agenti eterogenei che apprendono e si adattano.",
     keyPrinciples: [
       "Proprietà Emergenti: Il comportamento del sistema emerge dalle interazioni individuali e non è prevedibile dalla somma dei comportamenti individuali",
       "Non-linearità e Feedback: Piccoli cambiamenti possono avere effetti enormi, e circuiti di retroazione positiva possono amplificare perturbazioni",
@@ -92,7 +103,7 @@ export const economicSchoolsData = [
       "W. Brian Arthur", "Doyne Farmer", "Giovanni Dosi"
     ],
     examples: [
-      "La crisi finanziaria del 2008 vista come fenomeno emergente da interconnessioni sistemiche"
+      "La crisi finanziaria del 2008 è vista come fenomeno emergente da interconnessioni sistemiche"
     ],
     category: "emerging"
   }
