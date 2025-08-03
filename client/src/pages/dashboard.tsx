@@ -329,7 +329,7 @@ export default function Dashboard() {
           {/* Featured Debate Card */}
           <div 
             className="card-hover bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-6 border border-gray-100 cursor-pointer text-white"
-            onClick={() => setLocation("/comparisons")}
+            onClick={() => setLocation("/comparisons?debate=saltwater-freshwater")}
           >
             <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-4">
               <MessageSquare className="w-8 h-8 text-white" />

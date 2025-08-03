@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import { GitCompare, Plus, X, ChevronDown, ChevronUp, Search, Filter, Trash2 } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { queryClient } from "@/lib/queryClient";
@@ -23,6 +24,7 @@ interface CreateComparisonState {
 }
 
 export default function Comparisons() {
+  const [location] = useLocation();
   const [expandedComparisons, setExpandedComparisons] = useState<string[]>([]);
   const [showCreateDialog, setShowCreateDialog] = useState(false);
   const [createState, setCreateState] = useState<CreateComparisonState>({
@@ -33,6 +35,7 @@ export default function Comparisons() {
   });
   const [searchQuery, setSearchQuery] = useState("");
   const [dialogSearchQuery, setDialogSearchQuery] = useState("");
+  const [showSaltwaterDebate, setShowSaltwaterDebate] = useState(false);
   const { toast } = useToast();
 
   const { data: comparisons, isLoading: comparisonsLoading } = useQuery<Comparison[]>({
@@ -54,6 +57,14 @@ export default function Comparisons() {
   const { data: concepts } = useQuery<Concept[]>({
     queryKey: ["/api/concepts"],
   });
+
+  // Check URL for debate parameter
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('debate') === 'saltwater-freshwater') {
+      setShowSaltwaterDebate(true);
+    }
+  }, [location]);
 
   const createComparisonMutation = useMutation({
     mutationFn: async (newComparison: any) => {
@@ -580,6 +591,111 @@ export default function Comparisons() {
           Usa i confronti predefiniti o crea i tuoi confronti personalizzati per un'analisi approfondita.
         </p>
       </div>
+
+      {/* Saltwater vs Freshwater Special Display */}
+      {showSaltwaterDebate && (
+        <div className="mb-8">
+          <Card className="border-blue-200 bg-gradient-to-r from-blue-50 to-purple-50">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-xl text-blue-900" translate="no">
+                  Saltwater vs Freshwater Economists
+                </CardTitle>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowSaltwaterDebate(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+              <p className="text-blue-700 text-sm">Il Grande Dibattito che ha diviso l'economia macroeconomica americana, formalizzato nel 1976 da Robert Hall</p>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-white p-4 rounded-lg border border-blue-100">
+                  <h4 className="font-semibold text-lg mb-3 text-blue-900" translate="no">
+                    Saltwater Economists
+                  </h4>
+                  <ul className="space-y-2">
+                    <li className="text-sm text-gray-700 flex items-start">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Università delle coste (MIT, Harvard, Yale, Princeton, Berkeley, Stanford)
+                    </li>
+                    <li className="text-sm text-gray-700 flex items-start">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Tendenzialmente più interventiste e keynesiane
+                    </li>
+                    <li className="text-sm text-gray-700 flex items-start">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      I mercati possono fallire e rimanere in disequilibrio a lungo
+                    </li>
+                    <li className="text-sm text-gray-700 flex items-start">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      La disoccupazione involontaria esiste ed è seria
+                    </li>
+                    <li className="text-sm text-gray-700 flex items-start">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Le recessioni sono sprechi evitabili
+                    </li>
+                    <li className="text-sm text-gray-700 flex items-start">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      I mercati finanziari sono inclini a bolle e panici
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-white p-4 rounded-lg border border-blue-100">
+                  <h4 className="font-semibold text-lg mb-3 text-blue-900" translate="no">
+                    Freshwater Economists
+                  </h4>
+                  <ul className="space-y-2">
+                    <li className="text-sm text-gray-700 flex items-start">
+                      <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Università vicine ai Grandi Laghi (Chicago, Minnesota, Rochester, Carnegie Mellon)
+                    </li>
+                    <li className="text-sm text-gray-700 flex items-start">
+                      <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Più orientate al libero mercato e scettiche verso l'intervento governativo
+                    </li>
+                    <li className="text-sm text-gray-700 flex items-start">
+                      <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      I mercati sono generalmente efficienti e autoregolantesi
+                    </li>
+                    <li className="text-sm text-gray-700 flex items-start">
+                      <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Le fluttuazioni sono risposte naturali a shock reali
+                    </li>
+                    <li className="text-sm text-gray-700 flex items-start">
+                      <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      La disoccupazione è in gran parte volontaria
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="mt-6 pt-4 border-t border-blue-200">
+                <h4 className="font-semibold text-blue-900 mb-3">Aspetti del Confronto:</h4>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="outline" className="bg-blue-100 text-blue-800 border-blue-300">
+                    Visione del Mercato
+                  </Badge>
+                  <Badge variant="outline" className="bg-blue-100 text-blue-800 border-blue-300">
+                    Ruolo del Governo
+                  </Badge>
+                  <Badge variant="outline" className="bg-blue-100 text-blue-800 border-blue-300">
+                    Metodologia
+                  </Badge>
+                  <Badge variant="outline" className="bg-blue-100 text-blue-800 border-blue-300">
+                    Politiche Economiche
+                  </Badge>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
 
       {/* Search and Filter */}
       <div className="mb-8">
