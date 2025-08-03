@@ -110,10 +110,9 @@ export default function Dashboard() {
                     Introduzione all'Applicazione
                   </h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Il Vademecum di Economia è una piattaforma educativa completa che presenta contenuti autentici 
-                    estratti integralmente dal documento "Sintesi vademecum Economia". L'applicazione offre accesso 
-                    strutturato alle principali scuole di pensiero economico, modelli teorici, manuali universitari 
-                    e concetti chiave utilizzati nell'insegnamento dell'economia nelle università italiane.
+                    Questo vademecum è una piattaforma che fornisce un accesso strutturato alle principali scuole di 
+                    pensiero economico, modelli teorici, manuali universitari e concetti chiave utilizzati 
+                    nell'insegnamento dell'economia nelle università italiane.
                   </p>
                 </div>
 
