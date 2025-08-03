@@ -610,7 +610,13 @@ export default function Comparisons() {
                   <X className="w-4 h-4" />
                 </Button>
               </div>
-              <p className="text-blue-700 text-sm">Il Grande Dibattito che ha diviso l'economia macroeconomica americana, formalizzato nel 1976 da Robert Hall</p>
+              <p className="text-blue-700 text-sm">Questo è uno dei dibattiti più importanti e duraturi in economia macroeconomica, formalizzato nel 1976 da Robert Hall. Il dibattito deriva dalla posizione geografica delle università americane.</p>
+              
+              <div className="mt-4 p-3 bg-blue-100 rounded-lg">
+                <p className="text-sm text-blue-800 italic">
+                  "La visione freshwater sostiene che le fluttuazioni sono largamente attribuibili a spostamenti dell'offerta e che il governo è essenzialmente incapace di influenzare il livello di attività economica. La visione saltwater considera gli spostamenti della domanda responsabili delle fluttuazioni e pensa che le politiche governative (almeno la politica monetaria) siano capaci di influenzare la domanda." - Robert Hall, 1976
+                </p>
+              </div>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
@@ -618,78 +624,165 @@ export default function Comparisons() {
                   <h4 className="font-semibold text-lg mb-3 text-blue-900" translate="no">
                     Saltwater Economists
                   </h4>
-                  <ul className="space-y-2">
-                    <li className="text-sm text-gray-700 flex items-start">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      Università delle coste (MIT, Harvard, Yale, Princeton, Berkeley, Stanford)
-                    </li>
-                    <li className="text-sm text-gray-700 flex items-start">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      Tendenzialmente più interventiste e keynesiane
-                    </li>
-                    <li className="text-sm text-gray-700 flex items-start">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      I mercati possono fallire e rimanere in disequilibrio a lungo
-                    </li>
-                    <li className="text-sm text-gray-700 flex items-start">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      La disoccupazione involontaria esiste ed è seria
-                    </li>
-                    <li className="text-sm text-gray-700 flex items-start">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      Le recessioni sono sprechi evitabili
-                    </li>
-                    <li className="text-sm text-gray-700 flex items-start">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      I mercati finanziari sono inclini a bolle e panici
-                    </li>
-                  </ul>
+                  <p className="text-xs text-blue-600 mb-3 font-medium">Università delle coste (acqua salata)</p>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <h5 className="font-semibold text-sm mb-2 text-gray-900">Università:</h5>
+                      <p className="text-sm text-gray-700">MIT, Harvard, Yale, Princeton, Berkeley, Stanford</p>
+                    </div>
+                    
+                    <div>
+                      <h5 className="font-semibold text-sm mb-2 text-gray-900">Visione del Mercato:</h5>
+                      <ul className="space-y-1">
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          I mercati possono fallire e rimanere in disequilibrio a lungo
+                        </li>
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          La disoccupazione involontaria esiste ed è seria
+                        </li>
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          Le recessioni sono sprechi evitabili
+                        </li>
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          I mercati finanziari sono inclini a bolle e panici
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h5 className="font-semibold text-sm mb-2 text-gray-900">Ruolo del Governo:</h5>
+                      <ul className="space-y-1">
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          Cruciale per la stabilizzazione economica, usando politiche fiscali e monetarie
+                        </li>
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          La regolamentazione dei mercati finanziari è necessaria
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h5 className="font-semibold text-sm mb-2 text-gray-900">Metodologia:</h5>
+                      <ul className="space-y-1">
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          Più pragmatici, aperti a modelli "ad hoc" se empiricamente utili
+                        </li>
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          Aperti a incorporare intuizioni da psicologia/sociologia
+                        </li>
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          Attenzione ai dettagli istituzionali
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="bg-white p-4 rounded-lg border border-blue-100">
-                  <h4 className="font-semibold text-lg mb-3 text-blue-900" translate="no">
+                <div className="bg-white p-4 rounded-lg border border-purple-100">
+                  <h4 className="font-semibold text-lg mb-3 text-purple-900" translate="no">
                     Freshwater Economists
                   </h4>
-                  <ul className="space-y-2">
-                    <li className="text-sm text-gray-700 flex items-start">
-                      <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      Università vicine ai Grandi Laghi (Chicago, Minnesota, Rochester, Carnegie Mellon)
-                    </li>
-                    <li className="text-sm text-gray-700 flex items-start">
-                      <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      Più orientate al libero mercato e scettiche verso l'intervento governativo
-                    </li>
-                    <li className="text-sm text-gray-700 flex items-start">
-                      <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      I mercati sono generalmente efficienti e autoregolantesi
-                    </li>
-                    <li className="text-sm text-gray-700 flex items-start">
-                      <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      Le fluttuazioni sono risposte naturali a shock reali
-                    </li>
-                    <li className="text-sm text-gray-700 flex items-start">
-                      <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      La disoccupazione è in gran parte volontaria
-                    </li>
-                  </ul>
+                  <p className="text-xs text-purple-600 mb-3 font-medium">Università vicine ai Grandi Laghi (acqua dolce)</p>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <h5 className="font-semibold text-sm mb-2 text-gray-900">Università:</h5>
+                      <p className="text-sm text-gray-700">Chicago, Minnesota, Rochester, Carnegie Mellon</p>
+                    </div>
+                    
+                    <div>
+                      <h5 className="font-semibold text-sm mb-2 text-gray-900">Visione del Mercato:</h5>
+                      <ul className="space-y-1">
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          Generalmente efficienti e autoregolantesi
+                        </li>
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          Le fluttuazioni sono risposte naturali a shock reali
+                        </li>
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          La disoccupazione è in gran parte volontaria
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h5 className="font-semibold text-sm mb-2 text-gray-900">Ruolo del Governo:</h5>
+                      <ul className="space-y-1">
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          Spesso inefficace o controproducente
+                        </li>
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          Le aspettative razionali neutralizzano molte politiche
+                        </li>
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          Preferiscono regole fisse alla discrezionalità
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h5 className="font-semibold text-sm mb-2 text-gray-900">Metodologia:</h5>
+                      <ul className="space-y-1">
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          Insistenza su rigore matematico e coerenza logica, con "microfondazioni"
+                        </li>
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          Scetticismo verso approcci non rigorosi
+                        </li>
+                        <li className="text-sm text-gray-700 flex items-start">
+                          <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          Modellazione esplicita delle aspettative razionali
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
               
               <div className="mt-6 pt-4 border-t border-blue-200">
-                <h4 className="font-semibold text-blue-900 mb-3">Aspetti del Confronto:</h4>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="outline" className="bg-blue-100 text-blue-800 border-blue-300">
-                    Visione del Mercato
-                  </Badge>
-                  <Badge variant="outline" className="bg-blue-100 text-blue-800 border-blue-300">
-                    Ruolo del Governo
-                  </Badge>
-                  <Badge variant="outline" className="bg-blue-100 text-blue-800 border-blue-300">
-                    Metodologia
-                  </Badge>
-                  <Badge variant="outline" className="bg-blue-100 text-blue-800 border-blue-300">
-                    Politiche Economiche
-                  </Badge>
+                <h4 className="font-semibold text-blue-900 mb-3">Evoluzione Storica del Dibattito:</h4>
+                <div className="space-y-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <h5 className="font-semibold text-sm mb-2">Anni '70:</h5>
+                      <p className="text-xs text-gray-700">La stagflazione (inflazione e disoccupazione elevate) mise in crisi il keynesismo, dando credibilità alla scuola freshwater e alla "rivoluzione delle aspettative razionali".</p>
+                    </div>
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <h5 className="font-semibold text-sm mb-2">Anni '80-'90:</h5>
+                      <p className="text-xs text-gray-700">Dominio delle idee freshwater, con politiche di Paul Volcker (Federal Reserve), Ronald Reagan e Margaret Thatcher.</p>
+                    </div>
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <h5 className="font-semibold text-sm mb-2">Anni 2000:</h5>
+                      <p className="text-xs text-gray-700">Emergenza di una "nuova sintesi neoclassica" che combinava elementi di entrambe le scuole (modelli DSGE).</p>
+                    </div>
+                    <div className="bg-gray-50 p-3 rounded-lg">
+                      <h5 className="font-semibold text-sm mb-2">Crisi del 2008:</h5>
+                      <p className="text-xs text-gray-700">Riaccende il dibattito. I Saltwater sostengono la necessità di intervento governativo massiccio. I Freshwater rimangono scettici sugli stimoli fiscali.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-indigo-50 p-4 rounded-lg">
+                    <h5 className="font-semibold text-sm mb-2 text-indigo-900">Dove Siamo Oggi:</h5>
+                    <p className="text-sm text-indigo-800">Il dibattito continua, con un maggiore riconoscimento dell'instabilità dei mercati finanziari e l'incorporazione di più frizioni e elementi comportamentali nei modelli, ma profonde differenze sull'efficacia dell'intervento governativo persistono.</p>
+                  </div>
                 </div>
               </div>
             </CardContent>
