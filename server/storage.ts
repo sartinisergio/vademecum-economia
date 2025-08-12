@@ -137,20 +137,26 @@ export class MemStorage implements IStorage {
       this.concepts.set(id, concept);
     });
 
-    // Initialize comparisons - temporarily skip complex data
-    // comparisonsData.forEach(comparisonData => {
-    //   const id = randomUUID();
-    //   const comparison: Comparison = { 
-    //     id,
-    //     title: comparisonData.title,
-    //     description: comparisonData.description,
-    //     items: comparisonData.items,
-    //     aspects: comparisonData.aspects,
-    //     createdAt: comparisonData.createdAt || null,
-    //     isCustom: comparisonData.isCustom || null
-    //   };
-    //   this.comparisons.set(id, comparison);
-    // });
+    // Initialize comparisons - skip if data structure issues
+    try {
+      if (Array.isArray(comparisonsData) && comparisonsData.length > 0) {
+        comparisonsData.forEach(comparisonData => {
+          const id = randomUUID();
+          const comparison: Comparison = { 
+            id,
+            title: comparisonData.title,
+            description: comparisonData.description || "Confronto dettagliato",
+            items: comparisonData.items || [],
+            aspects: comparisonData.aspects || [],
+            createdAt: new Date().toISOString(),
+            isCustom: null
+          };
+          this.comparisons.set(id, comparison);
+        });
+      }
+    } catch (error) {
+      console.log("Comparisons data not loaded - using empty set");
+    }
   }
 
   async getAllSchools(): Promise<EconomicSchool[]> {
