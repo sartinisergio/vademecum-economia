@@ -309,16 +309,6 @@ export default function Dashboard() {
           />
 
           <SectionCard
-            title="EFC Economic Fitness Complexity"
-            description="Un nuovo paradigma per l'analisi economica basato sui sistemi complessi"
-            icon={<TrendingUp className="w-8 h-8 text-white" />}
-            count="Metodologia innovativa"
-            href="/efc"
-            gradient="gradient-cyan"
-            special={true}
-          />
-
-          <SectionCard
             title="Confronti Dinamici"
             description="Confronta scuole, modelli, manuali e concetti"
             icon={<GitCompare className="w-8 h-8 text-white" />}
@@ -352,6 +342,16 @@ export default function Dashboard() {
               </Badge>
             </div>
           </div>
+
+          <SectionCard
+            title="EFC Economic Fitness Complexity"
+            description="Un nuovo paradigma per l'analisi economica basato sui sistemi complessi"
+            icon={<TrendingUp className="w-8 h-8 text-white" />}
+            count="Metodologia innovativa"
+            href="/efc"
+            gradient="gradient-cyan"
+            special={true}
+          />
 
         </div>
       </section>
