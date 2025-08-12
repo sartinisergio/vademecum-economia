@@ -41,6 +41,12 @@
   --teal-gradient-end: hsl(174, 76%, 60%);
   --yellow-gradient-start: hsl(45, 94%, 52%);
   --yellow-gradient-end: hsl(45, 100%, 60%);
+  
+  --cyan-gradient-start: hsl(188, 94%, 42%);
+  --cyan-gradient-end: hsl(188, 90%, 50%);
+  
+  --rose-gradient-start: hsl(330, 81%, 60%);
+  --rose-gradient-end: hsl(330, 85%, 67%);
 }
 
 .dark {
@@ -124,5 +130,13 @@
   
   .gradient-yellow {
     background: linear-gradient(135deg, var(--yellow-gradient-start), var(--yellow-gradient-end));
+  }
+  
+  .gradient-cyan {
+    background: linear-gradient(135deg, var(--cyan-gradient-start), var(--cyan-gradient-end));
+  }
+  
+  .gradient-rose {
+    background: linear-gradient(135deg, var(--rose-gradient-start), var(--rose-gradient-end));
   }
 }

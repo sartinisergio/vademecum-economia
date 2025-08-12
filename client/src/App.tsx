@@ -7,6 +7,7 @@ import Header from "@/components/layout/header";
 import Dashboard from "@/pages/dashboard";
 import Schools from "@/pages/schools";
 import Models from "@/pages/models";
+import EFC from "@/pages/efc";
 import Manuals from "@/pages/manuals";
 import Concepts from "@/pages/concepts";
 import Comparisons from "@/pages/comparisons";
@@ -23,6 +24,7 @@ function Router() {
           <Route path="/" component={Dashboard} />
           <Route path="/schools" component={Schools} />
           <Route path="/models" component={Models} />
+          <Route path="/efc" component={EFC} />
           <Route path="/manuals" component={Manuals} />
           <Route path="/concepts" component={Concepts} />
           <Route path="/comparisons" component={Comparisons} />
