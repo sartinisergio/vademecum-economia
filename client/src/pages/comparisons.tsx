@@ -483,7 +483,7 @@ export default function Comparisons() {
                         };
 
                         // Determina aspetti intelligenti basati sui tipi selezionati
-                        const selectedTypes = [...new Set(createState.selectedItems.map(item => item.type))];
+                        const selectedTypes = Array.from(new Set(createState.selectedItems.map(item => item.type)));
                         let aspects = [];
                         
                         if (selectedTypes.includes("school")) {
@@ -1003,11 +1003,11 @@ export default function Comparisons() {
                     </div>
                     <p className="text-gray-600">{comparison.description}</p>
                     <div className="flex flex-wrap gap-2 mt-3">
-                      {comparison.items.map(item => (
-                        <Badge key={item.id} variant="outline" className="text-xs">
+                      {comparison.items?.map((item, idx) => (
+                        <Badge key={`${item.id}-${idx}`} variant="outline" className="text-xs">
                           {item.name}
                         </Badge>
-                      ))}
+                      )) || []}
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -1038,14 +1038,14 @@ export default function Comparisons() {
                 <CardContent className="pt-0 pb-8 px-8">
                   <Separator className="mb-6" />
                   <div className="space-y-6">
-                    {comparison.aspects.map((aspect, aspectIndex) => (
-                      <div key={aspectIndex}>
+                    {comparison.aspects?.map((aspect, aspectIndex) => (
+                      <div key={`aspect-${aspectIndex}`}>
                         <h4 className="text-lg font-semibold text-gray-900 mb-4">{aspect.name}</h4>
                         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-                          {aspect.comparisons.map((comp, compIndex) => {
-                            const item = comparison.items.find(i => i.id === comp.itemId);
+                          {aspect.comparisons?.map((comp, compIndex) => {
+                            const item = comparison.items?.find(i => i.id === comp.itemId);
                             return (
-                              <Card key={compIndex} className="border-l-4 border-l-primary bg-gray-50/50">
+                              <Card key={`comp-${aspectIndex}-${compIndex}`} className="border-l-4 border-l-primary bg-gray-50/50">
                                 <CardContent className="p-4">
                                   <div className="mb-2">
                                     <Badge variant="outline" className="mb-2">
@@ -1056,13 +1056,13 @@ export default function Comparisons() {
                                 </CardContent>
                               </Card>
                             );
-                          })}
+                          }) || []}
                         </div>
-                        {aspectIndex < comparison.aspects.length - 1 && (
+                        {aspectIndex < (comparison.aspects?.length || 0) - 1 && (
                           <Separator className="mt-6" />
                         )}
                       </div>
-                    ))}
+                    )) || []}
                   </div>
                 </CardContent>
               )}

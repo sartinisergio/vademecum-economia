@@ -137,17 +137,49 @@ export class MemStorage implements IStorage {
       this.concepts.set(id, concept);
     });
 
-    // Initialize comparisons - skip if data structure issues
+    // Initialize comparisons with proper data transformation
     try {
       if (Array.isArray(comparisonsData) && comparisonsData.length > 0) {
         comparisonsData.forEach(comparisonData => {
           const id = randomUUID();
+          
+          // Transform items from old format to new format
+          const transformedItems: { type: "school" | "model" | "manual" | "concept"; id: string; name: string; }[] = 
+            comparisonData.items?.map((item: any, itemIndex: number) => ({
+              type: "concept" as const, // default type since old format doesn't specify
+              id: `item-${itemIndex}`,
+              name: item.name || `Item ${itemIndex + 1}`
+            })) || [];
+          
+          // Transform aspects from old format to new format
+          const transformedAspects = comparisonData.aspects?.map((aspectName: string, aspectIndex: number) => {
+            // Generate aspect comparisons based on available items
+            const aspectComparisons = transformedItems.map((item, itemIndex) => {
+              // Use characteristics from old format if available
+              const originalItem = comparisonData.items?.[itemIndex];
+              const characteristics = originalItem?.characteristics || [];
+              const relevantCharacteristic = characteristics.find((char: string) => 
+                char.toLowerCase().includes(aspectName.toLowerCase().split(' ')[0])
+              ) || characteristics[aspectIndex % characteristics.length] || `Analisi per ${aspectName}`;
+              
+              return {
+                itemId: item.id,
+                value: relevantCharacteristic
+              };
+            });
+            
+            return {
+              name: aspectName,
+              comparisons: aspectComparisons
+            };
+          }) || [];
+
           const comparison: Comparison = { 
             id,
             title: comparisonData.title,
             description: comparisonData.description || "Confronto dettagliato",
-            items: comparisonData.items || [],
-            aspects: comparisonData.aspects || [],
+            items: transformedItems,
+            aspects: transformedAspects,
             createdAt: new Date().toISOString(),
             isCustom: null
           };
@@ -224,7 +256,12 @@ export class MemStorage implements IStorage {
     const id = randomUUID();
     const newComparison: Comparison = {
       id,
-      ...comparison
+      title: comparison.title,
+      description: comparison.description,
+      items: comparison.items,
+      aspects: comparison.aspects,
+      createdAt: comparison.createdAt || new Date().toISOString(),
+      isCustom: comparison.isCustom || "true"
     };
     this.comparisons.set(id, newComparison);
     return newComparison;
