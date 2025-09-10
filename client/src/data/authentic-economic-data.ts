@@ -859,5 +859,56 @@ export const comparisonsData = [
       "Pubblico Target",
       "Punti di Forza"
     ]
+  },
+  {
+    title: "Economic Fitness and Complexity vs Scuole Economiche Tradizionali",
+    description: "Un confronto tra l'approccio EFC (Economic Fitness and Complexity) e le principali scuole di pensiero economiche tradizionali, mostrando come l'EFC rappresenti un paradigma emergente e trasversale del XXI secolo",
+    items: [
+      {
+        name: "Economic Fitness & Complexity (EFC)",
+        characteristics: [
+          "Ecosistema adattivo in evoluzione, caratterizzato da dinamiche di non-equilibrio, feedback e proprietà emergenti",
+          "L'economia è una rete di relazioni interconnesse, la cui struttura è cruciale per comprendere la propagazione di shock e informazioni",
+          "Uso massiccio di simulazioni computerizzate, modelli basati sugli agenti e algoritmi non lineari applicati a big data",
+          "Visione bottom-up dell'economia mondiale con metodologia data-driven",
+          "Path dependence: la storia conta e piccoli eventi casuali del passato possono avere conseguenze permanenti"
+        ]
+      },
+      {
+        name: "Scuola Neoclassica",
+        characteristics: [
+          "Un sistema che tende all'equilibrio attraverso l'aggiustamento dei prezzi, guidato da agenti che ottimizzano le loro scelte",
+          "Un meccanismo efficiente di allocazione delle risorse, che coordina domanda e offerta attraverso il sistema dei prezzi",
+          "Uso estensivo della matematica e dei modelli di equilibrio generale (es. DSGE) per formalizzare le teorie",
+          "Razionalità ottimizzante degli agenti economici",
+          "Relazioni lineari e tendenza all'equilibrio automatico"
+        ]
+      },
+      {
+        name: "Scuola Post-Keynesiana",
+        characteristics: [
+          "Un sistema caratterizzato da incertezza radicale e guidato dalla domanda aggregata, dove il futuro è imprevedibile",
+          "I prezzi sono amministrati dalle imprese (markup sui costi). La moneta è creata endogenamente dal sistema bancario",
+          "Enfasi sul realismo delle assunzioni e sul ruolo del tempo storico e delle istituzioni, spesso con approcci narrativi",
+          "Incertezza fondamentale e non-equilibrio come caratteristiche permanenti",
+          "Importanza del tempo storico e delle istituzioni nella determinazione degli esiti economici"
+        ]
+      },
+      {
+        name: "Scuola Austriaca",
+        characteristics: [
+          "Un sistema caratterizzato da ordine spontaneo. Il mercato è un processo di scoperta continua, mai in equilibrio",
+          "Un processo di scoperta guidato dall'imprenditorialità, che coordina la conoscenza dispersa e tacita tra gli agenti",
+          "Critica all'eccessiva matematizzazione e preferenza per la logica deduttiva e l'analisi verbale",
+          "Conoscenza dispersa e mercato come processo di scoperta",
+          "Rifiuto della pianificazione centrale e enfasi sull'azione umana"
+        ]
+      }
+    ],
+    aspects: [
+      "Visione del Sistema Economico",
+      "Ruolo del Mercato",
+      "Approccio Metodologico"
+    ]
   }
 ];
