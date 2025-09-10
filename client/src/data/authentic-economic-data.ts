@@ -862,53 +862,63 @@ export const comparisonsData = [
   },
   {
     title: "Economic Fitness and Complexity vs Scuole Economiche Tradizionali",
-    description: "Un confronto tra l'approccio EFC (Economic Fitness and Complexity) e le principali scuole di pensiero economiche tradizionali, mostrando come l'EFC rappresenti un paradigma emergente e trasversale del XXI secolo",
+    description: "Un'analisi approfondita dell'approccio EFC nel panorama delle teorie economiche. L'Economic Fitness and Complexity rappresenta una delle più significative innovazioni metodologiche degli ultimi decenni, offrendo una nuova lente per interpretare l'economia globale attraverso la scienza dei sistemi complessi. Questo confronto esamina le differenze e i punti di contatto tra l'EFC e le principali scuole tradizionali, mostrando come l'EFC rappresenti un paradigma emergente e trasversale del XXI secolo.",
     items: [
       {
         name: "Economic Fitness & Complexity (EFC)",
         characteristics: [
-          "Ecosistema adattivo in evoluzione, caratterizzato da dinamiche di non-equilibrio, feedback e proprietà emergenti",
-          "L'economia è una rete di relazioni interconnesse, la cui struttura è cruciale per comprendere la propagazione di shock e informazioni",
-          "Uso massiccio di simulazioni computerizzate, modelli basati sugli agenti e algoritmi non lineari applicati a big data",
-          "Visione bottom-up dell'economia mondiale con metodologia data-driven",
-          "Path dependence: la storia conta e piccoli eventi casuali del passato possono avere conseguenze permanenti"
+          "INTRODUZIONE: Fornisce una 'visione bottom-up dell'economia mondiale' basata sulla scienza dei sistemi complessi, con contributi fondanti da César Hidalgo e Ricardo Hausmann ad Harvard, e sviluppi metodologici decisivi dal gruppo di Luciano Pietronero in Italia.",
+          "VISIONE DELL'ECONOMIA: L'economia è un ecosistema complesso in continua evoluzione, non una macchina che tende naturalmente a un punto di equilibrio. È un sistema che apprende, si adatta e co-evolve con la tecnologia e le istituzioni.",
+          "METODOLOGIA DATA-DRIVEN: Utilizza algoritmi iterativi e non lineari applicati a grandi dataset (come i dati sull'export globale) per estrarre informazioni nascoste. Calcola due metriche fondamentali con logica ricorsiva: la Fitness di un paese (capacità produttiva) e la Complessità di un prodotto (sofisticazione del bene).",
+          "NON-EQUILIBRIO E PATH DEPENDENCE: L'economia è vista come un sistema in 'perpetuo divenire'. La storia conta: piccoli eventi casuali del passato possono avere conseguenze permanenti, definendo i percorsi di sviluppo futuri di un paese.",
+          "PROPRIETÀ EMERGENTI: Il comportamento del sistema economico non è la semplice somma dei comportamenti dei singoli agenti. Proprietà come la crescita, le crisi o la resilienza emergono dalle interazioni complesse all'interno della rete economica.",
+          "ORDINE SPONTANEO: Il Product Space dell'EFC—la mappa delle capacità produttive che collega i prodotti—è un perfetto esempio di ordine spontaneo hayekiano: emerge dai dati commerciali globali con una struttura stabile e prevedibile senza pianificazione centrale.",
+          "CONOSCENZA DISPERSA: L'algoritmo di Fitness 'processa' le informazioni disperse nei dati commerciali globali per estrarre una misura sintetica delle capacità produttive di un paese, traducendo in pratica l'idea hayekiana di conoscenza distribuita."
         ]
       },
       {
         name: "Scuola Neoclassica",
         characteristics: [
-          "Un sistema che tende all'equilibrio attraverso l'aggiustamento dei prezzi, guidato da agenti che ottimizzano le loro scelte",
-          "Un meccanismo efficiente di allocazione delle risorse, che coordina domanda e offerta attraverso il sistema dei prezzi",
-          "Uso estensivo della matematica e dei modelli di equilibrio generale (es. DSGE) per formalizzare le teorie",
-          "Razionalità ottimizzante degli agenti economici",
-          "Relazioni lineari e tendenza all'equilibrio automatico"
+          "VISIONE DEL SISTEMA: Un sistema che tende all'equilibrio attraverso l'aggiustamento dei prezzi, guidato da agenti razionali che ottimizzano le loro scelte per massimizzare utilità o profitto.",
+          "RUOLO DEL MERCATO: Un meccanismo efficiente di allocazione delle risorse che coordina automaticamente domanda e offerta attraverso il sistema dei prezzi.",
+          "METODOLOGIA: Uso estensivo della matematica e dei modelli di equilibrio generale (es. DSGE) per formalizzare le teorie. Basato su relazioni lineari e tendenze all'equilibrio automatico.",
+          "CONTRASTO FONDAMENTALE CON EFC: La visione neoclassica di un mercato che tende naturalmente a un punto di equilibrio è diametralmente opposta alla visione dell'EFC di un'economia come sistema in 'perpetuo divenire', costantemente lontano dall'equilibrio.",
+          "RAZIONALITÀ VS ADATTAMENTO: L'agente economico neoclassico è un attore razionale che massimizza. Nell'economia della complessità, gli agenti sono entità adattive che apprendono e modificano le strategie in risposta a un ambiente in continuo cambiamento.",
+          "LINEARITÀ VS NON-LINEARITÀ: I modelli neoclassici tendono a basarsi su relazioni lineari. L'EFC si fonda su dinamiche non lineari e circuiti di feedback, dove piccoli cambiamenti possono avere effetti enormi ('effetto farfalla')."
         ]
       },
       {
         name: "Scuola Post-Keynesiana",
         characteristics: [
-          "Un sistema caratterizzato da incertezza radicale e guidato dalla domanda aggregata, dove il futuro è imprevedibile",
-          "I prezzi sono amministrati dalle imprese (markup sui costi). La moneta è creata endogenamente dal sistema bancario",
-          "Enfasi sul realismo delle assunzioni e sul ruolo del tempo storico e delle istituzioni, spesso con approcci narrativi",
-          "Incertezza fondamentale e non-equilibrio come caratteristiche permanenti",
-          "Importanza del tempo storico e delle istituzioni nella determinazione degli esiti economici"
+          "VISIONE DEL SISTEMA: Un sistema caratterizzato da incertezza radicale e guidato dalla domanda aggregata, dove il futuro è intrinsecamente imprevedibile.",
+          "RUOLO DEL MERCATO: I prezzi sono amministrati dalle imprese attraverso markup sui costi. La moneta è creata endogenamente dal sistema bancario, non è neutrale.",
+          "METODOLOGIA: Enfasi sul realismo delle assunzioni e sul ruolo del tempo storico e delle istituzioni, spesso con approcci narrativi piuttosto che puramente matematici.",
+          "AFFINITÀ CON EFC: Entrambe le scuole pongono l'accento su incertezza fondamentale (il futuro è intrinsecamente imprevedibile), non-equilibrio (l'economia non tende automaticamente all'equilibrio), e tempo storico con path dependence.",
+          "ONTOLOGIA CONDIVISA: Sia l'EFC che i post-keynesiani vedono l'economia come un sistema aperto caratterizzato da non-equilibrio permanente, dove le istituzioni e la storia giocano un ruolo cruciale.",
+          "COMPLEMENTARITÀ: I post-keynesiani forniscono il framework teorico per comprendere l'incertezza e l'instabilità, mentre l'EFC offre strumenti quantitativi avanzati per analizzare queste dinamiche."
         ]
       },
       {
         name: "Scuola Austriaca",
         characteristics: [
-          "Un sistema caratterizzato da ordine spontaneo. Il mercato è un processo di scoperta continua, mai in equilibrio",
-          "Un processo di scoperta guidato dall'imprenditorialità, che coordina la conoscenza dispersa e tacita tra gli agenti",
-          "Critica all'eccessiva matematizzazione e preferenza per la logica deduttiva e l'analisi verbale",
-          "Conoscenza dispersa e mercato come processo di scoperta",
-          "Rifiuto della pianificazione centrale e enfasi sull'azione umana"
+          "VISIONE DEL SISTEMA: Un sistema caratterizzato da ordine spontaneo dove il mercato è un processo di scoperta continua, mai in equilibrio statico.",
+          "RUOLO DEL MERCATO: Un processo di scoperta guidato dall'imprenditorialità che coordina la conoscenza dispersa e tacita tra gli agenti economici.",
+          "METODOLOGIA: Critica all'eccessiva matematizzazione dell'economia, preferenza per la logica deduttiva e l'analisi verbale basata sull'azione umana.",
+          "CONVERGENZE SORPRENDENTI CON EFC: Nonostante la Scuola Austriaca rifiuti la matematizzazione, l'EFC presenta straordinarie 'convergenze hayekiane'. Molti studiosi considerano l'EFC come la 'formalizzazione quantitativa di intuizioni profonde che Hayek aveva già sviluppato decenni prima'.",
+          "ORDINE SPONTANEO HAYEKIANO: Hayek teorizzò che strutture economiche complesse possono emergere senza un pianificatore centrale, come risultato dell'azione umana ma non della progettazione umana. Il Product Space dell'EFC è un perfetto esempio di questo principio.",
+          "CONOSCENZA DISPERSA: Secondo Hayek, la conoscenza economicamente rilevante è distribuita tra milioni di agenti e non può essere centralizzata. L'EFC traduce questa idea in pratica attraverso i suoi algoritmi.",
+          "MERCATO COME PROCESSO: Entrambe vedono il mercato non come uno stato di equilibrio, ma come un processo dinamico e continuo di scoperta, dove gli imprenditori (e i paesi) esplorano nuove opportunità e percorsi di sviluppo."
         ]
       }
     ],
     aspects: [
       "Visione del Sistema Economico",
       "Ruolo del Mercato",
-      "Approccio Metodologico"
+      "Approccio Metodologico",
+      "Rapporto con l'Equilibrio",
+      "Trattamento dell'Incertezza",
+      "Ruolo della Conoscenza",
+      "Affinità e Divergenze"
     ]
   }
 ];
