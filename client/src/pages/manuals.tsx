@@ -530,31 +530,30 @@ export default function Manuals() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {filteredReports.map((manual, index) => (
-                <tr key={manual.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+              {filteredReports.map((report, index) => (
+                <tr key={report.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                   <td className="px-6 py-4">
                     <div>
-                      <div className="font-medium text-gray-900">{manual.title}</div>
-                      <div className="text-sm text-gray-500">{manual.authors.join(", ")}</div>
+                      <div className="font-medium text-gray-900">{report.title}</div>
+                      <div className="text-sm text-gray-500">{report.authors.join(", ")}</div>
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <Badge className={schoolColors[manual.school as keyof typeof schoolColors] || "bg-gray-100 text-gray-800 border-gray-200"}>
-                      {manual.school}
+                    <Badge className={schoolColors[report.schoolsOfThought as keyof typeof schoolColors] || "bg-gray-100 text-gray-800 border-gray-200"}>
+                      {report.schoolsOfThought}
                     </Badge>
                   </td>
                   <td className="px-6 py-4">
                     <div className="text-sm text-gray-600">
-                      {(manual.strengths || []).slice(0, 2).join(", ")}
-                      {(manual.strengths || []).length > 2 && "..."}
+                      {report.nonStandardTopics.length > 100 
+                        ? `${report.nonStandardTopics.substring(0, 100)}...`
+                        : report.nonStandardTopics
+                      }
                     </div>
                   </td>
                   <td className="px-6 py-4">
                     <div className="text-sm text-gray-600">
-                      {(manual.targetAudience || "").length > 50 
-                        ? `${(manual.targetAudience || "").substring(0, 50)}...`
-                        : (manual.targetAudience || "Non specificato")
-                      }
+                      {report.publisher}
                     </div>
                   </td>
                 </tr>
@@ -581,7 +580,7 @@ export default function Manuals() {
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">
-              {Array.from(new Set(displayedReports.map(m => m.school))).length}
+              {Array.from(new Set(displayedReports.map(m => m.schoolsOfThought))).length}
             </div>
             <div className="text-gray-600">Scuole Rappresentate</div>
           </div>
@@ -593,7 +592,7 @@ export default function Manuals() {
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">
-              {displayedReports.reduce((acc, manual) => acc + (manual.strengths || []).length, 0)}
+              {displayedReports.length}
             </div>
             <div className="text-gray-600">Punti di Forza</div>
           </div>

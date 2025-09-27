@@ -114,7 +114,7 @@ export const analyticalReportsData = [
   },
   {
     title: "Economia",
-    authors: ["Cristiano Antonelli", "et al."],
+    authors: ["Antonelli et al."],
     publisher: "Giappichelli",
     generalOverview: "Il manuale di Antonelli rappresenta un approccio sistematico e rigorosamente strutturato all'insegnamento dell'economia politica, caratterizzato da una particolare attenzione alla progressione pedagogica e all'approfondimento metodologico. La struttura bipartita di ogni capitolo ('Per capire' e 'Per approfondire') rivela una filosofia didattica innovativa che permette una fruizione differenziata del contenuto in base al livello di preparazione degli studenti.",
     schoolsOfThought: "L'impostazione teorica è solidamente ancorata alla tradizione neoclassica, con l'approccio sistematico alla teoria del consumatore basato su ottimizzazione vincolata e la teoria dell'impresa secondo l'approccio marshalliano. Tuttavia, presenta significative aperture verso approcci più moderni, integrando contributi della Nuova Economia Istituzionale e della teoria dei contratti incompleti. Sul fronte macroeconomico, l'approccio è eclettico, presentando il confronto tra Nuova Macroeconomia Classica e Nuova Macroeconomia Keynesiana.",
@@ -222,7 +222,7 @@ export const analyticalReportsData = [
   },
   {
     title: "Economia",
-    authors: ["Giuseppe Parravicini", "Davide Graffi"],
+    authors: ["Parravicini e Graffi"],
     publisher: "Egea",
     generalOverview: "Il manuale di Parravicini e Graffi rappresenta un approccio distintivo all'insegnamento dell'economia, caratterizzato da una particolare attenzione alla dimensione storica e metodologica della disciplina. L'architettura dell'opera, che si apre con un'ampia sezione sui 'Lineamenti di storia del pensiero economico' curata da Mario Pomini, rivela una filosofia didattica che privilegia la comprensione dell'evoluzione teorica come chiave per comprendere i contenuti contemporanei.",
     schoolsOfThought: "L'impostazione teorica dell'opera è caratterizzata da un pluralismo storico esplicito e sistematico. La sezione introduttiva di storia del pensiero presenta un'evoluzione completa dalle origini classiche attraverso la rivoluzione marginalista fino agli sviluppi contemporanei. L'approccio microeconomico segue prevalentemente la tradizione neoclassica marshalliana, mentre l'inclusione sistematica di elementi storici indica un approccio che contestualizza storicamente i modelli teorici. Sul fronte macroeconomico, l'approccio è distintamente keynesiano, con l'integrazione del modello IS-LM e DA-OA per l'analisi delle variazioni di prezzo.",
