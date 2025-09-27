@@ -6,12 +6,14 @@ EconoLab is an educational web application focused on economic schools of though
 
 - **Content Integration Complete**: All data now uses 100% authentic content from "Sintesi vademecum Economia_1754034629267.pdf" without any additional synthesis
 - **5 Complete Economic Schools**: Neoclassica, Post-Keynesiana, Austriaca, Comportamentale, Complessità with full details, economists, and examples
-- **13 Authentic University Manuals**: Complete descriptions of actual textbooks used in Italian universities with authors, characteristics, strengths/weaknesses
+- **14 Analytical Reports Complete**: Transformed from "Manuali" to "Report Analitici" with complete descriptions of actual textbooks used in Italian universities
+- **Data Accuracy Improvements**: Corrected author names to abbreviated format (Antonelli et al., Brue et al., Parravicini e Graffi) and accurate publisher information (Brue→Zanichelli, The CORE Team→Il Mulino, Parravicini e Graffi→Giappichelli)
+- **Technical Stability**: Resolved all LSP errors and JavaScript runtime issues, ensuring 100% functional comparison and filtering systems
 - **34+ Economic Concepts**: Full glossary with authentic definitions and relationships from the source document  
 - **10 Economic Models**: Complete microeconomic and macroeconomic models with applications and school connections
 - **Unified Models Section**: Combined micro and macroeconomic models into single "Modelli Teorici" section with unified interface and comparison tools
-- **Interactive Selection System**: All major sections (Manuals, Schools, Models) now feature checkbox selection, filtering, and detailed comparison tables
-- **Print/Export Functionality**: Complete print functionality for comparison results across all three main sections (Manuals, Schools, Models) with professional PDF formatting and Italian localization
+- **Interactive Selection System**: All major sections (Reports, Schools, Models) now feature checkbox selection, filtering, and detailed comparison tables
+- **Print/Export Functionality**: Complete print functionality for comparison results across all three main sections (Reports, Schools, Models) with professional PDF formatting and Italian localization
 - **Enhanced User Experience**: Print button always visible when 2+ items selected, regardless of view mode; print content reflects exactly selected items
 - **Search functionality removed**: Eliminated problematic search feature due to technical complexity and user preference for cleaner interface
 - **Header simplified**: Cleaned up navigation to only include Dashboard link
