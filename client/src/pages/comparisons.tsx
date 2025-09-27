@@ -325,31 +325,31 @@ export default function Comparisons() {
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-2">Report Analitici ({filteredAnalyticalReports.length})</h4>
                       <div className="space-y-2 max-h-32 overflow-y-auto">
-                        {filteredAnalyticalReports.map(manual => (
-                          <div key={manual.id} className="flex items-center space-x-2">
+                        {filteredAnalyticalReports.map(report => (
+                          <div key={report.id} className="flex items-center space-x-2">
                             <Checkbox
-                              checked={createState.selectedItems.some(item => item.id === manual.id)}
+                              checked={createState.selectedItems.some(item => item.id === report.id)}
                               onCheckedChange={(checked) => {
                                 if (checked) {
                                   setCreateState(prev => ({
                                     ...prev,
                                     selectedItems: [...prev.selectedItems, {
-                                      type: 'manual',
-                                      id: manual.id,
-                                      name: `${manual.title} (${manual.authors.join(", ")})`
+                                      type: 'analyticalReport',
+                                      id: report.id,
+                                      name: `${report.title} (${report.authors.join(", ")})`
                                     }]
                                   }));
                                 } else {
                                   setCreateState(prev => ({
                                     ...prev,
-                                    selectedItems: prev.selectedItems.filter(item => item.id !== manual.id)
+                                    selectedItems: prev.selectedItems.filter(item => item.id !== report.id)
                                   }));
                                 }
                               }}
                             />
                             <div className="text-sm">
-                              <div className="font-medium">{manual.title}</div>
-                              <div className="text-gray-500 text-xs">{manual.authors.join(", ")}</div>
+                              <div className="font-medium">{report.title}</div>
+                              <div className="text-gray-500 text-xs">{report.authors.join(", ")}</div>
                             </div>
                           </div>
                         ))}
@@ -457,14 +457,14 @@ export default function Comparisons() {
                             }
                           }
                           
-                          if (item.type === "manual") {
+                          if (item.type === "analyticalReport") {
                             const report = analyticalReports?.find(r => r.id === item.id);
-                            if (manual) {
-                              if (aspectName === "Autori") return manual.authors.join(", ");
-                              if (aspectName === "Scuola di Pensiero") return manual.school;
-                              if (aspectName === "Punti di Forza") return manual.strengths.join("; ");
-                              if (aspectName === "Target") return manual.targetAudience;
-                              return manual.characteristics;
+                            if (report) {
+                              if (aspectName === "Autori") return report.authors.join(", ");
+                              if (aspectName === "Scuola di Pensiero") return report.schoolsOfThought;
+                              if (aspectName === "Punti di Forza") return report.generalOverview;
+                              if (aspectName === "Target") return report.publisher;
+                              return report.generalOverview;
                             }
                           }
                           
@@ -520,7 +520,7 @@ export default function Comparisons() {
                           });
                         }
                         
-                        if (selectedTypes.includes("manual")) {
+                        if (selectedTypes.includes("analyticalReport")) {
                           aspects.push({
                             name: "Autori e Scuola",
                             comparisons: createState.selectedItems.map(item => ({
