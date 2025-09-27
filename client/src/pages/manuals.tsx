@@ -85,7 +85,7 @@ export default function Manuals() {
     const printContent = `
       <html>
         <head>
-          <title>Confronto Manuali - Vademecum di Economia</title>
+          <title>Report Analitici - Vademecum di Economia</title>
           <style>
             body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
             .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #333; padding-bottom: 10px; }
@@ -104,7 +104,7 @@ export default function Manuals() {
         </head>
         <body>
           <div class="header">
-            <h1>Confronto Manuali di Economia</h1>
+            <h1>Report Analitici di Economia</h1>
             <p>Vademecum di Economia - ${new Date().toLocaleDateString('it-IT')}</p>
             <p>Confronto di ${reportsForPrint.length} report analitici selezionati</p>
           </div>
@@ -189,17 +189,17 @@ export default function Manuals() {
     
     const query = searchQuery.toLowerCase();
     return (
-      manual.title.toLowerCase().includes(query) ||
-      manual.authors.some(author => author.toLowerCase().includes(query)) ||
-      manual.characteristics?.toLowerCase().includes(query) ||
-      manual.strengths.some(strength => strength.toLowerCase().includes(query)) ||
-      manual.weaknesses.some(weakness => weakness.toLowerCase().includes(query))
+      report.title.toLowerCase().includes(query) ||
+      report.authors.some(author => author.toLowerCase().includes(query)) ||
+      report.characteristics?.toLowerCase().includes(query) ||
+      report.strengths.some(strength => strength.toLowerCase().includes(query)) ||
+      report.weaknesses.some(weakness => weakness.toLowerCase().includes(query))
     );
   }) || [];
 
   // Manuali da visualizzare in base alla modalità
-  const displayedManuals = displayMode === "all" ? filteredManuals : 
-    filteredManuals.filter(manual => selectedManuals.includes(manual.id));
+  const displayedManuals = displayMode === "all" ? filteredReports : 
+    filteredReports.filter(report => selectedManuals.includes(report.id));
 
   if (isLoading) {
     return (
@@ -238,11 +238,11 @@ export default function Manuals() {
           </div>
           <div>
             <h1 className="text-4xl font-bold text-gray-900">
-              {searchQuery ? `Risultati per "${searchQuery}"` : "Manuali Universitari"}
+              {searchQuery ? `Risultati per "${searchQuery}"` : "Report Analitici Universitari"}
             </h1>
             <p className="text-xl text-gray-600">
               {searchQuery 
-                ? `${filteredManuals.length} manuali trovati` 
+                ? `${filteredReports.length} manuali trovati` 
                 : "Testi di riferimento delle università italiane"
               }
             </p>
@@ -261,7 +261,7 @@ export default function Manuals() {
           <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
             <div className="flex items-center space-x-2">
               <Filter className="w-5 h-5 text-gray-600" />
-              <h3 className="font-semibold text-gray-900">Seleziona Manuali</h3>
+              <h3 className="font-semibold text-gray-900">Seleziona Report</h3>
             </div>
             
             <Select value={displayMode} onValueChange={(value: "all" | "selected") => setDisplayMode(value)}>
@@ -322,7 +322,7 @@ export default function Manuals() {
       </div>
 
       {/* Search Results Message */}
-      {searchQuery && filteredManuals.length === 0 && (
+      {searchQuery && filteredReports.length === 0 && (
         <div className="text-center py-12">
           <BookOpen className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h3 className="text-xl font-semibold text-gray-900 mb-2">Nessun manuale trovato</h3>
@@ -599,7 +599,7 @@ export default function Manuals() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {filteredManuals.map((manual, index) => (
+              {filteredReports.map((manual, index) => (
                 <tr key={manual.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                   <td className="px-6 py-4">
                     <div>
@@ -637,15 +637,15 @@ export default function Manuals() {
       {/* Summary Stats */}
       <div className="mt-12 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-2xl p-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          {comparisonMode ? `Analisi dei ${selectedManuals.length} Manuali Selezionati` : "Panoramica dei Manuali"}
+          {comparisonMode ? `Analisi dei ${selectedManuals.length} Report Selezionati` : "Panoramica dei Report Analitici"}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">{displayedManuals.length}</div>
             <div className="text-gray-600">
-              {comparisonMode ? "Manuali Confrontati" : 
-               searchQuery ? "Manuali Trovati" : 
-               displayMode === "selected" ? "Manuali Selezionati" : "Manuali Analizzati"}
+              {comparisonMode ? "Report Confrontati" : 
+               searchQuery ? "Report Trovati" : 
+               displayMode === "selected" ? "Report Selezionati" : "Report Analitici"}
             </div>
           </div>
           <div className="text-center">

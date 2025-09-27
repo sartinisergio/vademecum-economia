@@ -33,7 +33,7 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Risorse</h4>
             <ul className="space-y-2 text-gray-300">
-              <li><Link href="/manuals" className="hover:text-white transition-colors">Manuali Universitari</Link></li>
+              <li><Link href="/manuals" className="hover:text-white transition-colors">Report Analitici</Link></li>
               <li><Link href="/concepts" className="hover:text-white transition-colors">Concetti Chiave</Link></li>
               <li><Link href="/timeline" className="hover:text-white transition-colors">Timeline Storica</Link></li>
               <li><Link href="/quiz" className="hover:text-white transition-colors">Quiz di Verifica</Link></li>

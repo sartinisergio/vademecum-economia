@@ -140,7 +140,7 @@ export default function Comparisons() {
     model.name.toLowerCase().includes(dialogSearchQuery.toLowerCase())
   ) || [];
 
-  const filteredManuals = manuals?.filter(manual =>
+  const filteredAnalyticalReports = analyticalReports?.filter(report =>
     dialogSearchQuery === "" ||
     manual.title.toLowerCase().includes(dialogSearchQuery.toLowerCase())
   ) || [];
@@ -323,7 +323,7 @@ export default function Comparisons() {
 
                     {/* Manuals */}
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Manuali ({filteredManuals.length})</h4>
+                      <h4 className="font-semibold text-gray-900 mb-2">Report Analitici ({filteredAnalyticalReports.length})</h4>
                       <div className="space-y-2 max-h-32 overflow-y-auto">
                         {filteredManuals.map(manual => (
                           <div key={manual.id} className="flex items-center space-x-2">
@@ -435,7 +435,7 @@ export default function Comparisons() {
                       if (createState.selectedItems.length >= 2 && createState.title.trim()) {
                         // Genera contenuti automatici ricchi basati sui dati autentici
                         const generateSmartContent = (item: any, aspectName: string) => {
-                          const allData = { schools, models, manuals, concepts };
+                          const allData = { schools, models, analyticalReports, concepts };
                           
                           if (item.type === "school") {
                             const school = schools?.find(s => s.id === item.id);
@@ -458,7 +458,7 @@ export default function Comparisons() {
                           }
                           
                           if (item.type === "manual") {
-                            const manual = manuals?.find(m => m.id === item.id);
+                            const report = analyticalReports?.find(r => r.id === item.id);
                             if (manual) {
                               if (aspectName === "Autori") return manual.authors.join(", ");
                               if (aspectName === "Scuola di Pensiero") return manual.school;

@@ -137,7 +137,7 @@ export default function Dashboard() {
                     <div className="p-4 bg-emerald-50 rounded-lg">
                       <div className="flex items-center mb-2">
                         <BookOpen className="w-5 h-5 mr-2 text-emerald-600" />
-                        <h4 className="font-semibold">Manuali</h4>
+                        <h4 className="font-semibold">Report Analitici</h4>
                       </div>
                       <p className="text-sm text-gray-600">13 manuali autentici delle università italiane con dettagli su autori, caratteristiche e approcci.</p>
                     </div>
@@ -282,8 +282,8 @@ export default function Dashboard() {
           />
 
           <SectionCard
-            title="Manuali"
-            description="Testi di riferimento delle università italiane"
+            title="Report Analitici"
+            description="Analisi dettagliate dei testi universitari italiani"
             icon={<BookOpen className="w-8 h-8 text-white" />}
             count={`${stats?.analyticalReportsCount || 15}+ report analitici`}
             href="/manuals"
