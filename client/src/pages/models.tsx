@@ -23,8 +23,8 @@ export default function Models() {
     queryKey: ["/api/models"],
   });
 
-  const microModels = models?.filter(model => model.type === "microeconomico") || [];
-  const macroModels = models?.filter(model => model.type === "macroeconomico") || [];
+  const microModels = models?.filter(model => model.type === "micro") || [];
+  const macroModels = models?.filter(model => model.type === "macro") || [];
 
   const toggleModelSelection = (modelId: string) => {
     setSelectedModels(prev => 
@@ -78,7 +78,7 @@ export default function Models() {
           ${modelsForPrint.map((model: any) => `
             <div class="model">
               <div class="model-title">${model.name}</div>
-              <div class="type-badge">${model.type === 'microeconomico' ? 'Microeconomico' : 'Macroeconomico'}</div>
+              <div class="type-badge">${model.type === 'micro' ? 'Microeconomico' : 'Macroeconomico'}</div>
               
               <div class="section">
                 <div class="section-title">Descrizione:</div>
@@ -122,8 +122,8 @@ export default function Models() {
   // Modelli da visualizzare in base alla modalità
   const displayedModels = displayMode === "all" ? models : 
     models?.filter(model => selectedModels.includes(model.id)) || [];
-  const displayedMicroModels = displayedModels?.filter(model => model.type === "microeconomico") || [];
-  const displayedMacroModels = displayedModels?.filter(model => model.type === "macroeconomico") || [];
+  const displayedMicroModels = displayedModels?.filter(model => model.type === "micro") || [];
+  const displayedMacroModels = displayedModels?.filter(model => model.type === "macro") || [];
 
   if (isLoading) {
     return (
@@ -165,19 +165,19 @@ export default function Models() {
               onCheckedChange={() => toggleModelSelection(model.id)}
               className="mt-1"
             />
-            <div className={`w-16 h-16 ${model.type === 'microeconomico' ? 'gradient-orange' : 'gradient-red'} rounded-xl flex items-center justify-center`}>
-              {model.type === 'microeconomico' ? 
+            <div className={`w-16 h-16 ${model.type === 'micro' ? 'gradient-orange' : 'gradient-red'} rounded-xl flex items-center justify-center`}>
+              {model.type === 'micro' ? 
                 <Calculator className="w-8 h-8 text-white" /> : 
                 <TrendingUp className="w-8 h-8 text-white" />
               }
             </div>
             <div>
               <CardTitle className="text-xl">{model.name}</CardTitle>
-              <Badge className={model.type === 'microeconomico' ? 
+              <Badge className={model.type === 'micro' ? 
                 "bg-orange-100 text-orange-800 border-orange-200" : 
                 "bg-red-100 text-red-800 border-red-200"
               }>
-                {model.type === 'microeconomico' ? 'Microeconomico' : 'Macroeconomico'}
+                {model.type === 'micro' ? 'Microeconomico' : 'Macroeconomico'}
               </Badge>
             </div>
           </div>
@@ -334,11 +334,11 @@ export default function Models() {
                   <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Tipo</td>
                   {displayedModels?.map((model) => (
                     <td key={model.id} className="px-6 py-4">
-                      <Badge className={model.type === 'microeconomico' ? 
+                      <Badge className={model.type === 'micro' ? 
                         "bg-orange-100 text-orange-800 border-orange-200" : 
                         "bg-red-100 text-red-800 border-red-200"
                       }>
-                        {model.type === 'microeconomico' ? 'Microeconomico' : 'Macroeconomico'}
+                        {model.type === 'micro' ? 'Microeconomico' : 'Macroeconomico'}
                       </Badge>
                     </td>
                   ))}
