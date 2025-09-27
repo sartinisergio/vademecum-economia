@@ -620,9 +620,9 @@ export default function Manuals() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="text-sm text-gray-600">
-                      {manual.targetAudience.length > 50 
-                        ? `${manual.targetAudience.substring(0, 50)}...`
-                        : manual.targetAudience
+                      {(manual.targetAudience || "").length > 50 
+                        ? `${(manual.targetAudience || "").substring(0, 50)}...`
+                        : (manual.targetAudience || "Non specificato")
                       }
                     </div>
                   </td>
@@ -662,7 +662,7 @@ export default function Manuals() {
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">
-              {displayedManuals.reduce((acc, manual) => acc + manual.strengths.length, 0)}
+              {displayedManuals.reduce((acc, manual) => acc + (manual.strengths || []).length, 0)}
             </div>
             <div className="text-gray-600">Punti di Forza</div>
           </div>

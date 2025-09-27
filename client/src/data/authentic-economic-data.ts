@@ -120,10 +120,27 @@ export const analyticalReportsData = [
     growthModels: "La trattazione della crescita economica appare particolarmente approfondita e moderna. Il capitolo 21 è specificamente dedicato alla crescita economica, mentre il capitolo 22 affronta le determinanti dello sviluppo comparato. Questa struttura suggerisce un approccio che integra i modelli di crescita neoclassici (Solow) con le teorie della crescita endogena (Romer, Lucas) e i modelli istituzionali. La collocazione del capitolo sulla crescita prima dell'analisi delle fluttuazioni cicliche indica una priorità concettuale data ai fenomeni di lungo periodo, coerentemente con l'approccio di Acemoglu che vede nelle istituzioni e nella tecnologia i driver fondamentali dello sviluppo economico. Il capitolo 22, con la sua domanda provocatoria 'Perché non tutto il mondo si è sviluppato?', probabilmente incorpora i modelli di crescita con soglie critiche, trappole della povertà e il ruolo delle istituzioni nella determinazione dei sentieri di sviluppo di lungo periodo.",
     timeFrameAnalysis: "L'approccio temporale di Acemoglu è particolarmente sofisticato e si distingue dai manuali tradizionali. Il capitolo 15 'Trade-off che coinvolgono tempo e rischio' introduce esplicitamente la dimensione temporale dell'analisi economica a livello microeconomico, probabilmente attraverso modelli di scelta intertemporale e teoria del portafoglio. A livello macroeconomico, la sequenza è innovativa: si parte dalla misurazione degli aggregati (capitoli 19-20), si procede con la crescita di lungo periodo (capitoli 21-22), poi si analizza il mercato del lavoro e quello del credito (capitoli 23-24), e infine si affrontano le fluttuazioni di breve periodo (capitoli 26-27). Questa progressione dal lungo al breve periodo riflette una filosofia che vede la crescita come il fenomeno economico fondamentale, con le fluttuazioni cicliche che rappresentano deviazioni temporanee da questo trend di lungo periodo.",
     nonStandardTopics: "Il manuale di Acemoglu presenta numerose innovazioni che lo rendono unico nel panorama dei testi introduttivi. Il capitolo 2 sui 'Metodi e questioni economiche' introduce probabilmente elementi di econometria e analisi empirica, fornendo agli studenti gli strumenti per valutare criticamente la ricerca economica. Il capitolo 8 sul commercio internazionale, collocato nella sezione microeconomica, rappresenta un'innovazione significativa che permette di applicare immediatamente i concetti di vantaggio comparativo e specializzazione ai modelli di mercato appena appresi. I capitoli 13-17 costituiscono un blocco particolarmente innovativo: teoria dei giochi, economia dell'informazione, aste e contrattazioni sono argomenti tipicamente riservati a corsi avanzati, qui resi accessibili a studenti principianti. Il capitolo 18 sull'economia sociale è probabilmente unico tra i manuali introduttivi, incorporando elementi di economia sperimentale, psicologia economica e teoria dell'equità. La sezione macroeconomica presenta diverse innovazioni: il capitolo 22 sullo sviluppo comparato incorpora probabilmente analisi cross-country e evidenze empiriche sui determinanti della crescita. L'approccio metodologico complessivo, con la sua enfasi sull'evidenza empirica e l'applicazione pratica, rappresenta un tentativo di superare la tradizionale dicotomia tra teoria ed evidenza.",
+    strengths: [
+      "Approccio innovativo basato sul metodo scientifico e analisi empirica",
+      "Integrazione di argomenti avanzati (teoria dei giochi, economia dell'informazione) a livello introduttivo",
+      "Enfasi sull'evidenza empirica e applicazioni pratiche",
+      "Trattamento all'avanguardia della crescita economica e delle istituzioni",
+      "Inclusione dell'economia sociale e aspetti comportamentali"
+    ],
+    weaknesses: [
+      "Complessità potenzialmente eccessiva per studenti principianti",
+      "Approccio metodologico intenso che richiede preparazione matematica",
+      "Struttura innovativa che può disorientare chi è abituato a manuali tradizionali",
+      "Enfasi sull'empirismo che può sacrificare comprensione teorica di base"
+    ],
+    targetAudience: "Corsi avanzati di economia, studenti motivati con buone basi matematiche, programmi che enfatizzano ricerca empirica e applicazioni moderne",
     category: "Competitor"
-  },
+  }
+];
+
+export const economicModelsData = [
   {
-    title: "Essenziale di Economia",
+    title: "Principi di Economia",
     authors: ["N. Gregory Mankiw"],
     author: "N. Gregory Mankiw, Robert M. Beren Professor a Harvard, ex Chairman del Council of Economic Advisers",
     characteristics: "Fenomeno editoriale globale. Struttura basata sui 'Dieci Principi dell'Economia', che forniscono una struttura concettuale coerente. Organizzazione logica",
