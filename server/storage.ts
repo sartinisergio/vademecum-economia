@@ -91,11 +91,14 @@ export class MemStorage implements IStorage {
     // Initialize models
     economicModelsData.forEach(modelData => {
       const id = randomUUID();
+      // Normalize type to expected format
+      const normalizedType: "micro" | "macro" = String(modelData.type).toLowerCase().includes("macro") ? "macro" : "micro";
+      
       const model: EconomicModel = { 
         id,
         name: modelData.name,
         description: modelData.description,
-        type: modelData.type,
+        type: normalizedType,
         keyConcepts: modelData.keyConcepts,
         applications: modelData.applications,
         schoolId: modelData.schoolId
@@ -103,24 +106,26 @@ export class MemStorage implements IStorage {
       this.models.set(id, model);
     });
 
-    // Initialize analytical reports
-    analyticalReportsData.forEach(reportData => {
-      const id = randomUUID();
-      const report: AnalyticalReport = { 
-        id,
-        title: reportData.title || "Titolo non disponibile",
-        authors: reportData.authors || [],
-        publisher: reportData.publisher || "Editore non specificato",
-        generalOverview: reportData.generalOverview || "Panorama generale non disponibile",
-        schoolsOfThought: reportData.schoolsOfThought || "Scuole di pensiero non specificate",
-        microMacroModels: reportData.microMacroModels || "Modelli non specificati",
-        growthModels: reportData.growthModels || "Modelli di crescita non specificati",
-        timeFrameAnalysis: reportData.timeFrameAnalysis || "Analisi temporale non disponibile",
-        nonStandardTopics: reportData.nonStandardTopics || "Argomenti non standard non specificati",
-        category: reportData.category || "Categoria non specificata"
-      };
-      this.analyticalReports.set(id, report);
-    });
+    // Initialize analytical reports (skip if empty)
+    if (analyticalReportsData.length > 0) {
+      analyticalReportsData.forEach(reportData => {
+        const id = randomUUID();
+        const report: AnalyticalReport = { 
+          id,
+          title: reportData.title || "Titolo non disponibile",
+          authors: reportData.authors || [],
+          publisher: reportData.publisher || "Editore non specificato",
+          generalOverview: reportData.generalOverview || "Panorama generale non disponibile",
+          schoolsOfThought: reportData.schoolsOfThought || "Scuole di pensiero non specificate",
+          microMacroModels: reportData.microMacroModels || "Modelli non specificati",
+          growthModels: reportData.growthModels || "Modelli di crescita non specificati",
+          timeFrameAnalysis: reportData.timeFrameAnalysis || "Analisi temporale non disponibile",
+          nonStandardTopics: reportData.nonStandardTopics || "Argomenti non standard non specificati",
+          category: reportData.category || "Categoria non specificata"
+        };
+        this.analyticalReports.set(id, report);
+      });
+    }
 
     // Initialize concepts
     economicConceptsData.forEach(conceptData => {
@@ -130,63 +135,60 @@ export class MemStorage implements IStorage {
         name: conceptData.name,
         definition: conceptData.definition,
         category: conceptData.category,
-        relatedTerms: conceptData.relatedTerms,
+        relatedTerms: conceptData.relatedConcepts,
         examples: null
       };
       this.concepts.set(id, concept);
     });
 
-    // Initialize comparisons with proper data transformation
-    try {
-      if (Array.isArray(comparisonsData) && comparisonsData.length > 0) {
-        comparisonsData.forEach(comparisonData => {
-          const id = randomUUID();
-          
-          // Transform items from old format to new format
-          const transformedItems: { type: "school" | "model" | "analyticalReport" | "concept"; id: string; name: string; }[] = 
-            comparisonData.items?.map((item: any, itemIndex: number) => ({
-              type: "concept" as const, // default type since old format doesn't specify
-              id: `item-${itemIndex}`,
-              name: item.name || `Item ${itemIndex + 1}`
-            })) || [];
-          
-          // Transform aspects from old format to new format
-          const transformedAspects = comparisonData.aspects?.map((aspectName: string, aspectIndex: number) => {
-            // Generate aspect comparisons based on available items
-            const aspectComparisons = transformedItems.map((item, itemIndex) => {
-              // Use characteristics from old format if available
-              const originalItem = comparisonData.items?.[itemIndex];
-              const characteristics = originalItem?.characteristics || [];
-              const relevantCharacteristic = characteristics.find((char: string) => 
-                char.toLowerCase().includes(aspectName.toLowerCase().split(' ')[0])
-              ) || characteristics[aspectIndex % characteristics.length] || `Analisi per ${aspectName}`;
-              
-              return {
-                itemId: item.id,
-                value: relevantCharacteristic
-              };
-            });
+    // Initialize comparisons (skip if empty)
+    if (comparisonsData.length > 0) {
+      const comparisons = comparisonsData as any[];
+      comparisons.forEach(comparisonData => {
+        const id = randomUUID();
+        
+        // Transform items from old format to new format
+        const transformedItems: { type: "school" | "model" | "analyticalReport" | "concept"; id: string; name: string; }[] = 
+          comparisonData.items?.map((item: any, itemIndex: number) => ({
+            type: "concept" as const, // default type since old format doesn't specify
+            id: `item-${itemIndex}`,
+            name: item.name || `Item ${itemIndex + 1}`
+          })) || [];
+        
+        // Transform aspects from old format to new format
+        const transformedAspects = comparisonData.aspects?.map((aspectName: string, aspectIndex: number) => {
+          // Generate aspect comparisons based on available items
+          const aspectComparisons = transformedItems.map((item, itemIndex) => {
+            // Use characteristics from old format if available
+            const originalItem = comparisonData.items?.[itemIndex];
+            const characteristics = originalItem?.characteristics || [];
+            const relevantCharacteristic = characteristics.find((char: string) => 
+              char.toLowerCase().includes(aspectName.toLowerCase().split(' ')[0])
+            ) || characteristics[aspectIndex % characteristics.length] || `Analisi per ${aspectName}`;
             
             return {
-              name: aspectName,
-              comparisons: aspectComparisons
+              itemId: item.id,
+              value: relevantCharacteristic
             };
-          }) || [];
-
-          const comparison: Comparison = { 
-            id,
-            title: comparisonData.title,
-            description: comparisonData.description || "Confronto dettagliato",
-            items: transformedItems,
-            aspects: transformedAspects,
-            createdAt: new Date().toISOString(),
-            isCustom: null
+          });
+          
+          return {
+            name: aspectName,
+            comparisons: aspectComparisons
           };
-          this.comparisons.set(id, comparison);
-        });
-      }
-    } catch (error) {
-      console.log("Comparisons data not loaded - using empty set");
+        }) || [];
+
+        const comparison: Comparison = { 
+          id,
+          title: comparisonData.title,
+          description: comparisonData.description || "Confronto dettagliato",
+          items: transformedItems,
+          aspects: transformedAspects,
+          createdAt: new Date().toISOString(),
+          isCustom: null
+        };
+        this.comparisons.set(id, comparison);
+      });
     }
   }
 

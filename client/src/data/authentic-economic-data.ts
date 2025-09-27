@@ -104,7 +104,96 @@ export const analyticalReportsData = [
 ];
 
 export const economicModelsData = [
-  // I dati dei modelli economici verranno inseriti qui
+  {
+    id: "1",
+    name: "Modello di Domanda e Offerta",
+    description: "Il modello fondamentale che spiega la formazione dei prezzi attraverso l'interazione tra domanda e offerta di mercato.",
+    type: "microeconomico",
+    keyConcepts: ["Equilibrio di mercato", "Prezzo di equilibrio", "Elasticità", "Surplus del consumatore e del produttore"],
+    applications: ["Analisi dei mercati", "Politiche di prezzo", "Effetti delle tasse", "Regolamentazione"],
+    schoolId: "neoclassica"
+  },
+  {
+    id: "2", 
+    name: "Modello IS-LM",
+    description: "Modello macroeconomico che analizza l'equilibrio simultaneo nel mercato dei beni (IS) e della moneta (LM).",
+    type: "macroeconomico",
+    keyConcepts: ["Curva IS", "Curva LM", "Tasso di interesse", "Reddito nazionale", "Politica fiscale e monetaria"],
+    applications: ["Analisi delle politiche macroeconomiche", "Effetti della spesa pubblica", "Politica monetaria"],
+    schoolId: "post-keynesiana"
+  },
+  {
+    id: "3",
+    name: "Modello di Crescita di Solow",
+    description: "Modello neoclassico che spiega la crescita economica di lungo periodo attraverso accumulo di capitale e progresso tecnologico.",
+    type: "macroeconomico", 
+    keyConcepts: ["Stato stazionario", "Funzione di produzione", "Tasso di risparmio", "Progresso tecnologico", "Convergenza"],
+    applications: ["Analisi della crescita", "Politiche di sviluppo", "Confronti internazionali", "Investimenti"],
+    schoolId: "neoclassica"
+  },
+  {
+    id: "4",
+    name: "Modello di Concorrenza Perfetta",
+    description: "Modello che descrive un mercato ideale con molti compratori e venditori, prodotti omogenei e informazione perfetta.",
+    type: "microeconomico",
+    keyConcepts: ["Price taker", "Efficienza allocativa", "Profitto economico nullo", "Libertà di entrata/uscita"],
+    applications: ["Benchmark di efficienza", "Analisi del benessere", "Politiche antitrust"],
+    schoolId: "neoclassica"
+  },
+  {
+    id: "5",
+    name: "Modello di Monopolio",
+    description: "Modello che analizza il comportamento di un'impresa che ha il controllo esclusivo di un mercato.",
+    type: "microeconomico",
+    keyConcepts: ["Potere di mercato", "Discriminazione di prezzo", "Perdita secca", "Barriere all'entrata"],
+    applications: ["Regolamentazione", "Politiche antitrust", "Pricing strategies", "Analisi del benessere"],
+    schoolId: "neoclassica"
+  },
+  {
+    id: "6",
+    name: "Modello AD-AS",
+    description: "Modello che spiega il livello generale dei prezzi e dell'output attraverso domanda e offerta aggregate.",
+    type: "macroeconomico",
+    keyConcepts: ["Domanda aggregata", "Offerta aggregata", "Inflazione", "Disoccupazione", "Shock economici"],
+    applications: ["Analisi delle fluttuazioni cicliche", "Politiche di stabilizzazione", "Analisi dell'inflazione"],
+    schoolId: "neoclassica"
+  },
+  {
+    id: "7",
+    name: "Teoria dei Giochi",
+    description: "Framework per analizzare le decisioni strategiche quando il risultato dipende dalle azioni di più agenti.",
+    type: "microeconomico", 
+    keyConcepts: ["Equilibrio di Nash", "Strategie dominanti", "Giochi cooperativi", "Dilemma del prigioniero"],
+    applications: ["Oligopolio", "Aste", "Contrattazione", "Politiche pubbliche"],
+    schoolId: "comportamentale"
+  },
+  {
+    id: "8", 
+    name: "Modello di Instabilità Finanziaria di Minsky",
+    description: "Modello che spiega come la stabilità economica porti endogenamente all'instabilità attraverso cicli del credito.",
+    type: "macroeconomico",
+    keyConcepts: ["Ipotesi di instabilità", "Cicli del credito", "Finanza speculativa", "Momenti Minsky"],
+    applications: ["Analisi delle crisi finanziarie", "Regolamentazione bancaria", "Politiche macroprudenziali"],
+    schoolId: "post-keynesiana"
+  },
+  {
+    id: "9",
+    name: "Modello di Azione Umana (Praxeologia)",  
+    description: "Framework metodologico austriaco che analizza l'economia partendo dall'azione umana intenzionale.",
+    type: "microeconomico",
+    keyConcepts: ["Azione intenzionale", "Preferenze temporali", "Calcolo economico", "Ordine spontaneo"],
+    applications: ["Teoria del valore", "Teoria dell'imprenditorialità", "Critica alla pianificazione centrale"],
+    schoolId: "austriaca"
+  },
+  {
+    id: "10",
+    name: "Modelli Basati su Agenti (ABM)",
+    description: "Modelli computazionali che simulano le interazioni di agenti autonomi per studiare proprietà emergenti del sistema.",
+    type: "macroeconomico",
+    keyConcepts: ["Agenti eterogenei", "Proprietà emergenti", "Non-linearità", "Adattamento", "Reti complesse"],
+    applications: ["Simulazione di mercati", "Analisi di crisi sistemiche", "Politiche basate su evidenza"],
+    schoolId: "complessita"
+  }
 ];
 
 export const comparisonsData = [
