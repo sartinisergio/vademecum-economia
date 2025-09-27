@@ -111,58 +111,49 @@ export default function Manuals() {
           
           ${reportsForPrint.map(report => `
             <div class="manual">
-              <div class="manual-title">${manual.title}</div>
-              <div class="authors">Autori: ${manual.authors.join(', ')}</div>
-              
-              ${manual.author ? `
-              <div class="section">
-                <div class="section-title">Profilo Autore:</div>
-                <div class="list-item">${manual.author}</div>
-              </div>` : ''}
+              <div class="manual-title">${report.title}</div>
+              <div class="authors">Autori: ${report.authors.join(', ')}</div>
               
               <div class="section">
-                <div class="section-title">Caratteristiche:</div>
-                <div class="list-item">${manual.characteristics || 'Non specificate'}</div>
+                <div class="section-title">Editore:</div>
+                <div class="list-item">${report.publisher}</div>
               </div>
               
               <div class="section">
-                <div class="section-title">Scuola di Pensiero:</div>
-                <div class="list-item">${manual.school}</div>
-              </div>
-              
-              ${manual.models ? `
-              <div class="section">
-                <div class="section-title">Modelli Teorici:</div>
-                <div class="list-item">${manual.models}</div>
-              </div>` : ''}
-              
-              ${manual.shortLongPeriod ? `
-              <div class="section">
-                <div class="section-title">Approccio Breve/Lungo Periodo:</div>
-                <div class="list-item">${manual.shortLongPeriod}</div>
-              </div>` : ''}
-              
-              ${manual.growth ? `
-              <div class="section">
-                <div class="section-title">Crescita Economica:</div>
-                <div class="list-item">${manual.growth}</div>
-              </div>` : ''}
-              
-              <div class="section">
-                <div class="section-title">Punti di Forza:</div>
-                ${(manual.strengths || []).map(strength => `<div class="list-item">• ${strength}</div>`).join('')}
+                <div class="section-title">Panorama Generale:</div>
+                <div class="list-item">${report.generalOverview}</div>
               </div>
               
               <div class="section">
-                <div class="section-title">Punti di Debolezza:</div>
-                ${(manual.weaknesses || []).map(weakness => `<div class="list-item">• ${weakness}</div>`).join('')}
+                <div class="section-title">Scuole di Pensiero:</div>
+                <div class="list-item">${report.schoolsOfThought}</div>
               </div>
               
-              ${manual.targetAudience ? `
               <div class="section">
-                <div class="section-title">Pubblico Target:</div>
-                <div class="list-item">${manual.targetAudience}</div>
-              </div>` : ''}
+                <div class="section-title">Modelli Micro/Macro:</div>
+                <div class="list-item">${report.microMacroModels}</div>
+              </div>
+              
+              <div class="section">
+                <div class="section-title">Analisi Temporale:</div>
+                <div class="list-item">${report.timeFrameAnalysis}</div>
+              </div>
+              
+              <div class="section">
+                <div class="section-title">Modelli di Crescita:</div>
+                <div class="list-item">${report.growthModels}</div>
+              </div>
+              
+              <div class="section">
+                <div class="section-title">Argomenti Non Standard:</div>
+                <div class="list-item">${report.nonStandardTopics}</div>
+              </div>
+              
+              <div class="section">
+                <div class="section-title">Categoria:</div>
+                <div class="list-item">${report.category}</div>
+              </div>
+              
             </div>
           `).join('')}
           
@@ -183,7 +174,7 @@ export default function Manuals() {
     }
   };
 
-  // Filtra i manuali in base alla ricerca
+  // Filtra i report analitici in base alla ricerca
   const filteredReports = analyticalReports?.filter(report => {
     if (!searchQuery) return true;
     
@@ -191,14 +182,17 @@ export default function Manuals() {
     return (
       report.title.toLowerCase().includes(query) ||
       report.authors.some(author => author.toLowerCase().includes(query)) ||
-      report.characteristics?.toLowerCase().includes(query) ||
-      report.strengths.some(strength => strength.toLowerCase().includes(query)) ||
-      report.weaknesses.some(weakness => weakness.toLowerCase().includes(query))
+      report.publisher.toLowerCase().includes(query) ||
+      report.generalOverview.toLowerCase().includes(query) ||
+      report.schoolsOfThought.toLowerCase().includes(query) ||
+      report.microMacroModels.toLowerCase().includes(query) ||
+      report.growthModels.toLowerCase().includes(query) ||
+      report.nonStandardTopics.toLowerCase().includes(query)
     );
   }) || [];
 
-  // Manuali da visualizzare in base alla modalità
-  const displayedManuals = displayMode === "all" ? filteredReports : 
+  // Report da visualizzare in base alla modalità
+  const displayedReports = displayMode === "all" ? filteredReports : 
     filteredReports.filter(report => selectedManuals.includes(report.id));
 
   if (isLoading) {
@@ -331,28 +325,28 @@ export default function Manuals() {
       )}
 
       {/* Manuals Grid */}
-      {displayedManuals.length > 0 && (
+      {displayedReports.length > 0 && (
         <div className={`grid gap-8 mb-12 ${comparisonMode ? 'grid-cols-1' : 'grid-cols-1 lg:grid-cols-2'}`}>
-          {displayedManuals.map((manual) => {
-          const isHighlighted = highlightedManual === manual.title;
-          const isSelected = selectedManuals.includes(manual.id);
+          {displayedReports.map((report) => {
+          const isHighlighted = highlightedManual === report.title;
+          const isSelected = selectedManuals.includes(report.id);
           return (
-            <Card key={manual.id} className={`overflow-hidden hover:shadow-lg transition-all ${isHighlighted ? 'ring-2 ring-blue-500 shadow-lg' : ''} ${isSelected ? 'ring-2 ring-green-500 bg-green-50' : ''}`}>
+            <Card key={report.id} className={`overflow-hidden hover:shadow-lg transition-all ${isHighlighted ? 'ring-2 ring-blue-500 shadow-lg' : ''} ${isSelected ? 'ring-2 ring-green-500 bg-green-50' : ''}`}>
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div className="flex items-center space-x-4 flex-1">
                   <Checkbox
                     checked={isSelected}
-                    onCheckedChange={() => toggleManualSelection(manual.id)}
+                    onCheckedChange={() => toggleManualSelection(report.id)}
                     className="mt-1"
                   />
-                  <div className={`w-16 h-16 ${schoolGradients[manual.school as keyof typeof schoolGradients] || 'gradient-blue'} rounded-xl flex items-center justify-center`}>
+                  <div className={`w-16 h-16 ${schoolGradients[report.schoolsOfThought as keyof typeof schoolGradients] || 'gradient-blue'} rounded-xl flex items-center justify-center`}>
                     <BookOpen className="w-8 h-8 text-white" />
                   </div>
                   <div className="flex-1">
-                    <CardTitle className="text-xl leading-tight">{manual.title}</CardTitle>
+                    <CardTitle className="text-xl leading-tight">{report.title}</CardTitle>
                     <div className="flex flex-wrap gap-1 mt-2">
-                      {(manual.authors || []).map((author, index) => (
+                      {(report.authors || []).map((author, index) => (
                         <Badge key={index} variant="outline" className="text-xs">
                           {author}
                         </Badge>
@@ -361,117 +355,84 @@ export default function Manuals() {
                   </div>
                 </div>
               </div>
-              <Badge className={schoolColors[manual.school as keyof typeof schoolColors] || "bg-gray-100 text-gray-800 border-gray-200"}>
-                {manual.school}
+              <Badge className={schoolColors[report.schoolsOfThought as keyof typeof schoolColors] || "bg-gray-100 text-gray-800 border-gray-200"}>
+                {report.schoolsOfThought}
               </Badge>
             </CardHeader>
             <CardContent className="space-y-4">
-              {/* Author */}
-              {manual.author && (
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                    <span className="text-blue-500 mr-2">•</span>
-                    Autore
-                  </h4>
-                  <p className="text-sm text-gray-600 ml-6">{manual.author}</p>
-                </div>
-              )}
+              {/* Publisher */}
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                  <span className="text-blue-500 mr-2">•</span>
+                  Editore
+                </h4>
+                <p className="text-sm text-gray-600 ml-6">{report.publisher}</p>
+              </div>
 
-              {/* Characteristics */}
-              {manual.characteristics && (
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                    <span className="text-blue-500 mr-2">•</span>
-                    Caratteristiche
-                  </h4>
-                  <p className="text-sm text-gray-600 ml-6">{manual.characteristics}</p>
-                </div>
-              )}
+              {/* General Overview */}
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                  <span className="text-blue-500 mr-2">•</span>
+                  Panorama Generale
+                </h4>
+                <p className="text-sm text-gray-600 ml-6">{report.generalOverview}</p>
+              </div>
 
               {/* School of Thought */}
               <div>
                 <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
                   <span className="text-blue-500 mr-2">•</span>
-                  Scuola di Pensiero
+                  Scuole di Pensiero
                 </h4>
-                <p className="text-sm text-gray-600 ml-6">{manual.school}</p>
+                <p className="text-sm text-gray-600 ml-6">{report.schoolsOfThought}</p>
               </div>
 
-              {/* Models */}
-              {manual.models && (
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                    <span className="text-blue-500 mr-2">•</span>
-                    Modelli
-                  </h4>
-                  <p className="text-sm text-gray-600 ml-6">{manual.models}</p>
-                </div>
-              )}
+              {/* Micro/Macro Models */}
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                  <span className="text-blue-500 mr-2">•</span>
+                  Modelli Micro/Macro
+                </h4>
+                <p className="text-sm text-gray-600 ml-6">{report.microMacroModels}</p>
+              </div>
 
-              {/* Short/Long Period */}
-              {manual.shortLongPeriod && (
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                    <span className="text-blue-500 mr-2">•</span>
-                    Breve/Lungo Periodo
-                  </h4>
-                  <p className="text-sm text-gray-600 ml-6">{manual.shortLongPeriod}</p>
-                </div>
-              )}
+              {/* Time Frame Analysis */}
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                  <span className="text-blue-500 mr-2">•</span>
+                  Analisi Temporale
+                </h4>
+                <p className="text-sm text-gray-600 ml-6">{report.timeFrameAnalysis}</p>
+              </div>
 
-              {/* Growth */}
-              {manual.growth && (
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                    <span className="text-blue-500 mr-2">•</span>
-                    Crescita
-                  </h4>
-                  <p className="text-sm text-gray-600 ml-6">{manual.growth}</p>
-                </div>
-              )}
+              {/* Growth Models */}
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                  <span className="text-blue-500 mr-2">•</span>
+                  Modelli di Crescita
+                </h4>
+                <p className="text-sm text-gray-600 ml-6">{report.growthModels}</p>
+              </div>
 
-              {/* Strengths */}
+              {/* Non-Standard Topics */}
               <div>
                 <div className="flex items-center space-x-2 mb-3">
                   <span className="text-blue-500 mr-2">•</span>
                   <CheckCircle className="w-5 h-5 text-green-600" />
-                  <h4 className="font-semibold text-gray-900">Punti di Forza</h4>
+                  <h4 className="font-semibold text-gray-900">Argomenti Non Standard</h4>
                 </div>
-                <ul className="space-y-1">
-                  {(manual.strengths || []).map((strength, index) => (
-                    <li key={index} className="flex items-start space-x-2">
-                      <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-sm text-gray-600">{strength}</span>
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-sm text-gray-600 ml-6">{report.nonStandardTopics}</p>
               </div>
 
-              {/* Weaknesses */}
-              <div>
-                <div className="flex items-center space-x-2 mb-3">
-                  <span className="text-blue-500 mr-2">•</span>
-                  <XCircle className="w-5 h-5 text-red-600" />
-                  <h4 className="font-semibold text-gray-900">Punti di Debolezza</h4>
-                </div>
-                <ul className="space-y-1">
-                  {(manual.weaknesses || []).map((weakness, index) => (
-                    <li key={index} className="flex items-start space-x-2">
-                      <div className="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-sm text-gray-600">{weakness}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
 
-              {/* Target Audience */}
+              {/* Category */}
               <div className="bg-gray-50 p-4 rounded-lg">
                 <div className="flex items-center space-x-2 mb-2">
                   <span className="text-blue-500 mr-2">•</span>
                   <GraduationCap className="w-5 h-5 text-primary" />
-                  <h4 className="font-semibold text-gray-900">Pubblico Ideale</h4>
+                  <h4 className="font-semibold text-gray-900">Categoria</h4>
                 </div>
-                <p className="text-sm text-gray-600 italic">{manual.targetAudience}</p>
+                <p className="text-sm text-gray-600 italic">{report.category}</p>
               </div>
             </CardContent>
           </Card>
@@ -492,11 +453,11 @@ export default function Manuals() {
               <thead className="bg-gray-50">
                 <tr>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 w-32">Aspetto</th>
-                  {displayedManuals.map((manual) => (
-                    <th key={manual.id} className="px-6 py-3 text-left text-sm font-semibold text-gray-900 min-w-80">
+                  {displayedReports.map((report) => (
+                    <th key={report.id} className="px-6 py-3 text-left text-sm font-semibold text-gray-900 min-w-80">
                       <div>
-                        <div className="font-medium">{manual.title}</div>
-                        <div className="text-xs text-gray-500 font-normal">{manual.authors.join(", ")}</div>
+                        <div className="font-medium">{report.title}</div>
+                        <div className="text-xs text-gray-500 font-normal">{report.authors.join(", ")}</div>
                       </div>
                     </th>
                   ))}
@@ -505,73 +466,43 @@ export default function Manuals() {
               <tbody className="divide-y divide-gray-200">
                 <tr>
                   <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Scuola</td>
-                  {displayedManuals.map((manual) => (
-                    <td key={manual.id} className="px-6 py-4">
-                      <Badge className={schoolColors[manual.school as keyof typeof schoolColors] || "bg-gray-100 text-gray-800 border-gray-200"}>
-                        {manual.school}
+                  {displayedReports.map((report) => (
+                    <td key={report.id} className="px-6 py-4">
+                      <Badge className={schoolColors[report.schoolsOfThought as keyof typeof schoolColors] || "bg-gray-100 text-gray-800 border-gray-200"}>
+                        {report.schoolsOfThought}
                       </Badge>
                     </td>
                   ))}
                 </tr>
                 <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Caratteristiche</td>
-                  {displayedManuals.map((manual) => (
-                    <td key={manual.id} className="px-6 py-4">
-                      <div className="text-sm text-gray-600">{manual.characteristics}</div>
+                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Panorama Generale</td>
+                  {displayedReports.map((report) => (
+                    <td key={report.id} className="px-6 py-4">
+                      <div className="text-sm text-gray-600">{report.generalOverview}</div>
                     </td>
                   ))}
                 </tr>
                 <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Modelli</td>
-                  {displayedManuals.map((manual) => (
-                    <td key={manual.id} className="px-6 py-4">
-                      <div className="text-sm text-gray-600">{manual.models || "Non specificato"}</div>
+                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Modelli Micro/Macro</td>
+                  {displayedReports.map((report) => (
+                    <td key={report.id} className="px-6 py-4">
+                      <div className="text-sm text-gray-600">{report.microMacroModels}</div>
                     </td>
                   ))}
                 </tr>
                 <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Crescita</td>
-                  {displayedManuals.map((manual) => (
-                    <td key={manual.id} className="px-6 py-4">
-                      <div className="text-sm text-gray-600">{manual.growth || "Non specificato"}</div>
+                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Modelli di Crescita</td>
+                  {displayedReports.map((report) => (
+                    <td key={report.id} className="px-6 py-4">
+                      <div className="text-sm text-gray-600">{report.growthModels}</div>
                     </td>
                   ))}
                 </tr>
                 <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Punti di Forza</td>
-                  {displayedManuals.map((manual) => (
-                    <td key={manual.id} className="px-6 py-4">
-                      <ul className="space-y-1">
-                        {(manual.strengths || []).map((strength, index) => (
-                          <li key={index} className="flex items-start space-x-2">
-                            <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-sm text-gray-600">{strength}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Punti di Debolezza</td>
-                  {displayedManuals.map((manual) => (
-                    <td key={manual.id} className="px-6 py-4">
-                      <ul className="space-y-1">
-                        {(manual.weaknesses || []).map((weakness, index) => (
-                          <li key={index} className="flex items-start space-x-2">
-                            <div className="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-sm text-gray-600">{weakness}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Pubblico Ideale</td>
-                  {displayedManuals.map((manual) => (
-                    <td key={manual.id} className="px-6 py-4">
-                      <div className="text-sm text-gray-600">{manual.targetAudience}</div>
+                  <td className="px-6 py-4 font-medium text-gray-900 bg-gray-50">Categoria</td>
+                  {displayedReports.map((report) => (
+                    <td key={report.id} className="px-6 py-4">
+                      <div className="text-sm text-gray-600">{report.category}</div>
                     </td>
                   ))}
                 </tr>
@@ -582,7 +513,7 @@ export default function Manuals() {
       )}
 
       {/* Quick Comparison Table */}
-      {displayedManuals.length > 0 && !comparisonMode && (
+      {displayedReports.length > 0 && !comparisonMode && (
         <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
         <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
           <h2 className="text-2xl font-bold text-gray-900">Confronto Rapido</h2>
@@ -641,7 +572,7 @@ export default function Manuals() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="text-center">
-            <div className="text-3xl font-bold text-primary mb-2">{displayedManuals.length}</div>
+            <div className="text-3xl font-bold text-primary mb-2">{displayedReports.length}</div>
             <div className="text-gray-600">
               {comparisonMode ? "Report Confrontati" : 
                searchQuery ? "Report Trovati" : 
@@ -650,19 +581,19 @@ export default function Manuals() {
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">
-              {Array.from(new Set(displayedManuals.map(m => m.school))).length}
+              {Array.from(new Set(displayedReports.map(m => m.school))).length}
             </div>
             <div className="text-gray-600">Scuole Rappresentate</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">
-              {Array.from(new Set(displayedManuals.flatMap(m => m.authors))).length}
+              {Array.from(new Set(displayedReports.flatMap(m => m.authors))).length}
             </div>
             <div className="text-gray-600">Autori Totali</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">
-              {displayedManuals.reduce((acc, manual) => acc + (manual.strengths || []).length, 0)}
+              {displayedReports.reduce((acc, manual) => acc + (manual.strengths || []).length, 0)}
             </div>
             <div className="text-gray-600">Punti di Forza</div>
           </div>

@@ -242,7 +242,7 @@ export default function Comparisons() {
                   </label>
                   {/* No results message for dialog search */}
                   {dialogSearchQuery && filteredSchools.length === 0 && filteredModels.length === 0 && 
-                   filteredManuals.length === 0 && filteredConcepts.length === 0 && (
+                   filteredAnalyticalReports.length === 0 && filteredConcepts.length === 0 && (
                     <div className="text-center py-8">
                       <p className="text-gray-500">Nessun elemento trovato per "{dialogSearchQuery}"</p>
                       <Button 
@@ -325,7 +325,7 @@ export default function Comparisons() {
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-2">Report Analitici ({filteredAnalyticalReports.length})</h4>
                       <div className="space-y-2 max-h-32 overflow-y-auto">
-                        {filteredManuals.map(manual => (
+                        {filteredAnalyticalReports.map(manual => (
                           <div key={manual.id} className="flex items-center space-x-2">
                             <Checkbox
                               checked={createState.selectedItems.some(item => item.id === manual.id)}
