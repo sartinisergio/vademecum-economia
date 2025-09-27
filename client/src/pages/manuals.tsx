@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { Manual } from "@shared/schema";
+import type { AnalyticalReport } from "@shared/schema";
 
 const schoolColors = {
   "Post-keynesiana moderna": "bg-emerald-100 text-emerald-800 border-emerald-200",
@@ -32,8 +32,8 @@ export default function Manuals() {
   const [displayMode, setDisplayMode] = useState<"all" | "selected">("all");
   const [comparisonMode, setComparisonMode] = useState(false);
 
-  const { data: manuals, isLoading, error } = useQuery<Manual[]>({
-    queryKey: ["/api/manuals"],
+  const { data: analyticalReports, isLoading, error } = useQuery<AnalyticalReport[]>({
+    queryKey: ["/api/analyticalReports"],
   });
 
   // Gestisce i parametri URL per ricerca
@@ -44,18 +44,18 @@ export default function Manuals() {
     if (search) {
       setSearchQuery(search);
       // Trova il manuale che contiene l'autore cercato
-      if (manuals) {
-        const foundManual = manuals.find(manual => 
-          manual.authors.some(author => 
+      if (analyticalReports) {
+        const foundReport = analyticalReports.find(report => 
+          report.authors.some(author => 
             author.toLowerCase().includes(search.toLowerCase())
           )
         );
-        if (foundManual) {
-          setHighlightedManual(foundManual.title);
+        if (foundReport) {
+          setHighlightedManual(foundReport.title);
         }
       }
     }
-  }, [location, manuals]);
+  }, [location, analyticalReports]);
 
   const toggleManualSelection = (manualId: string) => {
     setSelectedManuals(prev => 
@@ -80,7 +80,7 @@ export default function Manuals() {
 
   const handlePrint = () => {
     // Il problema potrebbe essere nella logica di filtro - usiamo semplicemente i manuali selezionati
-    const manualsForPrint = manuals?.filter(manual => selectedManuals.includes(manual.id)) || [];
+    const reportsForPrint = analyticalReports?.filter(report => selectedManuals.includes(report.id)) || [];
     
     const printContent = `
       <html>
@@ -106,10 +106,10 @@ export default function Manuals() {
           <div class="header">
             <h1>Confronto Manuali di Economia</h1>
             <p>Vademecum di Economia - ${new Date().toLocaleDateString('it-IT')}</p>
-            <p>Confronto di ${manualsForPrint.length} manuali selezionati</p>
+            <p>Confronto di ${reportsForPrint.length} report analitici selezionati</p>
           </div>
           
-          ${manualsForPrint.map(manual => `
+          ${reportsForPrint.map(report => `
             <div class="manual">
               <div class="manual-title">${manual.title}</div>
               <div class="authors">Autori: ${manual.authors.join(', ')}</div>
@@ -184,7 +184,7 @@ export default function Manuals() {
   };
 
   // Filtra i manuali in base alla ricerca
-  const filteredManuals = manuals?.filter(manual => {
+  const filteredReports = analyticalReports?.filter(report => {
     if (!searchQuery) return true;
     
     const query = searchQuery.toLowerCase();

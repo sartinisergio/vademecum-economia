@@ -28,7 +28,7 @@ import { Badge } from "@/components/ui/badge";
 interface Stats {
   schoolsCount: number;
   modelsCount: number;
-  manualsCount: number;
+  analyticalReportsCount: number;
   conceptsCount: number;
   comparisonsCount: number;
   microModelsCount: number;
@@ -285,7 +285,7 @@ export default function Dashboard() {
             title="Manuali"
             description="Testi di riferimento delle università italiane"
             icon={<BookOpen className="w-8 h-8 text-white" />}
-            count={`${stats?.manualsCount || 15}+ manuali`}
+            count={`${stats?.analyticalReportsCount || 15}+ report analitici`}
             href="/manuals"
             gradient="gradient-emerald"
           />

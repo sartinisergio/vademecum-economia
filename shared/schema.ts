@@ -23,19 +23,18 @@ export const economicModels = pgTable("economic_models", {
   schoolId: varchar("school_id").references(() => economicSchools.id),
 });
 
-export const manuals = pgTable("manuals", {
+export const analyticalReports = pgTable("analytical_reports", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
   authors: jsonb("authors").$type<string[]>().notNull(),
-  author: text("author"),
-  characteristics: text("characteristics"),
-  school: text("school").notNull(),
-  models: text("models"),
-  shortLongPeriod: text("short_long_period"),
-  growth: text("growth"),
-  strengths: jsonb("strengths").$type<string[]>().notNull(),
-  weaknesses: jsonb("weaknesses").$type<string[]>().notNull(),
-  targetAudience: text("target_audience").notNull(),
+  publisher: text("publisher").notNull(), // "Zanichelli" or "Competitor"
+  generalOverview: text("general_overview").notNull(),
+  schoolsOfThought: text("schools_of_thought").notNull(),
+  microMacroModels: text("micro_macro_models").notNull(),
+  growthModels: text("growth_models").notNull(),
+  timeFrameAnalysis: text("time_frame_analysis").notNull(),
+  nonStandardTopics: text("non_standard_topics").notNull(),
+  category: text("category").notNull(), // "Zanichelli" or "Competitor"
 });
 
 export const concepts = pgTable("concepts", {
@@ -51,7 +50,7 @@ export const comparisons = pgTable("comparisons", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
   description: text("description").notNull(),
-  items: jsonb("items").$type<{type: 'school' | 'model' | 'manual' | 'concept', id: string, name: string}[]>().notNull(),
+  items: jsonb("items").$type<{type: 'school' | 'model' | 'analyticalReport' | 'concept', id: string, name: string}[]>().notNull(),
   aspects: jsonb("aspects").$type<{name: string, comparisons: {itemId: string, value: string}[]}[]>().notNull(),
   createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
   isCustom: text("is_custom").default("false"), // "true" for user-created comparisons
@@ -65,7 +64,7 @@ export const insertEconomicModelSchema = createInsertSchema(economicModels).omit
   id: true,
 });
 
-export const insertManualSchema = createInsertSchema(manuals).omit({
+export const insertAnalyticalReportSchema = createInsertSchema(analyticalReports).omit({
   id: true,
 });
 
@@ -79,12 +78,12 @@ export const insertComparisonSchema = createInsertSchema(comparisons).omit({
 
 export type InsertEconomicSchool = z.infer<typeof insertEconomicSchoolSchema>;
 export type InsertEconomicModel = z.infer<typeof insertEconomicModelSchema>;
-export type InsertManual = z.infer<typeof insertManualSchema>;
+export type InsertAnalyticalReport = z.infer<typeof insertAnalyticalReportSchema>;
 export type InsertConcept = z.infer<typeof insertConceptSchema>;
 export type InsertComparison = z.infer<typeof insertComparisonSchema>;
 
 export type EconomicSchool = typeof economicSchools.$inferSelect;
 export type EconomicModel = typeof economicModels.$inferSelect;
-export type Manual = typeof manuals.$inferSelect;
+export type AnalyticalReport = typeof analyticalReports.$inferSelect;
 export type Concept = typeof concepts.$inferSelect;
 export type Comparison = typeof comparisons.$inferSelect;

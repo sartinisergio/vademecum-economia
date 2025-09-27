@@ -14,12 +14,12 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
-import type { Comparison, EconomicSchool, EconomicModel, Manual, Concept } from "@shared/schema";
+import type { Comparison, EconomicSchool, EconomicModel, AnalyticalReport, Concept } from "@shared/schema";
 
 interface CreateComparisonState {
   title: string;
   description: string;
-  selectedItems: {type: 'school' | 'model' | 'manual' | 'concept', id: string, name: string}[];
+  selectedItems: {type: 'school' | 'model' | 'analyticalReport' | 'concept', id: string, name: string}[];
   aspects: {name: string, comparisons: {itemId: string, value: string}[]}[];
 }
 
@@ -50,8 +50,8 @@ export default function Comparisons() {
     queryKey: ["/api/models"],
   });
 
-  const { data: manuals } = useQuery<Manual[]>({
-    queryKey: ["/api/manuals"],
+  const { data: analyticalReports } = useQuery<AnalyticalReport[]>({
+    queryKey: ["/api/analyticalReports"],
   });
 
   const { data: concepts } = useQuery<Concept[]>({

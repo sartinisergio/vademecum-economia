@@ -3,8 +3,8 @@ import {
   type InsertEconomicSchool,
   type EconomicModel,
   type InsertEconomicModel,
-  type Manual,
-  type InsertManual,
+  type AnalyticalReport,
+  type InsertAnalyticalReport,
   type Concept,
   type InsertConcept,
   type Comparison,
@@ -14,7 +14,7 @@ import { randomUUID } from "crypto";
 import { 
   economicSchoolsData, 
   economicModelsData, 
-  manualsData, 
+  analyticalReportsData, 
   conceptsData, 
   comparisonsData 
 } from "../client/src/data/authentic-economic-data";
@@ -30,9 +30,9 @@ export interface IStorage {
   getModelById(id: string): Promise<EconomicModel | undefined>;
   getModelsByType(type: "micro" | "macro"): Promise<EconomicModel[]>;
   
-  // Manuals
-  getAllManuals(): Promise<Manual[]>;
-  getManualById(id: string): Promise<Manual | undefined>;
+  // Analytical Reports
+  getAllAnalyticalReports(): Promise<AnalyticalReport[]>;
+  getAnalyticalReportById(id: string): Promise<AnalyticalReport | undefined>;
   
   // Concepts
   getAllConcepts(): Promise<Concept[]>;
@@ -50,7 +50,7 @@ export interface IStorage {
   searchAll(query: string): Promise<{
     schools: EconomicSchool[];
     models: EconomicModel[];
-    manuals: Manual[];
+    analyticalReports: AnalyticalReport[];
     concepts: Concept[];
   }>;
 }
@@ -58,14 +58,14 @@ export interface IStorage {
 export class MemStorage implements IStorage {
   private schools: Map<string, EconomicSchool>;
   private models: Map<string, EconomicModel>;
-  private manuals: Map<string, Manual>;
+  private analyticalReports: Map<string, AnalyticalReport>;
   private concepts: Map<string, Concept>;
   private comparisons: Map<string, Comparison>;
 
   constructor() {
     this.schools = new Map();
     this.models = new Map();
-    this.manuals = new Map();
+    this.analyticalReports = new Map();
     this.concepts = new Map();
     this.comparisons = new Map();
     
@@ -103,24 +103,23 @@ export class MemStorage implements IStorage {
       this.models.set(id, model);
     });
 
-    // Initialize manuals
-    manualsData.forEach(manualData => {
+    // Initialize analytical reports
+    analyticalReportsData.forEach(reportData => {
       const id = randomUUID();
-      const manual: Manual = { 
+      const report: AnalyticalReport = { 
         id,
-        title: manualData.title,
-        authors: manualData.authors,
-        author: manualData.author || null,
-        characteristics: manualData.characteristics || null,
-        school: manualData.school,
-        models: manualData.models || null,
-        shortLongPeriod: manualData.shortLongPeriod || null,
-        growth: manualData.growth || null,
-        strengths: manualData.strengths,
-        weaknesses: manualData.weaknesses,
-        targetAudience: manualData.targetAudience
+        title: reportData.title || "Titolo non disponibile",
+        authors: reportData.authors || [],
+        publisher: reportData.publisher || "Editore non specificato",
+        generalOverview: reportData.generalOverview || "Panorama generale non disponibile",
+        schoolsOfThought: reportData.schoolsOfThought || "Scuole di pensiero non specificate",
+        microMacroModels: reportData.microMacroModels || "Modelli non specificati",
+        growthModels: reportData.growthModels || "Modelli di crescita non specificati",
+        timeFrameAnalysis: reportData.timeFrameAnalysis || "Analisi temporale non disponibile",
+        nonStandardTopics: reportData.nonStandardTopics || "Argomenti non standard non specificati",
+        category: reportData.category || "Categoria non specificata"
       };
-      this.manuals.set(id, manual);
+      this.analyticalReports.set(id, report);
     });
 
     // Initialize concepts
@@ -144,7 +143,7 @@ export class MemStorage implements IStorage {
           const id = randomUUID();
           
           // Transform items from old format to new format
-          const transformedItems: { type: "school" | "model" | "manual" | "concept"; id: string; name: string; }[] = 
+          const transformedItems: { type: "school" | "model" | "analyticalReport" | "concept"; id: string; name: string; }[] = 
             comparisonData.items?.map((item: any, itemIndex: number) => ({
               type: "concept" as const, // default type since old format doesn't specify
               id: `item-${itemIndex}`,
@@ -215,12 +214,12 @@ export class MemStorage implements IStorage {
     return Array.from(this.models.values()).filter(model => model.type === type);
   }
 
-  async getAllManuals(): Promise<Manual[]> {
-    return Array.from(this.manuals.values());
+  async getAllAnalyticalReports(): Promise<AnalyticalReport[]> {
+    return Array.from(this.analyticalReports.values());
   }
 
-  async getManualById(id: string): Promise<Manual | undefined> {
-    return this.manuals.get(id);
+  async getAnalyticalReportById(id: string): Promise<AnalyticalReport | undefined> {
+    return this.analyticalReports.get(id);
   }
 
   async getAllConcepts(): Promise<Concept[]> {
@@ -274,7 +273,7 @@ export class MemStorage implements IStorage {
   async searchAll(query: string): Promise<{
     schools: EconomicSchool[];
     models: EconomicModel[];
-    manuals: Manual[];
+    analyticalReports: AnalyticalReport[];
     concepts: Concept[];
   }> {
     const lowercaseQuery = query.toLowerCase();
@@ -291,15 +290,17 @@ export class MemStorage implements IStorage {
       model.keyConcepts.some(concept => concept.toLowerCase().includes(lowercaseQuery))
     );
 
-    const manuals = Array.from(this.manuals.values()).filter(manual =>
-      manual.title.toLowerCase().includes(lowercaseQuery) ||
-      manual.authors.some(author => author.toLowerCase().includes(lowercaseQuery)) ||
-      manual.school.toLowerCase().includes(lowercaseQuery)
+    const analyticalReports = Array.from(this.analyticalReports.values()).filter(report =>
+      report.title.toLowerCase().includes(lowercaseQuery) ||
+      report.authors.some(author => author.toLowerCase().includes(lowercaseQuery)) ||
+      report.publisher.toLowerCase().includes(lowercaseQuery) ||
+      report.generalOverview.toLowerCase().includes(lowercaseQuery) ||
+      report.schoolsOfThought.toLowerCase().includes(lowercaseQuery)
     );
 
     const concepts = await this.searchConcepts(query);
 
-    return { schools, models, manuals, concepts };
+    return { schools, models, analyticalReports, concepts };
   }
 }
 

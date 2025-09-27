@@ -69,25 +69,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Manuals routes
-  app.get("/api/manuals", async (req, res) => {
+  // Analytical Reports routes
+  app.get("/api/analyticalReports", async (req, res) => {
     try {
-      const manuals = await storage.getAllManuals();
-      res.json(manuals);
+      const analyticalReports = await storage.getAllAnalyticalReports();
+      res.json(analyticalReports);
     } catch (error) {
-      res.status(500).json({ error: "Failed to fetch manuals" });
+      res.status(500).json({ error: "Failed to fetch analytical reports" });
     }
   });
 
-  app.get("/api/manuals/:id", async (req, res) => {
+  app.get("/api/analyticalReports/:id", async (req, res) => {
     try {
-      const manual = await storage.getManualById(req.params.id);
-      if (!manual) {
-        return res.status(404).json({ error: "Manual not found" });
+      const analyticalReport = await storage.getAnalyticalReportById(req.params.id);
+      if (!analyticalReport) {
+        return res.status(404).json({ error: "Analytical report not found" });
       }
-      res.json(manual);
+      res.json(analyticalReport);
     } catch (error) {
-      res.status(500).json({ error: "Failed to fetch manual" });
+      res.status(500).json({ error: "Failed to fetch analytical report" });
     }
   });
 
@@ -197,10 +197,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Stats endpoint for dashboard
   app.get("/api/stats", async (req, res) => {
     try {
-      const [schools, models, manuals, concepts, comparisons] = await Promise.all([
+      const [schools, models, analyticalReports, concepts, comparisons] = await Promise.all([
         storage.getAllSchools(),
         storage.getAllModels(),
-        storage.getAllManuals(),
+        storage.getAllAnalyticalReports(),
         storage.getAllConcepts(),
         storage.getAllComparisons()
       ]);
@@ -208,7 +208,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const stats = {
         schoolsCount: schools.length,
         modelsCount: models.length,
-        manualsCount: manuals.length,
+        analyticalReportsCount: analyticalReports.length,
         conceptsCount: concepts.length,
         comparisonsCount: comparisons.length,
         microModelsCount: models.filter(m => m.type === "micro").length,
