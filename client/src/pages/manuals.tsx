@@ -150,12 +150,12 @@ export default function Manuals() {
               
               <div class="section">
                 <div class="section-title">Punti di Forza:</div>
-                ${manual.strengths.map(strength => `<div class="list-item">• ${strength}</div>`).join('')}
+                ${(manual.strengths || []).map(strength => `<div class="list-item">• ${strength}</div>`).join('')}
               </div>
               
               <div class="section">
                 <div class="section-title">Punti di Debolezza:</div>
-                ${manual.weaknesses.map(weakness => `<div class="list-item">• ${weakness}</div>`).join('')}
+                ${(manual.weaknesses || []).map(weakness => `<div class="list-item">• ${weakness}</div>`).join('')}
               </div>
               
               ${manual.targetAudience ? `
@@ -352,7 +352,7 @@ export default function Manuals() {
                   <div className="flex-1">
                     <CardTitle className="text-xl leading-tight">{manual.title}</CardTitle>
                     <div className="flex flex-wrap gap-1 mt-2">
-                      {manual.authors.map((author, index) => (
+                      {(manual.authors || []).map((author, index) => (
                         <Badge key={index} variant="outline" className="text-xs">
                           {author}
                         </Badge>
@@ -438,7 +438,7 @@ export default function Manuals() {
                   <h4 className="font-semibold text-gray-900">Punti di Forza</h4>
                 </div>
                 <ul className="space-y-1">
-                  {manual.strengths.map((strength, index) => (
+                  {(manual.strengths || []).map((strength, index) => (
                     <li key={index} className="flex items-start space-x-2">
                       <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                       <span className="text-sm text-gray-600">{strength}</span>
@@ -455,7 +455,7 @@ export default function Manuals() {
                   <h4 className="font-semibold text-gray-900">Punti di Debolezza</h4>
                 </div>
                 <ul className="space-y-1">
-                  {manual.weaknesses.map((weakness, index) => (
+                  {(manual.weaknesses || []).map((weakness, index) => (
                     <li key={index} className="flex items-start space-x-2">
                       <div className="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
                       <span className="text-sm text-gray-600">{weakness}</span>
@@ -542,7 +542,7 @@ export default function Manuals() {
                   {displayedManuals.map((manual) => (
                     <td key={manual.id} className="px-6 py-4">
                       <ul className="space-y-1">
-                        {manual.strengths.map((strength, index) => (
+                        {(manual.strengths || []).map((strength, index) => (
                           <li key={index} className="flex items-start space-x-2">
                             <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                             <span className="text-sm text-gray-600">{strength}</span>
@@ -557,7 +557,7 @@ export default function Manuals() {
                   {displayedManuals.map((manual) => (
                     <td key={manual.id} className="px-6 py-4">
                       <ul className="space-y-1">
-                        {manual.weaknesses.map((weakness, index) => (
+                        {(manual.weaknesses || []).map((weakness, index) => (
                           <li key={index} className="flex items-start space-x-2">
                             <div className="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
                             <span className="text-sm text-gray-600">{weakness}</span>
@@ -614,8 +614,8 @@ export default function Manuals() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="text-sm text-gray-600">
-                      {manual.strengths.slice(0, 2).join(", ")}
-                      {manual.strengths.length > 2 && "..."}
+                      {(manual.strengths || []).slice(0, 2).join(", ")}
+                      {(manual.strengths || []).length > 2 && "..."}
                     </div>
                   </td>
                   <td className="px-6 py-4">
