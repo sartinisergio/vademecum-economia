@@ -142,7 +142,7 @@ export default function Comparisons() {
 
   const filteredAnalyticalReports = analyticalReports?.filter(report =>
     dialogSearchQuery === "" ||
-    manual.title.toLowerCase().includes(dialogSearchQuery.toLowerCase())
+    report.title.toLowerCase().includes(dialogSearchQuery.toLowerCase())
   ) || [];
 
   const filteredConcepts = concepts?.filter(concept =>
