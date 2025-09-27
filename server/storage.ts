@@ -15,7 +15,7 @@ import {
   economicSchoolsData, 
   economicModelsData, 
   analyticalReportsData, 
-  conceptsData, 
+  economicConceptsData, 
   comparisonsData 
 } from "../client/src/data/authentic-economic-data";
 
@@ -123,7 +123,7 @@ export class MemStorage implements IStorage {
     });
 
     // Initialize concepts
-    conceptsData.forEach(conceptData => {
+    economicConceptsData.forEach(conceptData => {
       const id = randomUUID();
       const concept: Concept = { 
         id,
