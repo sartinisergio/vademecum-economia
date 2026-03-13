@@ -10,7 +10,11 @@ import {
 // Mappa dati statici per endpoint
 const staticData: Record<string, unknown> = {
   "/api/schools": (economicSchoolsData as any[]).map((s, i) => ({ ...s, id: `school-${i}` })),
-  "/api/models": (economicModelsData as any[]).map((m, i) => ({ ...m, id: `model-${i}` })),
+  "/api/models": (economicModelsData as any[]).map((m, i) => ({
+  ...m,
+  id: `model-${i}`,
+  type: String(m.type).toLowerCase().includes("macro") ? "macro" : "micro"
+})),
   "/api/analyticalReports": (analyticalReportsData as any[]).map((r, i) => ({ ...r, id: `report-${i}` })),
   "/api/concepts": (economicConceptsData as any[]).map((c, i) => ({
     ...c,
